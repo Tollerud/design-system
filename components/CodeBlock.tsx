@@ -1,4 +1,6 @@
-import { type HTMLAttributes, forwardRef } from 'react'
+'use client'
+
+import { type HTMLAttributes, forwardRef, useState, useCallback } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
@@ -6,27 +8,62 @@ export interface CodeBlockProps extends HTMLAttributes<HTMLPreElement> {
   code?: string
   /** When true, prepends a prompt symbol ($) before text content */
   promptPrefix?: boolean
+  /** When false, hides the copy-to-clipboard button (default: true) */
+  showCopy?: boolean
 }
 
 const CodeBlock = forwardRef<HTMLPreElement, CodeBlockProps>(
-  ({ className, children, code, promptPrefix, ...props }, ref) => {
+  ({ className, children, code, promptPrefix, showCopy = true, ...props }, ref) => {
+    const [copied, setCopied] = useState(false)
+
     const content = code ? (
       <code className="text-tia-noir-200">{code}</code>
     ) : (
       children
     )
+
+    const handleCopy = useCallback(async () => {
+      // Resolve the text to copy: prefer `code`, then children as string
+      const text = code ?? (typeof children === 'string' ? children : '')
+      if (!text) return
+      try {
+        await navigator.clipboard.writeText(text)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1500)
+      } catch {
+        // clipboard API may be unavailable — silently ignore
+      }
+    }, [code, children])
+
     return (
-      <pre
-        ref={ref}
-        className={cn(
-          'font-mono text-sm leading-relaxed overflow-x-auto rounded border p-4',
-          'bg-tia-noir-900 border-tia-border text-tia-noir-200',
-          className
+      <div className="relative group">
+        <pre
+          ref={ref}
+          className={cn(
+            'font-mono text-sm leading-relaxed overflow-x-auto rounded border p-4',
+            'bg-tia-noir-900 border-tia-border text-tia-noir-200',
+            className
+          )}
+          {...props}
+        >
+          {content}
+        </pre>
+        {showCopy && (
+          <button
+            onClick={handleCopy}
+            className={cn(
+              'absolute top-2 right-2 px-2 py-1 rounded text-xs font-medium',
+              'opacity-0 group-hover:opacity-100 transition-opacity',
+              'bg-tia-noir-800 border border-tia-border/30 text-tia-text-muted',
+              'hover:bg-tia-surface-raised hover:text-tia-text-primary',
+              copied && 'opacity-100 bg-tia-accent/20 text-tia-accent border-tia-accent/40'
+            )}
+            aria-label={copied ? 'Copied' : 'Copy code'}
+          >
+            {copied ? 'Copied' : 'Copy'}
+          </button>
         )}
-        {...props}
-      >
-        {content}
-      </pre>
+      </div>
     )
   }
 )

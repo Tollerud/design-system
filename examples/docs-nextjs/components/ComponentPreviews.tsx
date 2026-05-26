@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type ReactNode } from 'react'
+import { cn } from '../lib/utils'
 
 // ── Direct component imports from the design system ──
 import { Button } from '../../../components/Button'
@@ -65,6 +66,25 @@ import { Skeleton as TiaSkeleton } from '../../../components/Skeleton'
 import { Progress as TiaProgress } from '../../../components/Progress'
 import { Empty, EmptyHeader, EmptyIcon, EmptyTitle, EmptyDescription, EmptyContent } from '../../../components/Empty'
 import { toast } from 'sonner'
+import {
+  DropdownMenu as TiaDropdownMenu,
+  DropdownMenuTrigger as TiaDropdownMenuTrigger,
+  DropdownMenuContent as TiaDropdownMenuContent,
+  DropdownMenuItem as TiaDropdownMenuItem,
+  DropdownMenuSeparator as TiaDropdownMenuSeparator,
+  DropdownMenuLabel as TiaDropdownMenuLabel,
+} from '../../../components/DropdownMenu'
+import {
+  Sheet as TiaSheet,
+  SheetTrigger as TiaSheetTrigger,
+  SheetContent as TiaSheetContent,
+  SheetHeader as TiaSheetHeader,
+  SheetTitle as TiaSheetTitle,
+  SheetDescription as TiaSheetDescription,
+} from '../../../components/Sheet'
+import { DataTable as TiaDataTable } from '../../../components/DataTable'
+import type { Column } from '../../../components/DataTable'
+import { GlowCard as TiaGlowCard } from '../../../components/GlowCard'
 
 /* ────────── Preview wrapper ────────── */
 
@@ -857,6 +877,179 @@ export function ProgressPreviews() {
             <TiaProgress value={100} />
           </div>
         </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── GLOW CARD PREVIEWS ────────── */
+
+export function GlowCardPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Cursor-follow glow on host cards">
+        <div className="grid grid-cols-2 gap-3 w-full">
+          <TiaGlowCard glowColor="var(--tia-accent, #FFFF00)" intensity={0.12}>
+            <HostCard hostname="emma" ip="10.0.10.10" status="online" cpu="34%" memory="6.2/16 GB" disk="45%" uptime="42d" containers={8} />
+          </TiaGlowCard>
+          <TiaGlowCard glowColor="var(--tia-error)" intensity={0.08}>
+            <HostCard hostname="iris" ip="10.0.10.12" status="warning" cpu="87%" memory="14.5/16 GB" disk="91%" uptime="14d" />
+          </TiaGlowCard>
+        </div>
+        <p className="text-xs text-tia-text-muted mt-2">Move your cursor over each card — a subtle glow follows. Configurable color and intensity per card.</p>
+      </PreviewCard>
+      <PreviewCard title="Service health with glow">
+        <div className="grid grid-cols-2 gap-3 w-full">
+          <TiaGlowCard intensity={0.1}>
+            <ServiceHealthCard service="API Gateway" status="online" uptime="99.97%" responseTime="42ms" />
+          </TiaGlowCard>
+          <TiaGlowCard glowColor="var(--tia-warning)" intensity={0.1}>
+            <ServiceHealthCard service="PostgreSQL" status="warning" uptime="98.2%" responseTime="12ms" />
+          </TiaGlowCard>
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── DATA TABLE PREVIEWS ────────── */
+
+interface ServerRow {
+  name: string
+  ip: string
+  cpu: string
+  mem: string
+  disk: string
+  uptime: string
+  status: string
+}
+
+export function DataTablePreviews() {
+  const servers: ServerRow[] = [
+    { name: 'emma', ip: '10.0.10.10', cpu: '34%', mem: '6.2/16', disk: '45%', uptime: '42d', status: 'online' },
+    { name: 'miriam', ip: '10.0.10.14', cpu: '12%', mem: '3.8/32', disk: '62%', uptime: '89d', status: 'online' },
+    { name: 'iris', ip: '10.0.10.12', cpu: '87%', mem: '14.5/16', disk: '91%', uptime: '14d', status: 'warning' },
+    { name: 'victoria', ip: '10.0.10.15', cpu: '—', mem: '—', disk: '—', uptime: '—', status: 'offline' },
+    { name: 'pia', ip: '10.0.10.13', cpu: '5%', mem: '2.1/8', disk: '22%', uptime: '120d', status: 'online' },
+  ]
+
+  const columns: Column<ServerRow>[] = [
+    { key: 'name', label: 'Server', sortable: true },
+    { key: 'ip', label: 'IP Address' },
+    { key: 'cpu', label: 'CPU', sortable: true, align: 'right' },
+    { key: 'mem', label: 'Memory', sortable: true, align: 'right' },
+    { key: 'disk', label: 'Disk', sortable: true, align: 'right' },
+    { key: 'uptime', label: 'Uptime', sortable: true, align: 'right' },
+    {
+      key: 'status',
+      label: 'Status',
+      sortable: true,
+      align: 'center',
+      render: (val) => (
+        <span className={cn(
+          'inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium',
+          val === 'online' && 'bg-tia-accent/15 text-tia-accent',
+          val === 'warning' && 'bg-tia-warning/15 text-tia-warning',
+          val === 'offline' && 'bg-tia-error/15 text-tia-error',
+        )}>
+          <span className={cn(
+            'w-1.5 h-1.5 rounded-full',
+            val === 'online' && 'bg-tia-accent',
+            val === 'warning' && 'bg-tia-warning',
+            val === 'offline' && 'bg-tia-error',
+          )} />
+          {val as string}
+        </span>
+      ),
+    },
+  ]
+
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Server inventory">
+        <TiaDataTable columns={columns} data={servers} className="w-full" />
+        <p className="text-xs text-tia-text-muted mt-2">Click column headers to sort. Try clicking CPU or Memory.</p>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── SHEET PREVIEWS ────────── */
+
+export function SheetPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Server details (right side)">
+        <TiaSheet>
+          <TiaSheetTrigger asChild>
+            <button className="px-3 py-1.5 rounded border border-tia-border/30 bg-tia-surface text-xs text-tia-text-primary hover:bg-tia-surface-raised transition-colors">
+              Open server details
+            </button>
+          </TiaSheetTrigger>
+          <TiaSheetContent side="right">
+            <TiaSheetHeader>
+              <TiaSheetTitle>emma.tollerud</TiaSheetTitle>
+              <TiaSheetDescription>10.0.10.10 · Ubuntu 24.04 · Uptime: 42d</TiaSheetDescription>
+            </TiaSheetHeader>
+            <div className="mt-6 space-y-4 text-sm text-tia-text-secondary">
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded bg-tia-surface-raised p-3">
+                  <div className="text-xs text-tia-text-muted">CPU</div>
+                  <div className="text-base font-semibold text-tia-text-primary">34%</div>
+                </div>
+                <div className="rounded bg-tia-surface-raised p-3">
+                  <div className="text-xs text-tia-text-muted">Memory</div>
+                  <div className="text-base font-semibold text-tia-text-primary">6.2/16 GB</div>
+                </div>
+                <div className="rounded bg-tia-surface-raised p-3">
+                  <div className="text-xs text-tia-text-muted">Disk</div>
+                  <div className="text-base font-semibold text-tia-text-primary">45%</div>
+                </div>
+                <div className="rounded bg-tia-surface-raised p-3">
+                  <div className="text-xs text-tia-text-muted">Containers</div>
+                  <div className="text-base font-semibold text-tia-text-primary">8</div>
+                </div>
+              </div>
+            </div>
+          </TiaSheetContent>
+        </TiaSheet>
+        <p className="text-xs text-tia-text-muted mt-2">Click to open a slide-in panel with server details. Press Esc or click the X to close.</p>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── DROPDOWN MENU PREVIEWS ────────── */
+
+export function DropdownMenuPreviews() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Overflow menu">
+        <TiaDropdownMenu open={open} onOpenChange={setOpen}>
+          <TiaDropdownMenuTrigger asChild>
+            <button className="px-3 py-1.5 rounded border border-tia-border/30 bg-tia-surface text-xs text-tia-text-primary hover:bg-tia-surface-raised transition-colors">
+              Actions ▾
+            </button>
+          </TiaDropdownMenuTrigger>
+          <TiaDropdownMenuContent>
+            <TiaDropdownMenuLabel>Server Actions</TiaDropdownMenuLabel>
+            <TiaDropdownMenuItem onSelect={() => alert('Restarting…')}>
+              Restart
+            </TiaDropdownMenuItem>
+            <TiaDropdownMenuItem onSelect={() => alert('Backup triggered')}>
+              Run Backup
+            </TiaDropdownMenuItem>
+            <TiaDropdownMenuItem disabled>
+              Deploy (unavailable)
+            </TiaDropdownMenuItem>
+            <TiaDropdownMenuSeparator />
+            <TiaDropdownMenuItem onSelect={() => alert('Logs opened')}>
+              View Logs
+            </TiaDropdownMenuItem>
+          </TiaDropdownMenuContent>
+        </TiaDropdownMenu>
+        <p className="text-xs text-tia-text-muted mt-2">Click to open. Items with disabled state, a label group, and separator.</p>
       </PreviewCard>
     </div>
   )

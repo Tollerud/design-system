@@ -36,8 +36,13 @@ import {
   TabsPreviews,
   SkeletonPreviews,
   ProgressPreviews,
+  DropdownMenuPreviews,
+  SheetPreviews,
+  DataTablePreviews,
+  GlowCardPreviews,
   EmptyPreviews,
 } from '../../components/ComponentPreviews'
+import { PreviewFrame } from '../../components/PreviewFrame'
 
 const sections: {
   label: string
@@ -256,6 +261,30 @@ const sections: {
     preview: ToastPreviews,
   },
   {
+    label: 'Dropdown Menu',
+    id: 'dropdown-menu',
+    desc: 'Overflow menu with Radix dropdown — trigger, label, items, separator, and disabled state. Ideal for action overflow on cards and tables.',
+    preview: DropdownMenuPreviews,
+  },
+  {
+    label: 'Sheet',
+    id: 'sheet',
+    desc: 'Slide-in panel from left or right — powered by Radix Dialog. Perfect for server details, config editing, or quick actions.',
+    preview: SheetPreviews,
+  },
+  {
+    label: 'Data Table',
+    id: 'data-table',
+    desc: 'Sortable data table with header-click sorting, numeric/string comparison, custom cell renders, and empty state. No external dependencies.',
+    preview: DataTablePreviews,
+  },
+  {
+    label: 'Glow Card',
+    id: 'glow-card',
+    desc: 'Cursor-follow radial glow wrapper — wraps any card component with a subtle mouse-tracking highlight. Configurable color and intensity per card.',
+    preview: GlowCardPreviews,
+  },
+  {
     label: 'Empty',
     id: 'empty',
     desc: 'Empty state layout — icon, title, description, and content slot for CTAs. Composable sub-components.',
@@ -267,7 +296,7 @@ export default function ComponentsPage() {
   return (
     <div className="docs-content">
       <h1>Components</h1>
-      <p>37 React components across form primitives, core UI, layout, atmosphere, command shell, and homelab categories.</p>
+      <p>41 React components across the system.</p>
       <p className="text-xs text-tia-text-muted mt-1">
         All components are <code>forwardRef</code> + <code>displayName</code> with full TypeScript types.
       </p>
@@ -276,7 +305,7 @@ export default function ComponentsPage() {
         <div key={id} id={id} className="mb-12">
           <h2>{label}</h2>
           <p className="text-sm text-tia-text-muted mb-4">{desc}</p>
-          <Preview />
+          <PreviewFrame><Preview /></PreviewFrame>
         </div>
       ))}
     </div>
