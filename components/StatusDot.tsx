@@ -36,6 +36,7 @@ const animationKeyframes = `
 const pulseColors: Partial<Record<Status, string>> = {
   online: 'rgba(34,197,94,0.5)',
   warning: 'rgba(232,213,0,0.45)',
+  offline: 'rgba(239,68,68,0.5)',
 }
 
 export interface StatusDotProps extends HTMLAttributes<HTMLSpanElement> {
@@ -48,7 +49,7 @@ export interface StatusDotProps extends HTMLAttributes<HTMLSpanElement> {
 const StatusDot = forwardRef<HTMLSpanElement, StatusDotProps>(
   ({ className, status = 'idle', label, noPulse, ...props }, ref) => {
     const style = statusStyles[status]
-    const shouldPulse = !noPulse && (status === 'online' || status === 'warning')
+    const shouldPulse = !noPulse && (status === 'online' || status === 'warning' || status === 'offline')
     const pulseColor = pulseColors[status]
 
     return (

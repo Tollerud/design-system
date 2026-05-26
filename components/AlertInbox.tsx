@@ -75,24 +75,24 @@ const AlertInbox = forwardRef<HTMLDivElement, AlertInboxProps>(
                 acknowledged={alert.acknowledged}
                 className="border-0 rounded-none bg-transparent hover:bg-tia-noir-800/30"
               />
-              {/* Read indicator */}
+              {/* Acknowledged indicator */}
               {alert.acknowledged && (
-                <span className="absolute top-3 right-3 text-[10px] font-medium text-tia-text-muted/50">
-                  Read
+                <span className="absolute bottom-2 right-3 text-[10px] font-medium text-tia-text-muted/50">
+                  Acknowledged
                 </span>
               )}
-              {/* Mark as read button */}
+              {/* Acknowledge button */}
               {!alert.acknowledged && onAcknowledge && (
                 <button
                   type="button"
                   onClick={() => onAcknowledge(alert.id)}
                   className={cn(
-                    'absolute top-3 right-3 text-[10px] font-medium px-2 py-0.5 rounded',
+                    'absolute bottom-2 right-3 text-[10px] font-medium px-2 py-0.5 rounded',
                     'text-tia-yellow/70 hover:text-tia-yellow hover:bg-tia-yellow/10',
                     'opacity-0 group-hover:opacity-100 transition-opacity duration-150'
                   )}
                 >
-                  Mark read
+                  Acknowledge
                 </button>
               )}
             </div>

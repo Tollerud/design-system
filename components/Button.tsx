@@ -2,7 +2,7 @@ import { type ButtonHTMLAttributes, forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
 const variants = {
-  primary: 'bg-tia-yellow text-tia-noir-black border-tia-yellow hover:bg-tia-yellow-bright hover:shadow-tia-glow',
+  primary: 'bg-tia-yellow text-tia-black border-tia-yellow hover:bg-tia-yellow-bright hover:shadow-tia-glow',
   secondary: 'bg-transparent text-tia-text-primary border-tia-border hover:border-tia-text-secondary hover:bg-tia-surface-hover',
   ghost: 'bg-transparent text-tia-text-secondary border-transparent hover:text-tia-text-primary hover:bg-tia-surface-hover',
   destructive: 'bg-tia-error text-white border-tia-error hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]',

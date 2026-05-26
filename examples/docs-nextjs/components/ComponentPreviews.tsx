@@ -145,7 +145,7 @@ export function SelectPreviews() {
   return (
     <div className="space-y-3">
       <PreviewCard title="Default">
-        <Select placeholder="Pick a server" options={servers} value={val} onChange={(e) => setVal(e.target.value)} />
+        <Select placeholder="Pick a server" options={servers} value={val} onChange={(v) => setVal(v)} />
       </PreviewCard>
       <PreviewCard title="With label & error">
         <Select label="Target" placeholder="Select…" options={servers} error="Required" />
@@ -174,11 +174,12 @@ export function CheckboxPreviews() {
 
 export function SwitchPreviews() {
   const [on, setOn] = useState(true)
+  const [notif, setNotif] = useState(true)
   return (
     <div className="space-y-3">
       <PreviewCard title="States">
         <Switch label="Dark mode" checked={on} onChange={() => setOn(!on)} />
-        <Switch label="Notifications" defaultChecked />
+        <Switch label="Notifications" checked={notif} onChange={() => setNotif(!notif)} />
         <Switch label="Beta features" disabled />
         <Switch label="Canary" disabled defaultChecked />
       </PreviewCard>
