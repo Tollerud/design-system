@@ -135,3 +135,6 @@ export type { DataTableProps, Column } from './DataTable'
 
 export { GlowCard } from './GlowCard'
 export type { GlowCardProps } from './GlowCard'
+
+export { BentoDashboard } from './BentoDashboard'
+export type { BentoDashboardProps } from './BentoDashboard'

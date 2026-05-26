@@ -40,6 +40,7 @@ import {
   SheetPreviews,
   DataTablePreviews,
   GlowCardPreviews,
+  BentoDashboardPreviews,
   EmptyPreviews,
 } from '../../components/ComponentPreviews'
 import { PreviewFrame } from '../../components/PreviewFrame'
@@ -285,6 +286,12 @@ const sections: {
     preview: GlowCardPreviews,
   },
   {
+    label: 'Bento Dashboard',
+    id: 'bento-dashboard',
+    desc: 'Pre-built homelab dashboard template with asymmetric bento grid layout — hosts, metrics, services, and incident panels. Data-driven, responsive, zero-config.',
+    preview: BentoDashboardPreviews,
+  },
+  {
     label: 'Empty',
     id: 'empty',
     desc: 'Empty state layout — icon, title, description, and content slot for CTAs. Composable sub-components.',
@@ -296,7 +303,7 @@ export default function ComponentsPage() {
   return (
     <div className="docs-content">
       <h1>Components</h1>
-      <p>41 React components across the system.</p>
+      <p>42 React components across the system.</p>
       <p className="text-xs text-tia-text-muted mt-1">
         All components are <code>forwardRef</code> + <code>displayName</code> with full TypeScript types.
       </p>

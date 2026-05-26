@@ -85,6 +85,7 @@ import {
 import { DataTable as TiaDataTable } from '../../../components/DataTable'
 import type { Column } from '../../../components/DataTable'
 import { GlowCard as TiaGlowCard } from '../../../components/GlowCard'
+import { BentoDashboard as TiaBentoDashboard } from '../../../components/BentoDashboard'
 
 /* ────────── Preview wrapper ────────── */
 
@@ -907,6 +908,43 @@ export function GlowCardPreviews() {
             <ServiceHealthCard service="PostgreSQL" status="warning" uptime="98.2%" responseTime="12ms" />
           </TiaGlowCard>
         </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── BENTO DASHBOARD PREVIEWS ────────── */
+
+export function BentoDashboardPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Homelab Dashboard">
+        <TiaBentoDashboard
+          title="Tollerud Infrastructure"
+          hosts={[
+            { hostname: 'emma', ip: '10.0.10.10', status: 'online', cpu: '34%', memory: '6.2/16 GB', disk: '45%', uptime: '42d', containers: 8 },
+            { hostname: 'miriam', ip: '10.0.10.14', status: 'online', cpu: '12%', memory: '3.8/32 GB', disk: '62%', uptime: '89d', containers: 12 },
+            { hostname: 'iris', ip: '10.0.10.12', status: 'warning', cpu: '87%', memory: '14.5/16 GB', disk: '91%', uptime: '14d' },
+          ]}
+          metrics={[
+            { label: 'CPU Avg', value: '44%', change: { value: '+5%', direction: 'up' } },
+            { label: 'Memory', value: '24.5 GB', change: { value: '-2%', direction: 'down' } },
+            { label: 'Disk Avg', value: '66%', change: { value: '+8%', direction: 'up' } },
+            { label: 'Uptime', value: '89d 14h' },
+          ]}
+          services={[
+            { service: 'API Gateway', status: 'online', uptime: '99.97%', responseTime: '42ms' },
+            { service: 'PostgreSQL', status: 'online', uptime: '99.9%', responseTime: '12ms' },
+            { service: 'Redis Cache', status: 'warning', uptime: '98.2%', responseTime: '3ms' },
+            { service: 'Auth Service', status: 'online', uptime: '99.99%', responseTime: '8ms' },
+          ]}
+          incidents={[
+            { title: 'Disk usage above 90%', severity: 'high', timestamp: '15m ago', service: 'Iris', description: '/hdd volume at 91%', acknowledged: true },
+            { title: 'Certificate expiring', severity: 'medium', timestamp: '1h ago', service: 'Traefik', description: 'Wildcard cert expires in 7 days' },
+            { title: 'Backup completed', severity: 'info', timestamp: '3h ago', service: 'Rclone', description: 'JottaCloud sync finished — 1.2 GB' },
+          ]}
+        />
+        <p className="text-xs text-tia-text-muted mt-2">A complete dashboard layout using 8 different Tollerud components. Data-driven and responsive.</p>
       </PreviewCard>
     </div>
   )

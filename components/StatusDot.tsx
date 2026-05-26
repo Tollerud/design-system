@@ -1,43 +1,30 @@
+'use client'
+
 import { type HTMLAttributes, forwardRef } from 'react'
+import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 type Status = 'online' | 'offline' | 'warning' | 'idle'
 
-const statusStyles: Record<Status, { base: string; glow: string }> = {
-  online:  {
-    base: 'bg-tia-success',
-    glow: 'shadow-[0_0_0_rgba(34,197,94,0)]',
-  },
-  offline: {
-    base: 'bg-tia-error',
-    glow: '',
-  },
-  warning: {
-    base: 'bg-tia-yellow',
-    glow: 'shadow-[0_0_0_rgba(232,213,0,0)]',
-  },
-  idle:    {
-    base: 'bg-tia-noir-400',
-    glow: '',
-  },
+const statusColors: Record<Status, string> = {
+  online: 'bg-tia-success',
+  offline: 'bg-tia-error',
+  warning: 'bg-tia-yellow',
+  idle: 'bg-tia-noir-400',
 }
-
-const animationKeyframes = `
-@keyframes tia-dot-pulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 var(--pulse-color, rgba(34,197,94,0.5));
-  }
-  50% {
-    box-shadow: 0 0 0 5px var(--pulse-color, rgba(34,197,94,0));
-  }
-}
-`
 
 const pulseColors: Partial<Record<Status, string>> = {
   online: 'rgba(34,197,94,0.5)',
   warning: 'rgba(232,213,0,0.45)',
   offline: 'rgba(239,68,68,0.5)',
 }
+
+const animationKeyframes = `
+@keyframes tia-dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--pulse-color, rgba(34,197,94,0.5)); }
+  50% { box-shadow: 0 0 0 5px var(--pulse-color, rgba(34,197,94,0)); }
+}
+`
 
 export interface StatusDotProps extends HTMLAttributes<HTMLSpanElement> {
   status?: Status
@@ -48,7 +35,6 @@ export interface StatusDotProps extends HTMLAttributes<HTMLSpanElement> {
 
 const StatusDot = forwardRef<HTMLSpanElement, StatusDotProps>(
   ({ className, status = 'idle', label, noPulse, ...props }, ref) => {
-    const style = statusStyles[status]
     const shouldPulse = !noPulse && (status === 'online' || status === 'warning' || status === 'offline')
     const pulseColor = pulseColors[status]
 
@@ -59,15 +45,25 @@ const StatusDot = forwardRef<HTMLSpanElement, StatusDotProps>(
         {...props}
       >
         <style>{animationKeyframes}</style>
-        <span
+        <motion.span
+          layout
+          key={status}
+          animate={{
+            scaleX: [1, 1.6, 1],
+            scaleY: [1, 0.6, 1],
+          }}
+          transition={{
+            duration: 0.4,
+            ease: 'easeOut',
+            times: [0, 0.3, 1],
+          }}
           className={cn(
             'inline-block w-2 h-2 rounded-full',
-            style.base,
-            style.glow,
+            statusColors[status],
             shouldPulse && 'animate-tia-dot-pulse'
           )}
           style={{
-            ...(shouldPulse && pulseColor ? { '--pulse-color': pulseColor } as React.CSSProperties : {}),
+            ...(shouldPulse && pulseColor ? ({ '--pulse-color': pulseColor } as React.CSSProperties) : {}),
             animation: shouldPulse ? 'tia-dot-pulse 2s ease-in-out infinite' : undefined,
           } as React.CSSProperties}
         />
