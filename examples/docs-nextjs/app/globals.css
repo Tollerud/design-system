@@ -382,7 +382,7 @@
   @apply text-lg font-semibold text-[var(--color-tia-foreground)] mt-10 mb-4 pb-2 border-b border-[var(--color-tia-border)]/40;
 }
 .docs-content h3 {
-  @apply text-base font-semibold text-[var(--color-tia-foreground)] mt-8 mb-3;
+  @apply text-lg font-semibold text-[var(--color-tia-foreground)] mt-8 mb-3;
 }
 .docs-content p {
   @apply text-base text-[var(--color-tia-text-secondary)] leading-relaxed mb-4;
