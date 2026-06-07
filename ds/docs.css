@@ -425,9 +425,22 @@ h1,h2,h3,h4,h5,h6,p { margin: 0; }
 }
 
 /* Hero — fluid title + collapsing layout so it never clips on mobile */
+.ds-hero__copy { position: relative; z-index: 2; max-width: 620px; }
+.ds-hero__copy--scrim {
+  margin: -24px -26px;
+  padding: 24px 26px;
+  border: 1px solid rgba(245,245,245,.08);
+  border-radius: 14px;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.54) 58%, rgba(0,0,0,.18));
+  box-shadow: 0 24px 70px rgba(0,0,0,.42);
+  backdrop-filter: blur(16px) saturate(.9);
+  -webkit-backdrop-filter: blur(16px) saturate(.9);
+}
 .ds-hero__title { font-size: clamp(32px, 7vw, 56px); overflow-wrap: break-word; }
 @media (max-width: 720px) {
   .ds-hero__grid { grid-template-columns: 1fr !important; padding: 32px 22px !important; gap: 20px !important; }
+  .ds-hero__copy--scrim { margin: -16px -14px; padding: 18px 14px; border-radius: 12px; }
   .ds-hero__media { order: -1; min-height: 0 !important; }
   .ds-hero__media img { height: 220px !important; }
 }
