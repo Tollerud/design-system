@@ -50,56 +50,14 @@ function useTheme() {
   return [theme, () => setTheme(t => t === 'dark' ? 'light' : 'dark')];
 }
 
-const DARK_BG_PRESETS  = [
-  { label: 'Default',   bg: '#0A0A0A', surface: '#121212' },
-  { label: 'Noir 800',  bg: '#1A1A1A', surface: '#252525' },
-  { label: 'Slate',     bg: '#0F172A', surface: '#1E293B' },
-  { label: 'Forest',    bg: '#0A1A12', surface: '#112218' },
-  { label: 'Navy',      bg: '#0A0F1A', surface: '#111827' },
-];
-const LIGHT_BG_PRESETS = [
-  { label: 'Default',   bg: '#FAFAF7', surface: '#FFFFFF' },
-  { label: 'Gray',      bg: '#F1F0EC', surface: '#FFFFFF' },
-  { label: 'White',     bg: '#FFFFFF', surface: '#F7F7F5' },
-  { label: 'Warm',      bg: '#FDF8F0', surface: '#FFFFFF' },
-];
-function useBgPicker(theme) {
-  const presets = theme === 'dark' ? DARK_BG_PRESETS : LIGHT_BG_PRESETS;
-  const [bgIdx, setBgIdx] = useState(0);
-
-  // Reset to default (0) whenever theme changes
-  const prevTheme = useRef(theme);
-  useEffect(() => {
-    if (prevTheme.current !== theme) { setBgIdx(0); prevTheme.current = theme; }
-  }, [theme]);
-
-  const idx = Math.min(bgIdx, presets.length - 1);
-  useEffect(() => {
-    const { bg, surface } = presets[idx];
-    document.documentElement.style.setProperty('--background', bg);
-    document.documentElement.style.setProperty('--surface', bg);
-    document.documentElement.style.setProperty('--card', surface);
-    document.documentElement.style.setProperty('--surface-raised', surface);
-  }, [idx, theme]);
-  return [idx, setBgIdx, presets];
-}
 
 function App() {
   const [route, go] = useHashRoute();
   const [theme, toggleTheme] = useTheme();
   const toggleThemeRef = useRef(toggleTheme);
   toggleThemeRef.current = toggleTheme;
-  const [bgIdx, setBgIdx, bgPresets] = useBgPicker(theme); // eslint-disable-line
-  const [bgPickerOpen, setBgPickerOpen] = useState(false);
-  const bgPickerRef = useRef(null);
   const [navOpen, setNavOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
-
-  useEffect(() => {
-    const h = (e) => { if (bgPickerRef.current && !bgPickerRef.current.contains(e.target)) setBgPickerOpen(false); };
-    document.addEventListener('mousedown', h);
-    return () => document.removeEventListener('mousedown', h);
-  }, []);
 
   useEffect(() => { setNavOpen(false); }, [route]);
   useEffect(() => { initMotion(); }, []);
@@ -186,26 +144,6 @@ function App() {
               <span className="ds-topbar__cmd-text">Search</span>
               <Kbd keys="⌘+K" size="sm"/>
             </button>
-            {/* Background picker */}
-            <span ref={bgPickerRef} style={{ position: 'relative' }}>
-              <button className="ds-iconbtn" onClick={() => setBgPickerOpen(o => !o)} title="Change background" style={{ gap: 5 }}>
-                <span style={{ width: 12, height: 12, borderRadius: 3, background: bgPresets[bgIdx].bg, border: '1.5px solid var(--border)', display: 'inline-block', flexShrink: 0 }}/>
-                <Icons.layers size={14}/>
-              </button>
-              {bgPickerOpen && (
-                <div style={{ position: 'absolute', top: '100%', right: 0, marginTop: 8, background: 'var(--surface-overlay)', border: '1px solid var(--border)', borderRadius: 8, padding: 10, boxShadow: 'var(--shadow-lg)', zIndex: 100, minWidth: 160 }}>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.07em', color: 'var(--text-muted)', marginBottom: 8 }}>Background</div>
-                  {bgPresets.map((p, i) => (
-                    <button key={p.label} onClick={() => { setBgIdx(i); setBgPickerOpen(false); }}
-                      style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '6px 8px', border: 'none', borderRadius: 6, background: i === bgIdx ? 'var(--surface-hover)' : 'transparent', cursor: 'pointer', fontSize: 13, color: 'var(--foreground)', fontWeight: i === bgIdx ? 600 : 400 }}>
-                      <span style={{ width: 18, height: 18, borderRadius: 4, background: p.bg, border: '1.5px solid var(--border)', flexShrink: 0 }}/>
-                      {p.label}
-                      {i === bgIdx && <Icons.check size={13} style={{ marginLeft: 'auto', color: 'var(--tollerud-yellow)' }}/>}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </span>
             <a className="ds-iconbtn" href="https://github.com/Tollerud/ui" target="_blank" rel="noreferrer" title="Repository"><Icons.github/></a>
             <button className="ds-iconbtn" onClick={toggleTheme} title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}>
               <span className="ds-theme-icon" key={theme}>{theme === 'dark' ? <Icons.sun/> : <Icons.moon/>}</span>
