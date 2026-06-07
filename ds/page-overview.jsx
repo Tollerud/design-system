@@ -42,7 +42,7 @@ function PageOverview({ go }) {
         </div>
         {/* bold/calm toggle */}
         <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 2 }}>
-          <div className="tollerud-segmented">
+          <div className={`tollerud-segmented${bold ? ' ds-hero__segmented' : ''}`}>
             <button aria-pressed={bold} onClick={() => setBold(true)}>Bold</button>
             <button aria-pressed={!bold} onClick={() => setBold(false)}>Calm</button>
           </div>
