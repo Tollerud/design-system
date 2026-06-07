@@ -56,6 +56,10 @@ function GrainGradientGL({
   grain = 0,
   speed = 1,
   shape = 'corners',
+  offsetX = 0,
+  offsetY = 0,
+  scale = 1,
+  rotation = 0,
   className = '',
   style,
 }) {
@@ -83,10 +87,10 @@ function GrainGradientGL({
           u_shape: paper.GrainGradientShapes[shape],
           u_noiseTexture: noiseTexture,
           u_fit: paper.ShaderFitOptions.contain,
-          u_scale: 1,
-          u_rotation: 0,
-          u_offsetX: 0,
-          u_offsetY: 0,
+          u_scale: scale,
+          u_rotation: rotation,
+          u_offsetX: offsetX,
+          u_offsetY: offsetY,
           u_originX: 0.5,
           u_originY: 0.5,
           u_worldWidth: 0,
@@ -113,7 +117,7 @@ function GrainGradientGL({
       cancelled = true;
       if (mount) mount.dispose();
     };
-  }, [colors.join('|'), colorBack, softness, intensity, grain, speed, shape]);
+  }, [colors.join('|'), colorBack, softness, intensity, grain, speed, shape, offsetX, offsetY, scale, rotation]);
 
   if (fallback) {
     return <GrainGradientFallback colors={colors} intensity={intensity} grain={grain} className={className} style={style}/>;
