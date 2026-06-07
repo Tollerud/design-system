@@ -12,39 +12,60 @@ Tollerud DS is minimal but not cold. It uses a near-black foundation with warm y
 
 ## Quick Start
 
-### Next.js (Recommended)
-
-**1. Install the preset + globals in your project:**
+### npm package (recommended)
 
 ```bash
-npm install clsx tailwind-merge
+npm install @tollerud/design-system clsx tailwind-merge
 # Optional — for NoirGlowBackground:
 npm install @paper-design/shaders-react
-cp tollerud-preset.js globals.css components/ -r  <your-next-project>/
 ```
 
-**2. Add the preset to `tailwind.config.ts`:**
+**Tailwind** — add the preset in `tailwind.config.ts`:
 
 ```ts
-import tollerudPreset from './tollerud-preset'
+import type { Config } from 'tailwindcss'
+import tollerudPreset from '@tollerud/design-system/preset'
 
 const config: Config = {
   presets: [tollerudPreset],
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './node_modules/@tollerud/design-system/dist/**/*.{js,mjs}',
+  ],
 }
 export default config
 ```
 
-**3. Import globals in `app/globals.css`:**
+**CSS** — import tokens and component classes in `app/globals.css`:
 
 ```css
-@import './globals.css';
+@import '@tollerud/design-system/globals.css';
 ```
+
+**Components:**
+
+```tsx
+import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBackground } from '@tollerud/design-system'
+```
+
+Publish a new version by creating a GitHub Release; CI runs `npm publish` when `NPM_TOKEN` is configured.
+
+### Copy from repo (alternative)
+
+```bash
+npm install clsx tailwind-merge
+cp tollerud-preset.js globals.css components/ -r <your-next-project>/
+```
+
+Then use local paths instead of `@tollerud/design-system` in the snippets above.
+
+### Next.js example
 
 That's it. You now have all Tailwind colors (`bg-tollerud-yellow`, `text-tollerud-noir-200`), semantic CSS variables (`--primary`, `--background`, `--ring`), component utilities (`.tollerud-card`, `.tollerud-btn--terminal`), and React components ready to import:
 
 ```tsx
-import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBackground } from '@/components/ui'
+import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBackground } from '@tollerud/design-system'
 
 <section className="relative overflow-hidden bg-black">
   <NoirGlowBackground intensity="medium" speed="slow" grain="soft" shape="corners" preserveCenter />

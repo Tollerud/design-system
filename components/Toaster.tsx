@@ -1,11 +1,14 @@
 'use client'
 
 import { Toaster as SonnerToaster, type ToasterProps } from 'sonner'
-import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = 'dark' } = useTheme()
+export type TollerudToasterProps = ToasterProps & {
+  /** Toast color theme. Wire to your app theme when you have one. */
+  theme?: ToasterProps['theme']
+}
+
+const Toaster = ({ theme = 'dark', ...props }: TollerudToasterProps) => {
   const [mobile, setMobile] = useState(false)
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+export { cn } from '../lib/utils'
+
 export { Button } from './Button'
 export type { ButtonProps } from './Button'
 
@@ -106,7 +108,7 @@ export { Progress } from './Progress'
 export type { } from './Progress'
 
 export { Toaster } from './Toaster'
-export type { } from './Toaster'
+export type { TollerudToasterProps } from './Toaster'
 
 export { Empty, EmptyHeader, EmptyIcon, EmptyTitle, EmptyDescription, EmptyContent } from './Empty'
 export type { } from './Empty'

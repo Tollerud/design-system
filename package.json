@@ -2,33 +2,69 @@
   "name": "@tollerud/design-system",
   "version": "1.0.0",
   "description": "Tollerud Design System — dark, monochrome + yellow accent. Noir aesthetic meets modern utility.",
-  "private": true,
-  "main": "tollerud-preset.js",
-  "style": "globals.css",
+  "private": false,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tollerud/design-system.git"
+  },
+  "homepage": "https://tollerud.github.io/design-system/",
+  "bugs": {
+    "url": "https://github.com/Tollerud/design-system/issues"
+  },
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./globals.css": "./globals.css",
+    "./tokens.css": "./tokens.css",
+    "./preset": "./tollerud-preset.js",
+    "./tollerud-logo.svg": "./tollerud-logo.svg",
+    "./tollerud-avatar.svg": "./tollerud-avatar.svg",
+    "./tollerud-avatar.png": "./tollerud-avatar.png",
+    "./tia-full-figure.svg": "./tia-full-figure.svg"
+  },
+  "files": [
+    "dist",
+    "globals.css",
+    "tokens.css",
+    "tollerud-preset.js",
+    "tollerud-logo.svg",
+    "tollerud-avatar.svg",
+    "tollerud-avatar.png",
+    "tia-full-figure.svg"
+  ],
   "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build",
     "preview": "open preview.html"
   },
   "peerDependencies": {
     "@paper-design/shaders-react": "^0.0.76",
+    "clsx": "^2.0.0",
     "react": ">=18",
-    "tailwindcss": "^3.4.0"
+    "react-dom": ">=18",
+    "tailwind-merge": "^2.0.0 || ^3.0.0",
+    "tailwindcss": "^3.4.0 || ^4.0.0"
   },
   "peerDependenciesMeta": {
     "@paper-design/shaders-react": {
       "optional": true
     }
-  },
-  "keywords": [
-    "tailwind",
-    "design-system",
-    "dark-theme",
-    "monochrome",
-    "noir",
-    "tia"
-  ],
-  "devDependencies": {
-    "@types/react": "^18.3.29",
-    "@types/react-dom": "^18.3.7"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -39,7 +75,30 @@
     "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.16.0",
-    "next-themes": "^0.4.6",
     "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.29",
+    "@types/react-dom": "^18.3.7",
+    "clsx": "^2.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.6.1",
+    "tsup": "^8.4.0",
+    "typescript": "^5.6.0"
+  },
+  "keywords": [
+    "tollerud",
+    "design-system",
+    "react",
+    "tailwind",
+    "dark-theme",
+    "monochrome",
+    "noir",
+    "tia",
+    "ui"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
