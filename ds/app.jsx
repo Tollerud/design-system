@@ -141,7 +141,7 @@ function App() {
     { label: 'Sections', items: buildSectionCommands(go) },
     { label: 'Actions', items: [
       { id: 'theme', label: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode', icon: theme === 'dark' ? 'sun' : 'moon', shortcut: '⌘L', onSelect: toggleTheme },
-      { id: 'repo', label: 'Open repository', description: 'github.com/Tollerud', icon: 'github', onSelect: () => window.open('https://github.com/Tollerud/design-system', '_blank') },
+      { id: 'repo', label: 'Open repository', description: 'github.com/Tollerud', icon: 'github', onSelect: () => window.open('https://github.com/Tollerud/ui', '_blank') },
     ] },
   ];
 
@@ -206,7 +206,7 @@ function App() {
                 </div>
               )}
             </span>
-            <a className="ds-iconbtn" href="https://github.com/Tollerud/design-system" target="_blank" rel="noreferrer" title="Repository"><Icons.github/></a>
+            <a className="ds-iconbtn" href="https://github.com/Tollerud/ui" target="_blank" rel="noreferrer" title="Repository"><Icons.github/></a>
             <button className="ds-iconbtn" onClick={toggleTheme} title={theme === 'dark' ? 'Switch to light' : 'Switch to dark'}>
               <span className="ds-theme-icon" key={theme}>{theme === 'dark' ? <Icons.sun/> : <Icons.moon/>}</span>
             </button>
