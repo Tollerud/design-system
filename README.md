@@ -4,6 +4,10 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 
 **[Live docs →](https://tollerud.github.io/design-system/)** — browse every token, component, and pattern live with copy-paste code.
 
+**Requirements:** React ≥ 18 · TypeScript supported (types included) · Tailwind CSS v3 or v4
+
+→ **[Component reference →](COMPONENTS.md)** · **[Setup guide →](GETTING_STARTED.md)** · **[Changelog →](CHANGELOG.md)**
+
 ## Philosophy
 
 > Clean lines. Sharp contrast. Yellow where it counts.
@@ -15,12 +19,16 @@ Tollerud DS is minimal but not cold. It uses a near-black foundation with warm y
 ### npm package (recommended)
 
 ```bash
-npm install @tollerud/ui clsx tailwind-merge
-# Optional — for NoirGlowBackground:
+npm install @tollerud/ui clsx tailwind-merge tailwindcss
+```
+
+`@paper-design/shaders-react` is an **optional** peer dependency — the package installs and works without it. Install it only if you use `NoirGlowBackground`; all other components fall back to CSS automatically.
+
+```bash
 npm install @paper-design/shaders-react
 ```
 
-**Tailwind** — add the preset in `tailwind.config.ts`:
+**Tailwind v3** — add the preset in `tailwind.config.ts`:
 
 ```ts
 import type { Config } from 'tailwindcss'
@@ -37,6 +45,28 @@ const config: Config = {
 export default config
 ```
 
+**Tailwind v4** — use `@config` and `@source` in your CSS instead of a config file:
+
+```css
+/* app/globals.css */
+@import 'tailwindcss';
+@import '@tollerud/ui/globals.css';
+
+/* Pull in the preset tokens as a v4 plugin */
+@config './tailwind.config.ts';
+
+/* Scan the package dist so utility classes aren't purged */
+@source '../node_modules/@tollerud/ui/dist';
+```
+
+If you're not using a `tailwind.config.ts` in v4, copy the contents of `tollerud-preset.js` into a `@theme {}` block manually, or keep a minimal config just for the preset:
+
+```ts
+// tailwind.config.ts (v4 shim)
+import tollerudPreset from '@tollerud/ui/preset'
+export default { presets: [tollerudPreset] }
+```
+
 **CSS** — import tokens and component classes in `app/globals.css`:
 
 ```css
@@ -48,6 +78,8 @@ export default config
 ```tsx
 import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBackground } from '@tollerud/ui'
 ```
+
+TypeScript types are included — no `@types/*` package needed. See **[COMPONENTS.md](COMPONENTS.md)** for the full prop reference for every component.
 
 Publish a new version by creating a GitHub Release; CI runs `npm publish` when `NPM_TOKEN` is configured.
 
@@ -168,7 +200,7 @@ cp globals.css src/app/
 cp tollerud-preset.js .
 ```
 
-See `GETTING_STARTED.md` for full setup guide.
+See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup guide.
 
 ## File Structure
 
