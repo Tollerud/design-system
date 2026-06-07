@@ -1,8 +1,14 @@
 name: Publish npm package
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'components/**'
+      - 'globals.css'
+      - 'tokens.css'
+      - 'lib/**'
   workflow_dispatch:
 
 jobs:
@@ -13,18 +19,33 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - run: npm ci
+
+      - name: Check if version already published
+        id: version_check
+        run: |
+          LOCAL=$(node -p "require('./package.json').version")
+          PUBLISHED=$(npm view @tollerud/design-system version 2>/dev/null || echo "0.0.0")
+          echo "local=$LOCAL" >> $GITHUB_OUTPUT
+          echo "published=$PUBLISHED" >> $GITHUB_OUTPUT
+          if [ "$LOCAL" = "$PUBLISHED" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Version $LOCAL already on npm — skipping publish."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Publishing $LOCAL (was $PUBLISHED)."
+          fi
+
       - run: npm run build
-      - name: Verify npm auth
-        run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        if: steps.version_check.outputs.skip == 'false'
+
       - run: npm publish --provenance --access public
+        if: steps.version_check.outputs.skip == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
