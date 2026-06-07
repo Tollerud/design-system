@@ -22,7 +22,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
 
       - run: npm ci
 
@@ -44,7 +43,8 @@ jobs:
       - run: npm run build
         if: steps.version_check.outputs.skip == 'false'
 
-      - run: npm publish --access public
+      - name: Publish to npm
         if: steps.version_check.outputs.skip == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm publish --access public
