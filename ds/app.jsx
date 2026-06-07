@@ -53,6 +53,8 @@ function useTheme() {
 function App() {
   const [route, go] = useHashRoute();
   const [theme, toggleTheme] = useTheme();
+  const toggleThemeRef = useRef(toggleTheme);
+  toggleThemeRef.current = toggleTheme;
   const [navOpen, setNavOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
 
@@ -62,6 +64,7 @@ function App() {
     const h = (e) => {
       if (e.key === 'Escape') { setNavOpen(false); }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setCmdOpen(o => !o); }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'l') { e.preventDefault(); toggleThemeRef.current(); }
     };
     document.addEventListener('keydown', h); return () => document.removeEventListener('keydown', h);
   }, []);
@@ -85,12 +88,14 @@ function App() {
     auth: <PageAuth/>,
   };
 
-  // Global command palette: jump to any page + theme + repo
+  // Global command palette: pages, in-doc sections, and actions
   const cmdGroups = [
     { label: 'Navigate', items: NAV.flatMap(g => g.items).map(it => ({
       id: 'nav-' + it.id, label: it.label, description: 'Go to ' + it.label, icon: it.icon,
+      searchText: it.label + ' ' + it.id,
       onSelect: () => go(it.id),
     })) },
+    { label: 'Sections', items: buildSectionCommands(go) },
     { label: 'Actions', items: [
       { id: 'theme', label: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode', icon: theme === 'dark' ? 'sun' : 'moon', shortcut: '⌘L', onSelect: toggleTheme },
       { id: 'repo', label: 'Open repository', description: 'github.com/Tollerud', icon: 'github', onSelect: () => window.open('https://github.com/Tollerud/design-system', '_blank') },
@@ -151,7 +156,7 @@ function App() {
           </main>
         </div>
       </div>
-      <CommandMenu open={cmdOpen} onClose={() => setCmdOpen(false)} groups={cmdGroups}/>
+      <CommandMenu open={cmdOpen} onClose={() => setCmdOpen(false)} groups={cmdGroups} placeholder="Search pages, sections, components…"/>
     </ToastProvider>
   );
 }

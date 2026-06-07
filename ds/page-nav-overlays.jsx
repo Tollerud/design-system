@@ -1,12 +1,12 @@
 /* Tollerud DS — Navigation & Overlays. → window.PageNavOverlays */
 
 /* ── Command palette (Raycast-style) ── */
-function CommandMenu({ open, onClose, groups }) {
+function CommandMenu({ open, onClose, groups, placeholder = 'Search pages, sections, actions…' }) {
   const [q, setQ] = useState('');
   const [hi, setHi] = useState(0);
   const inputRef = useRef(null);
   const flat = [];
-  groups.forEach(g => g.items.forEach(it => { if (!q || (it.label + ' ' + (it.description || '')).toLowerCase().includes(q.toLowerCase())) flat.push(it); }));
+  groups.forEach(g => g.items.forEach(it => { if (!q || (window.matchesCommandQuery ? window.matchesCommandQuery(it, q) : (it.label + ' ' + (it.description || '')).toLowerCase().includes(q.toLowerCase()))) flat.push(it); }));
   useEffect(() => { if (open) { setQ(''); setHi(0); setTimeout(() => inputRef.current && inputRef.current.focus(), 30); } }, [open]);
   useEffect(() => {
     if (!open) return;
@@ -25,13 +25,13 @@ function CommandMenu({ open, onClose, groups }) {
       <div className="tollerud-cmd ds-themed" onClick={e => e.stopPropagation()} style={{ background: 'var(--surface-overlay)' }}>
         <div className="tollerud-cmd__header">
           <span className="tollerud-cmd__search-icon"><Icons.search size={17}/></span>
-          <input ref={inputRef} className="tollerud-cmd__input" placeholder="Search servers, actions…" value={q} onChange={e => { setQ(e.target.value); setHi(0); }}/>
+          <input ref={inputRef} className="tollerud-cmd__input" placeholder={placeholder} value={q} onChange={e => { setQ(e.target.value); setHi(0); }}/>
           <Kbd keys="Esc" size="sm"/>
         </div>
         <div className="tollerud-cmd__list">
           {flat.length === 0 && <div className="tollerud-cmd__empty">No results for “{q}”</div>}
           {groups.map(g => {
-            const items = g.items.filter(it => !q || (it.label + ' ' + (it.description || '')).toLowerCase().includes(q.toLowerCase()));
+            const items = g.items.filter(it => !q || (window.matchesCommandQuery ? window.matchesCommandQuery(it, q) : (it.label + ' ' + (it.description || '')).toLowerCase().includes(q.toLowerCase())));
             if (!items.length) return null;
             return (
               <div className="tollerud-cmd__group" key={g.label}>

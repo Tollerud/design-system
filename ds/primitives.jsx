@@ -91,9 +91,18 @@ function PageHeader({ eyebrow, title, lede, icon }) {
   );
 }
 
+function slugifySectionTitle(title) {
+  return title
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 function Section({ id, title, desc, children }) {
+  const sectionId = id || (title ? slugifySectionTitle(title) : undefined);
   return (
-    <section className="ds-section" id={id} data-reveal>
+    <section className="ds-section" id={sectionId} data-reveal>
       <div className="ds-section__head"><h2 className="ds-section__title">{title}</h2></div>
       {desc && <p className="ds-section__desc">{desc}</p>}
       {children}

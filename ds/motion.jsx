@@ -167,7 +167,7 @@ function PageTOC({ route }) {
   }, [route]);
 
   if (items.length < 3) return null;
-  const jump = (id) => { const el = document.getElementById(id); if (el) { const y = el.getBoundingClientRect().top + window.scrollY - 78; window.scrollTo({ top: y, behavior: REDUCED ? 'auto' : 'smooth' }); } };
+  const jump = (id) => { if (window.jumpToSection) window.jumpToSection(id); else { const el = document.getElementById(id); if (el) { const y = el.getBoundingClientRect().top + window.scrollY - 78; window.scrollTo({ top: y, behavior: REDUCED ? 'auto' : 'smooth' }); } } };
   return (
     <nav className="ds-toc" aria-label="On this page">
       <div className="ds-toc__label">On this page</div>
