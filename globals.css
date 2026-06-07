@@ -177,8 +177,8 @@
   }
 
   ::selection {
-    background-color: rgba(232, 213, 0, 0.3);
-    color: var(--foreground);
+    background-color: rgba(232, 213, 0, 0.55);
+    color: #0A0A0A;
   }
 
   ::-webkit-scrollbar {
@@ -276,6 +276,7 @@
   .tollerud-btn--sm  { padding: 0.25rem 0.75rem; font-size: 0.875rem; }
   .tollerud-btn--md  { padding: 0.5rem 1rem; font-size: 1rem; }
   .tollerud-btn--lg  { padding: 0.75rem 1.5rem; font-size: 1.125rem; }
+  .tollerud-btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 
   /* ═══ Terminal CTA ═══ */
   .tollerud-btn--terminal {

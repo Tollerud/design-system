@@ -2,7 +2,7 @@
    + semantic tokens from globals.css so every component is theme-aware. → window */
 
 /* ── Button ── */
-function Button({ variant = 'primary', size = 'md', children, className = '', ...p }) {
+function Button({ variant = 'secondary', size = 'md', children, className = '', ...p }) {
   return (
     <button className={`tollerud-btn tollerud-btn--${variant} tollerud-btn--${size} ${className}`} {...p}>
       {children}

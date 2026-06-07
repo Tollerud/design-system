@@ -35,7 +35,7 @@ function PageComponents() {
       <PageHeader icon="grid" eyebrow="Components" title="Components"
         lede="The core building blocks. Every example is live and theme-aware — hit Code to grab the React + Tailwind."/>
 
-      <Section title="Button" desc="Five variants, three sizes. Primary is yellow; terminal carries the ❯ for technical actions.">
+      <Section title="Button" desc="Five variants, three sizes. Supports icons, loading spinners, disabled state, and icon-only. Primary is yellow; terminal carries the ❯ for technical actions.">
         <Demo name="buttons" variant="center" code={`<Button variant="primary">Deploy</Button>
 <Button variant="secondary">Cancel</Button>
 <Button variant="ghost">More</Button>
@@ -53,6 +53,28 @@ function PageComponents() {
           <Button size="sm">Small</Button>
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
+        </Demo>
+        <Demo name="button-icons" variant="center" code={`{/* With icon */}
+<Button variant="primary"><Icons.rocket size={15}/>Deploy</Button>
+<Button variant="secondary"><Icons.refresh size={15}/>Restart</Button>
+<Button variant="destructive"><Icons.trash size={15}/>Delete</Button>
+
+{/* Loading */}
+<Button variant="primary" disabled><Spinner size={14}/>Deploying…</Button>
+
+{/* Icon-only */}
+<Button variant="ghost" style={{width:36,height:36,padding:0}}><Icons.settings size={16}/></Button>
+
+{/* Disabled */}
+<Button variant="primary" disabled>Disabled</Button>
+<Button variant="secondary" disabled>Disabled</Button>`}>
+          <Button variant="primary"><Icons.rocket size={15}/>Deploy</Button>
+          <Button variant="secondary"><Icons.refresh size={15}/>Restart</Button>
+          <Button variant="destructive"><Icons.trash size={15}/>Delete</Button>
+          <Button variant="primary" disabled><Spinner size={14}/>Deploying…</Button>
+          <Button variant="ghost" style={{ width: 36, height: 36, padding: 0 }}><Icons.settings size={16}/></Button>
+          <Button variant="primary" disabled>Disabled</Button>
+          <Button variant="secondary" disabled>Disabled</Button>
         </Demo>
       </Section>
 
@@ -270,10 +292,17 @@ function PageComponents() {
         </Demo>
       </Section>
 
-      <Section title="Stepper" desc="Horizontal step indicator for wizards and multi-stage flows. Completed steps fill yellow; the current one carries a ring.">
-        <Demo name="stepper" variant="col" code={`<Stepper steps={['Connect host', 'Choose stacks', 'Invite team', 'Finish']} current={1} />`}>
-          <div style={{ width: '100%' }}>
-            <Stepper steps={['Connect host', 'Choose stacks', 'Invite team', 'Finish']} current={1}/>
+      <Section title="Stepper" desc="Horizontal step indicator for wizards and multi-stage flows. Pass an array of step labels and the current step index (0-based). Completed steps fill yellow; the active step carries a ring.">
+        <Demo name="stepper" variant="col" code={`const steps = ['Connect host', 'Choose stacks', 'Invite team', 'Finish'];
+
+// Step 0 = first (active), step 1 = second (active), etc.
+<Stepper steps={steps} current={0} />  {/* on step 1 of 4 */}
+<Stepper steps={steps} current={2} />  {/* on step 3, first two done */}
+<Stepper steps={steps} current={3} />  {/* last step */}`}>
+          <div className="ds-col" style={{ width: '100%', gap: 24 }}>
+            <Stepper steps={['Connect host', 'Choose stacks', 'Invite team', 'Finish']} current={0}/>
+            <Stepper steps={['Connect host', 'Choose stacks', 'Invite team', 'Finish']} current={2}/>
+            <Stepper steps={['Connect host', 'Choose stacks', 'Invite team', 'Finish']} current={3}/>
           </div>
         </Demo>
       </Section>

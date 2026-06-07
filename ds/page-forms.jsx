@@ -129,16 +129,18 @@ function PageForms() {
       <PageHeader icon="forms" eyebrow="Forms" title="Forms"
         lede="Every input control, all states, and the higher-order patterns — combobox, date picker, file upload, tag entry and live validation."/>
 
-      <Section title="Text input" desc="Default, focused, error and disabled. Labels and inline errors are built in.">
+      <Section title="Text input" desc="All states: default, filled, focused, error, disabled, and readonly. Labels and inline errors are built in.">
         <Demo name="inputs" code={`<Input label="Server name" placeholder="e.g. emma.tollerud.no" />
 <Input label="Port" defaultValue="8080" />
 <Input label="Host" error="Could not resolve host" defaultValue="emma" />
-<Input label="Region" disabled defaultValue="eu-north" />`}>
+<Input label="Region" disabled defaultValue="eu-north" />
+<Input label="API key" readOnly defaultValue="sk-••••••••••••••••" />`}>
           <div className="ds-grid-2" style={{ width: '100%' }}>
-            <Input label="Server name" placeholder="e.g. emma.tollerud.no"/>
-            <Input label="Port" defaultValue="8080"/>
-            <Input label="Host" error="Could not resolve host" defaultValue="emma"/>
-            <Input label="Region" disabled defaultValue="eu-north"/>
+            <Input label="Default" placeholder="e.g. emma.tollerud.no"/>
+            <Input label="Filled" defaultValue="8080"/>
+            <Input label="Error" error="Could not resolve host" defaultValue="emma"/>
+            <Input label="Disabled" disabled defaultValue="eu-north"/>
+            <Input label="Readonly" readOnly defaultValue="sk-tollerud-••••••••" style={{ cursor: 'default', opacity: 0.75 }}/>
           </div>
         </Demo>
       </Section>

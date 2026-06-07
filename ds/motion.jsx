@@ -11,7 +11,8 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    ─────────────────────────────────────────────────────────────── */
 let _revealIO = null;
 function initReveal() {
-  if (REDUCED) {
+  const disabled = document.documentElement.hasAttribute('data-no-reveal') || window.TOLLERUD_NO_REVEAL;
+  if (REDUCED || disabled) {
     // reveal everything immediately, and keep doing so for new nodes
     const showAll = () => document.querySelectorAll('[data-reveal]:not(.is-revealed)').forEach(el => el.classList.add('is-revealed'));
     showAll();
