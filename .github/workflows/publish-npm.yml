@@ -47,6 +47,4 @@ jobs:
         if: steps.version_check.outputs.skip == 'false'
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          npm whoami
-          npm publish --dry-run
           npm publish --access public
