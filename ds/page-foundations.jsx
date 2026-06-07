@@ -177,6 +177,75 @@ function PageFoundations() {
 // Next.js docs site (public/)
 <img src="/tollerud-logo.svg" alt="Tollerud" className="w-6 h-auto" />`}/>
         </div>
+        <SubHead>Navigation lockup</SubHead>
+        <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 0 16px' }}>
+          The monogram always appears to the left of the project name — never the name alone, never the mark alone. Gap between mark and text is 8px (<code className="ds-mono" style={{ fontSize: 12 }}>gap-2</code>). The pairing is the lockup.
+        </p>
+        <div className="ds-demo ds-themed" style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {/* Top bar */}
+          <div>
+            <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Top bar</span>
+            <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, height: 48, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 20, width: 'auto' }}/>
+                <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--foreground)' }}>Dashboard</span>
+              </div>
+              <div style={{ display: 'flex', gap: 16, marginLeft: 8 }}>
+                {['Overview', 'Services', 'Logs'].map(l => <span key={l} style={{ fontSize: 13, color: 'var(--text-muted)' }}>{l}</span>)}
+              </div>
+            </div>
+          </div>
+          {/* Sidebar expanded */}
+          <div>
+            <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Sidebar — expanded</span>
+            <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, width: 200, overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
+                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 20, width: 'auto' }}/>
+                <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--foreground)' }}>Project Name</span>
+              </div>
+              {['Dashboard', 'Services', 'Settings'].map(l => (
+                <div key={l} style={{ padding: '8px 14px', fontSize: 13, color: 'var(--text-muted)' }}>{l}</div>
+              ))}
+            </div>
+          </div>
+          {/* Sidebar collapsed */}
+          <div>
+            <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Sidebar — collapsed</span>
+            <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, width: 48, overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', borderBottom: '1px solid var(--border)' }}>
+                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 24, width: 'auto' }}/>
+              </div>
+              {['●', '●', '●'].map((l, i) => (
+                <div key={i} style={{ padding: '10px 0', display: 'flex', justifyContent: 'center', fontSize: 6, color: 'var(--text-muted)' }}>{l}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <CodeSnippet name="nav-lockup.jsx" code={`// Top bar
+<nav className="fixed top-0 inset-x-0 h-14 flex items-center px-6 gap-6 bg-tollerud-noir-900 border-b border-tollerud-noir-600">
+  <div className="flex items-center gap-2 shrink-0">
+    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-5 w-auto" />
+    <span className="font-semibold text-sm text-white">Dashboard</span>
+  </div>
+  {/* nav links, actions … */}
+</nav>`}/>
+          <CodeSnippet name="sidebar.jsx" code={`// Sidebar expanded
+<aside className="w-56 h-screen bg-tollerud-noir-900 border-r border-tollerud-noir-600 flex flex-col">
+  <div className="flex items-center gap-2 px-4 h-14 border-b border-tollerud-noir-600 shrink-0">
+    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-5 w-auto" />
+    <span className="font-semibold text-sm text-white">Project Name</span>
+  </div>
+  {/* nav items … */}
+</aside>
+
+// Sidebar collapsed — name hidden, mark slightly larger
+<aside className="w-14 h-screen bg-tollerud-noir-900 border-r border-tollerud-noir-600 flex flex-col items-center">
+  <div className="flex items-center justify-center h-14 border-b border-tollerud-noir-600 w-full">
+    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-6 w-auto" />
+  </div>
+</aside>`}/>
+        </div>
       </Section>
 
       <Section title="State color" desc="Used sparingly for status only — kept muted so yellow stays the loudest thing on screen.">
