@@ -4,19 +4,19 @@
 
 | Token Pair | Ratio | Pass |
 |-----------|-------|------|
-| `#E8D500` (yellow) on `#0A0A0A` (bg) | ~12.5:1 | ✅ AAA |
+| `#FFFF00` (`tollerud-yellow`) on `#0A0A0A` (bg) | ~18.4:1 | ✅ AAA |
 | `#F5F5F5` (text) on `#0A0A0A` (bg) | ~20:1 | ✅ AAA |
 | `#AAAAAA` (secondary) on `#0A0A0A` | ~12:1 | ✅ AAA |
 | `#666666` (muted) on `#0A0A0A` | ~6.5:1 | ✅ AA |
 | `#333333` (border) on `#0A0A0A` | ~2.5:1 | ❌ (decorative only) |
-| `#E8D500` on `#F5F5F5` (inverse) | ~1.7:1 | ❌ never use yellow on white |
+| `#FFFF00` on `#F5F5F5` (inverse) | ~1.0:1 | ❌ never use yellow on white — effectively invisible |
 
 Border colors are decorative and exempt from contrast requirements. Never put yellow text on white backgrounds.
 
 ## Focus & Keyboard
 
 - Every interactive element must have a visible focus ring
-- Focus ring: 2px solid `#E8D500` offset 2px
+- Focus ring: 2px solid `#FFFF00` (`tollerud-yellow` / `--ring`) offset 2px
 - Tab order must match visual order
 - No keyboard traps
 - Skiplink pattern for layouts with navigation

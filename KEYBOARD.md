@@ -9,11 +9,13 @@ These work **everywhere** in a Tollerud DS-powered app.
 | Shortcut | Action | Component |
 |----------|--------|-----------|
 | `⌘K` / `Ctrl+K` | Open/close command palette | `CommandMenu` |
-| `/` | Focus search / log filter | `CommandInput`, `LogSearch` |
-| `?` | Show keyboard shortcuts | `ShortcutSheet` |
+| `/` | Focus search / log filter | `LogViewer` (search), app-level search inputs |
+| `?` | Show keyboard shortcuts | App-level shortcut overlay (build with `Dialog`/`Sheet` + `Kbd`) |
 | `Esc` | Close overlay / cancel | `CommandMenu`, `Dialog`, `Sheet` |
 | `Enter` | Confirm / select | `CommandMenu`, `ActionRow` |
 | `⌘Enter` / `Ctrl+Enter` | Secondary action / open details | `CommandMenu`, `ActionRow` |
+
+> Note: `CommandInput`, `LogSearch`, and `ShortcutSheet` are conceptual roles, not exported `@tollerud/ui` component names — `CommandMenu` and `LogViewer` ship with this behavior built in; build a shortcut-help overlay yourself from `Dialog`/`Sheet` + `Kbd`. See [SKILL.md](SKILL.md) for the verified export list.
 
 ## Command menu navigation
 
@@ -64,7 +66,7 @@ The `Kbd` component displays a keyboard shortcut chip. It accepts any string or 
 
 ## Accessibility
 
-- All keyboard-triggerable components have visible (not just `:focus-visible`) focus rings using `--ring` (#E8D500).
+- All keyboard-triggerable components have visible (not just `:focus-visible`) focus rings using `--ring` (`#FFFF00` / `tollerud-yellow`).
 - `prefers-reduced-motion` disables the command menu entrance animation.
 - Screen readers receive `aria-selected` and `aria-label` on command items.
 - The overlay uses `aria-hidden="true"` to hide background content.

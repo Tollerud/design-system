@@ -2,6 +2,8 @@
 
 All components come as CSS classes (in `globals.css` / `tokens.css`) with React `.tsx` examples in `components/`.
 
+> **Note:** This file documents both **shipped** (`@tollerud/ui` npm package) and **planned/docs-site-only** components — it doubles as design-system documentation and a forward-looking reference. Sections for components not yet in the npm package are marked with a ⚠️ warning. **For an accurate, verified list of what you can actually `import` from `@tollerud/ui` today, use [SKILL.md](SKILL.md)** (checked against `components/index.ts`) or [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md) (shipped vs. planned breakdown).
+
 ## NoirGlowBackground
 
 Tollerud.no-inspired animated WebGL background using `@paper-design/shaders-react`, with CSS fallback classes.
@@ -101,6 +103,9 @@ Sizes: `--sm`, `--md`, `--lg`
 
 ## Pill Tag
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Pill` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 ```html
 <span class="tollerud-pill tollerud-pill--outline">new</span>
 <span class="tollerud-pill tollerud-pill--muted">deprecated</span>
@@ -128,6 +133,9 @@ Sizes: `--sm`, `--md`, `--lg`
 ```
 
 ## Divider
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Divider` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 ```html
 <hr class="tollerud-divider" />
@@ -409,6 +417,9 @@ Features: per-job status dots, size/target display, failed job warning footer. P
 
 ### Panel
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Panel` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 A card with a header bar (title + optional actions) and optional footer — the structural workhorse behind the log viewer, data table, alert inbox and most dashboard surfaces.
 
 ```tsx
@@ -422,6 +433,9 @@ A card with a header bar (title + optional actions) and optional footer — the 
 Props: `title`, `icon` (icon-set name), `actions`, `footer`, `noPadding`, `className`, `style`. CSS: `.ds-panel__head` / `.ds-panel__title` / `.ds-panel__foot`.
 
 ### Meter
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Meter` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 A labeled progress row that turns red past a hot threshold.
 
@@ -441,6 +455,9 @@ A labeled progress row that turns red past a hot threshold.
 
 ### Stepper
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Stepper` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Horizontal step indicator for wizards. Completed steps fill yellow; the current one carries a ring.
 
 ```tsx
@@ -450,6 +467,9 @@ Horizontal step indicator for wizards. Completed steps fill yellow; the current 
 Props: `steps: string[]`, `current` (0-indexed). CSS: `.ds-wizard__*`.
 
 ### PasswordInput
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `PasswordInput` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 A password field with a show/hide toggle and an optional label action (e.g. a "Forgot?" link).
 
@@ -463,6 +483,9 @@ Props: `label`, `labelAction`, `error`, `id`, plus all native `<input>` props.
 
 ### Spinner
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Spinner` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Inline loading spinner; respects reduced-motion.
 
 ```tsx
@@ -472,6 +495,9 @@ Inline loading spinner; respects reduced-motion.
 Props: `size` (px, default 16), `style`. CSS: `.ds-spin`.
 
 ### FormRow
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `FormRow` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 Label + hint on the left, control on the right. The canonical settings-form layout; stacks vertically under 560px.
 
@@ -484,6 +510,9 @@ Label + hint on the left, control on the right. The canonical settings-form layo
 Props: `label`, `hint`, `children`. CSS: `.ds-formrow`.
 
 ### PricingCard
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `PricingCard` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 A single plan tier with optional ribbon, feature list and CTA. Powers the Billing page and the marketing pricing block.
 
@@ -512,6 +541,9 @@ CSS: `.ds-price` and `.ds-price__*`; grid wrapper `.ds-price-grid`.
 
 ## Charts
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `BarChart / AreaChart / Donut / Sparkline` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Palette-aware SVG charts in `ds/charts.jsx`. Yellow is the highlight series; everything else stays monochrome. Grid/axis use the `--chart-grid` token, so all four are theme-aware.
 
 ```tsx
@@ -532,6 +564,9 @@ Full-width page sections in `ds/marketing.jsx`, used on the Blocks page.
 
 ### HeroBlock
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `HeroBlock` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 A landing hero on the noir glow background. Single-column by default; pass `media` for a two-column layout with a right-hand visual.
 
 ```tsx
@@ -545,6 +580,9 @@ Props: `eyebrow` (pill text), `title`, `description`, `actions`, `media` (option
 
 ### FeatureCard
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `FeatureCard` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Icon chip + title + copy. Drop several into a `.ds-grid-3`.
 
 ```tsx
@@ -555,6 +593,9 @@ Icon chip + title + copy. Drop several into a `.ds-grid-3`.
 Props: `icon` (icon-set name), `title`, `description`.
 
 ### CTABand
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `CTABand` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 A centered closing call-to-action with an optional accent bar.
 
@@ -570,6 +611,9 @@ Props: `title`, `description`, `actions`, `accentBar` (default true).
 
 ### Toast
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Toast / useToast / ToastProvider` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Transient feedback via the `useToast()` hook (provided by `ToastProvider` at the app root). Toasts auto-dismiss and stack bottom-right.
 
 ```tsx
@@ -580,6 +624,9 @@ toast({ tone: 'success', title: 'Deployed', message: 'hermes v2.0 is live' });
 Tones: `success` · `error` · `info` · `accent`. `title` required; `message` optional.
 
 ### Drawer / Sheet
+
+> ⚠️ **`Drawer` is not yet in the npm package** (roadmap only — see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). `Sheet` (with `SheetTrigger`/`SheetContent`/etc.) **is** shipped and is the closest available primitive — see [SKILL.md](SKILL.md) for its API.
+
 
 A side panel for detail views and slide-over forms. Closes on Esc or overlay click.
 
@@ -595,6 +642,9 @@ Props: `open`, `onClose`, `side` (`right` | `left`, default right), `title`, `de
 
 ### Combobox
 
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Combobox` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
+
 Searchable single-select with keyboard navigation (↑/↓/Enter/Esc), controlled or uncontrolled.
 
 ```tsx
@@ -606,6 +656,9 @@ Searchable single-select with keyboard navigation (↑/↓/Enter/Esc), controlle
 Props: `options: { value, label }[]`, `value`, `onChange`, `label`, `placeholder`, `emptyText`.
 
 ### AvatarGroup
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `AvatarGroup` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 Stacked avatars with an overflow count and optional presence dots.
 
@@ -629,6 +682,9 @@ Props: `users: { name, src?, status? }[]` (`status`: `online` | `offline` | `war
 ```
 
 ## EmptyState
+
+> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `EmptyState` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+
 
 For any surface with no data yet, no search results, or an error. Pairs an icon, a one-line headline, a calm explanation and up to two actions. A `compact` variant fits inside cards, tables and panels.
 

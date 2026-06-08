@@ -6,7 +6,7 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 
 **Requirements:** React ≥ 18 · TypeScript supported (types included) · Tailwind CSS v3 or v4
 
-→ **[Component reference →](COMPONENTS.md)** · **[Setup guide →](GETTING_STARTED.md)** · **[Brand guidelines →](BRAND.md)** · **[Changelog →](CHANGELOG.md)**
+→ **[Component reference →](COMPONENTS.md)** · **[Setup guide →](GETTING_STARTED.md)** · **[Brand guidelines →](BRAND.md)** · **[Changelog →](CHANGELOG.md)** · **[AI agent skill →](SKILL.md)**
 
 ## Packages
 
@@ -90,7 +90,7 @@ import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBa
 
 TypeScript types are included — no `@types/*` package needed. See **[COMPONENTS.md](COMPONENTS.md)** for the full prop reference for every component.
 
-Publish a new version by creating a GitHub Release; CI runs `npm publish` when `NPM_TOKEN` is configured.
+Publish a new version by bumping `version` in `package.json` and pushing to `main` — the `publish-npm` GitHub Action detects the version change, runs `npm publish` (using the `NPM_TOKEN` secret), and then creates a matching GitHub Release automatically.
 
 ### Copy from repo (alternative)
 
@@ -140,8 +140,7 @@ The design system includes `tollerud-avatar.svg` — a full cel-shaded monochrom
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--tollerud-yellow` | `#E8D500` | Primary actions, highlights, links |
-| `--tollerud-acid` / `--tollerud-yellow` | `#FFFF00` | Primary yellow, CTAs, focus, key data |
+| `--tollerud-yellow` / `--tollerud-acid` | `#FFFF00` | Primary actions, highlights, links, focus, key data |
 | `--tollerud-yellow-warm` | `#E8D500` | Secondary yellow, gradients, warm states |
 | `--tollerud-amber` | `#FFB800` | Warmth accents, secondary highlights |
 | `--tollerud-black` | `#0A0A0A` | Default background |

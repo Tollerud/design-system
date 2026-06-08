@@ -59,7 +59,7 @@ And import the design system tokens/base styles from `@tollerud/ui/globals.css` 
 **Never violate these:**
 
 - Dark surfaces only. Background: `#0A0A0A` (`bg-tollerud-noir-950`). Never white or light gray backgrounds.
-- Yellow accent (`#E8D500`, `text-tollerud-yellow`) is for CTAs, focus rings, active states, and key data points — not decoration.
+- Yellow accent (`#FFFF00`, `text-tollerud-yellow`) is for CTAs, focus rings, active states, and key data points — not decoration.
 - Never put yellow text on white. The ratio is 1.7:1 — it fails contrast.
 - Borders are decorative thin lines (`border-tollerud-noir-600` or `border-tollerud-noir-700`). Use them freely; reach for shadows only for overlays.
 - Monochrome everywhere except the single yellow accent. No blues, no greens, no brand gradients.
@@ -85,23 +85,24 @@ And import the design system tokens/base styles from `@tollerud/ui/globals.css` 
 
 ## Components
 
+> **Full, verified catalog with props lives in [SKILL.md](SKILL.md)** — that file is checked against the actual `components/index.ts` exports and is the source of truth. The list below is a quick-reference subset; if you need a component not shown here, check SKILL.md before assuming it exists — some legacy docs in this repo (`COMPONENTS.md`) describe roadmap/docs-site-only components that are **not yet shipped** in the npm package (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md) for what's actually planned vs. shipped).
+
 All components import from `@tollerud/ui`. Use named imports.
 
 ```tsx
-import { Button, Card, Badge, Input, StatusDot, Kbd } from '@tollerud/ui'
-import { CommandMenu, DataTable, LogViewer, Timeline } from '@tollerud/ui'
-import { Toast, useToast, ToastProvider } from '@tollerud/ui'
-import { Drawer, Combobox, AvatarGroup, EmptyState } from '@tollerud/ui'
-import { Panel, Meter, Stepper, FormRow, Spinner } from '@tollerud/ui'
-import { Checkbox, Switch, RadioGroup, Radio, Select, Textarea, PasswordInput } from '@tollerud/ui'
-import { StatCard, CodeBlock, Divider, Container } from '@tollerud/ui'
-import { BarChart, AreaChart, Donut, Sparkline } from '@tollerud/ui'
+import { Button, buttonVariants, cn, Card, Badge, Input, StatusDot, Kbd } from '@tollerud/ui'
+import { CommandMenu, ActionRow, DataTable, LogViewer, Timeline, CodeBlock, StatCard, Container } from '@tollerud/ui'
+import { Checkbox, Switch, RadioGroup, Radio, Select, Textarea } from '@tollerud/ui'
+import { Empty, EmptyHeader, EmptyIcon, EmptyTitle, EmptyDescription, EmptyContent } from '@tollerud/ui'
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from '@tollerud/ui'
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@tollerud/ui'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@tollerud/ui'
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@tollerud/ui'
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@tollerud/ui'
+import { Skeleton, Progress, Toaster, GlowCard, NoirGlowBackground, BentoDashboard, Alert } from '@tollerud/ui'
 // Infra / homelab set
 import { HostCard, ServiceHealthCard, DockerStackCard, IncidentCard } from '@tollerud/ui'
-import { ApprovalCard, ActionDiff, LogViewer, AlertInbox, Timeline } from '@tollerud/ui'
-import { RollbackPlan, BackupStatusPanel } from '@tollerud/ui'
-// Marketing blocks
-import { HeroBlock, FeatureCard, CTABand } from '@tollerud/ui'
+import { ApprovalCard, ActionDiff, AlertInbox, RollbackPlan, BackupStatusPanel } from '@tollerud/ui'
 // Footer
 import { Footer } from '@tollerud/ui' // or: import { Footer } from '@tollerud/footer'
 ```
@@ -114,10 +115,16 @@ import { Footer } from '@tollerud/ui' // or: import { Footer } from '@tollerud/f
 <Button variant="ghost" size="sm">More</Button>
 <Button variant="destructive">Delete host</Button>
 <Button variant="terminal" size="sm">start_building</Button>
+
+// Styling a <Link> as a button — Button only renders a native <button>,
+// so use asChild (Radix Slot) or buttonVariants() instead of nesting <a> in <button>
+<Button asChild variant="primary"><Link href="/deploy">Deploy</Link></Button>
+<Link href="/deploy" className={buttonVariants({ variant: 'primary' })}>Deploy</Link>
 ```
 
 Variants: `primary` · `secondary` · `ghost` · `destructive` · `terminal`
 Sizes: `sm` · `md` · `lg`
+`asChild` and `buttonVariants` require `@tollerud/ui >= 1.0.7`.
 
 ### Card
 
@@ -146,19 +153,13 @@ Sizes: `sm` · `md` · `lg`
 <StatusDot status="idle" label="Idle" />
 ```
 
-### Input / Textarea / Select / PasswordInput
+### Input / Textarea / Select / Checkbox / Switch / RadioGroup
 
 ```tsx
 <Input label="Server Name" placeholder="e.g. emma.tollerud.no" error={errors.name} />
 <Textarea label="Notes" rows={4} error={errors.notes} />
-<Select label="Region" options={[{ value: 'eu', label: 'EU' }]} />
-<PasswordInput label="Password" error={pwError} labelAction={<a href="#">Forgot?</a>} />
-```
-
-### Checkbox / Switch / RadioGroup
-
-```tsx
-<Checkbox label="Enable backups" checked={...} onChange={...} />
+<Select label="Region" options={[{ value: 'eu', label: 'EU' }]} value={region} onChange={setRegion} />
+<Checkbox label="Enable backups" checked={enabled} onChange={...} />
 <Switch label="Dark mode" defaultChecked />
 <RadioGroup label="Target" error={error}>
   <Radio value="staging" label="Staging" name="target" />
@@ -190,6 +191,7 @@ const [open, setOpen] = useState(false)
       ],
     },
   ]}
+  toggleShortcut="k"
 />
 ```
 
@@ -204,91 +206,36 @@ Built-in `⌘K` / `Ctrl+K` listener, arrow navigation, Esc to close, search acro
 ### CodeBlock
 
 ```tsx
-<CodeBlock>{`$ systemctl status tollerud-agent\n● active (running)`}</CodeBlock>
-```
-
-### Panel
-
-```tsx
-<Panel title="Compose stack" icon="grid"
-  actions={<Button variant="ghost" size="sm">Edit</Button>}
-  footer={<span>compose.yml · 4 services</span>}>
-  …content…
-</Panel>
-```
-
-### Meter
-
-```tsx
-<Meter label="CPU" value={23} valueLabel="23%" />
-<Meter label="Disk" value={91} hot={85} valueLabel="91%" />
-```
-
-### FormRow
-
-```tsx
-<FormRow label="Two-factor auth" hint="Require a TOTP code at sign-in.">
-  <Switch defaultChecked />
-</FormRow>
+<CodeBlock promptPrefix showCopy code={`systemctl status tollerud-agent`} />
 ```
 
 ### DataTable
 
 ```tsx
 <DataTable
-  rows={hosts}
-  rowKey="id"
   columns={[
-    { key: 'hostname', header: 'Host', sortable: true },
-    { key: 'status', header: 'Status', render: (r) => <Badge variant={r.status === 'online' ? 'success' : 'error'}>{r.status}</Badge> },
+    { key: 'hostname', label: 'Host', sortable: true },
+    { key: 'status', label: 'Status', render: (_v, row) => <Badge variant={row.status === 'online' ? 'success' : 'error'}>{row.status}</Badge> },
   ]}
-  searchable
-  searchKeys={['hostname', 'ip']}
-  pageSize={10}
-  emptyState={<EmptyState icon="server" title="No hosts" description="Connect your first machine." />}
+  data={hosts}
+  rowKey="id"
+  onRowClick={(row) => {}}
+  emptyMessage="No hosts found"
 />
 ```
 
-### EmptyState
+### Empty (empty states)
 
 ```tsx
-<EmptyState
-  icon="server"
-  title="No hosts connected"
-  description="Connect your first machine and Tia will start watching it."
-  action={<Button variant="primary" size="sm">Connect a host</Button>}
-/>
-<EmptyState compact accent icon="checkCircle" title="All clear" description="No open alerts." />
+<Empty>
+  <EmptyHeader>
+    <EmptyIcon>{/* icon */}</EmptyIcon>
+    <EmptyTitle>No hosts connected</EmptyTitle>
+    <EmptyDescription>Connect your first machine and Tia will start watching it.</EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent><Button variant="primary" size="sm">Connect a host</Button></EmptyContent>
+</Empty>
 ```
-
-### Toast
-
-Wrap the app in `<ToastProvider>`, then use the hook:
-```tsx
-const toast = useToast()
-toast({ tone: 'success', title: 'Deployed', message: 'hermes v2.0 is live' })
-// tones: success · error · info · accent
-```
-
-### Drawer
-
-```tsx
-<Drawer open={open} onClose={() => setOpen(false)} title="Host details" description="emma.tollerud.no"
-  footer={<Button variant="primary" size="sm">Connect</Button>}>
-  …content…
-</Drawer>
-```
-
-### Charts
-
-```tsx
-<BarChart data={[{ label: 'Mon', value: 12 }, { label: 'Tue', value: 18, accent: true }]} height={180} />
-<AreaChart data={[28, 35, 30, 44, 52]} height={150} />
-<Donut segments={[{ label: 'CPU', value: 40, color: '#E8D500' }, { label: 'Idle', value: 60, color: '#444' }]} size={160} />
-<Sparkline data={[12, 18, 14, 22, 19]} w={84} h={26} color="#E8D500" />
-```
-
-Yellow (`#E8D500`) is the highlight series. All other series stay monochrome.
 
 ### Infra / homelab components
 
@@ -297,11 +244,12 @@ Yellow (`#E8D500`) is the highlight series. All other series stay monochrome.
 <ServiceHealthCard service="emma.tollerud.no" status="online" uptime="14d 3h" responseTime="23ms" />
 <IncidentCard title="High CPU" severity="high" timestamp="2026-05-26 14:32" description="CPU at 92% for 5 min" service="emma" />
 <ApprovalCard action="restart_container" description="Restart emma:hermes" state="pending" onApprove={() => {}} onReject={() => {}} />
-<LogViewer lines={[{ text: 'Health check passed', level: 'info', timestamp: '14:32:01', source: 'hermes' }]} follow searchable showLineNumbers height={300} />
+<LogViewer lines={[{ text: 'Health check passed', level: 'info', timestamp: '14:32:01', source: 'hermes' }]} follow searchable showLineNumbers height="300px" />
 <AlertInbox alerts={[{ id: '1', title: 'emma high CPU', severity: 'high', timestamp: '14:32', acknowledged: false }]} onAcknowledge={(id) => {}} />
 ```
 
 Severity scale: `critical` · `high` · `medium` · `low` · `info`
+
 
 ---
 
@@ -410,7 +358,8 @@ Use borders as the primary separation method. Only add shadows to lift overlays.
 
 | File | Contents |
 |------|----------|
-| [COMPONENTS.md](COMPONENTS.md) | Full prop tables for every component |
+| [SKILL.md](SKILL.md) | **Verified** component catalog, props, gotchas — source of truth for what's actually shipped |
+| [COMPONENTS.md](COMPONENTS.md) | Prop tables — includes both shipped and planned/roadmap components, check against SKILL.md before relying on an entry |
 | [BRAND.md](BRAND.md) | Logo usage, nav lockup, sizing rules |
 | [ACCESSIBILITY.md](ACCESSIBILITY.md) | Contrast ratios, focus, ARIA patterns |
 | [VOICE.md](VOICE.md) | Copy tone, terminal-style CTAs, error messages |

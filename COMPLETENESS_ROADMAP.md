@@ -1,6 +1,6 @@
 # Tollerud User Interface — Roadmap
 
-Last updated: 2026-06-07
+Last updated: 2026-06-08
 
 ## Current state — what's done
 
@@ -61,8 +61,9 @@ Last updated: 2026-06-07
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v1.0.1
-- ✅ Button — defaults to secondary
+### npm package (components/*.tsx) — v1.0.8
+- ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
+- ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
 - ✅ Badge — all 6 variants
 - ✅ Alert — all 5 tones, icon prop
