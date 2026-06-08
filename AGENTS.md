@@ -363,6 +363,101 @@ Use borders as the primary separation method. Only add shadows to lift overlays.
 
 ---
 
+## Updating the npm package (for agents working in this repo)
+
+When asked to add components, fix bugs, or cut a release:
+
+### 1. Build and typecheck before committing
+
+```bash
+npx tsc --noEmit -p tsconfig.build.json   # must be clean
+npx tsup                                   # verify the bundle builds
+```
+
+### 2. Every new component needs all four of these
+
+| What | Where |
+|------|-------|
+| Component file | `components/ComponentName.tsx` |
+| Named export + type export | `components/index.ts` |
+| Registry entry | `registry.json` — add a `kebab-case` key with `name`, `description`, `files`, `dependencies`, `registryDependencies`, `type: "components:ui"` |
+| Docs preview | `examples/docs-nextjs/components/ComponentPreviews.tsx` (export function) + `examples/docs-nextjs/app/components/page.tsx` (section entry + import) |
+
+### 3. Version bump rules
+
+| Change | Version bump |
+|--------|-------------|
+| New components, no breaking changes | minor (`1.x.0`) |
+| Bug fixes only | patch (`1.0.x`) |
+| Prop renames, removed exports, token renames | major (`x.0.0`) |
+
+Edit `package.json` version, then update these to match:
+- `COMPLETENESS_ROADMAP.md` — header line `### npm package (components/*.tsx) — vX.X.X`
+- `registry.json` — top-level `"version"` field
+
+### 4. Always update these files in the same commit
+
+- `CHANGELOG.md` — add an entry at the top following the existing style (date · version · summary + bullet points)
+- `COMPLETENESS_ROADMAP.md` — move completed items to the done list, strike through fixed quality items
+- `SKILL.md` — add new components to the catalog, update version notes
+- `AGENTS.md` (this file) — update the component import blocks if new exports were added
+
+### 5. Commit and push
+
+```bash
+git add <changed files>
+git commit -m "Brief description — vX.X.X"
+git push origin main
+```
+
+---
+
+## Fixing copy/paste component patterns (for agents working in consumer projects)
+
+Older versions of projects that use `@tollerud/ui` sometimes copied component source files directly into the repo (e.g. `src/components/ui/Button.tsx` copied from the design system). These need to be replaced with package imports.
+
+### How to detect it
+
+```bash
+# Find files that look like copied DS components (contain tollerud- tokens but aren't node_modules)
+grep -rl "tollerud-yellow\|tollerud-noir\|tollerud-surface" src --include="*.tsx" --include="*.ts"
+```
+
+Also check for a local `components/ui.ts` or `components/ui/index.ts` that re-exports from relative paths instead of `@tollerud/ui`.
+
+### How to fix it
+
+1. **Verify `@tollerud/ui` is installed** — check `package.json`. If not: `npm install @tollerud/ui clsx tailwind-merge`.
+
+2. **Replace the local copy with a package import** — for each copied component:
+   ```tsx
+   // Before (copied file)
+   import { Button } from '@/components/ui/Button'
+
+   // After
+   import { Button } from '@tollerud/ui'
+   ```
+
+3. **Delete the copied files** once all imports are updated and the project builds.
+
+4. **Check for prop drift** — copied files may be outdated. Verify against `SKILL.md` (or `.claude/skills/tollerud-ui/SKILL.md`) that prop names haven't changed (e.g. `onValueChange` vs `onChange`, `label` vs `children` on form components).
+
+5. **Check for inline token usage** — copied files sometimes hardcode hex values instead of using tokens. Replace any hardcoded `#FFFF00`, `#0A0A0A`, `#E8D500` etc. with `text-tollerud-yellow`, `bg-tollerud-noir-950`, `text-tollerud-yellow-warm`.
+
+6. **Run typecheck** — `npx tsc --noEmit`. Prop signatures in the package may differ slightly from the copied version; fix any type errors before committing.
+
+### Common copy/paste patterns to look for
+
+| Pattern | Fix |
+|---------|-----|
+| `src/components/ui/Button.tsx` with `tollerud-btn` classes | Delete, import from `@tollerud/ui` |
+| `lib/utils.ts` defining `cn()` manually | Replace with `import { cn } from '@tollerud/ui'` |
+| `components/ui.ts` re-exporting from `'../../../components/Button'` | Replace all with `export * from '@tollerud/ui'` or direct named imports |
+| Inline `bg-[#FFFF00]` or `text-[#0A0A0A]` | Replace with `bg-tollerud-yellow` / `text-tollerud-noir-950` |
+| `import { toast } from 'sonner'` without a `<Toaster />` mount | Add `<Toaster />` near app root |
+
+---
+
 ## Reference
 
 | File | Contents |
