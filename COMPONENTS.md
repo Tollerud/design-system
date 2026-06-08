@@ -2,7 +2,7 @@
 
 All components come as CSS classes (in `globals.css` / `tokens.css`) with React `.tsx` examples in `components/`.
 
-> **Note:** This file documents both **shipped** (`@tollerud/ui` npm package) and **planned/docs-site-only** components — it doubles as design-system documentation and a forward-looking reference. Sections for components not yet in the npm package are marked with a ⚠️ warning. **For an accurate, verified list of what you can actually `import` from `@tollerud/ui` today, use [SKILL.md](SKILL.md)** (checked against `components/index.ts`) or [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md) (shipped vs. planned breakdown).
+> **Note:** As of **v1.0.9** the vast majority of components documented here ship in `@tollerud/ui`. Sections for components that are still docs-site-only or roadmap-only are marked with a ⚠️ warning; sections already in the package are marked ✅. **For the authoritative, props-complete reference use [SKILL.md](SKILL.md)** (verified against `components/index.ts`) or [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md).
 
 ## NoirGlowBackground
 
@@ -103,7 +103,7 @@ Sizes: `--sm`, `--md`, `--lg`
 
 ## Pill Tag
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Pill` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Pill` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Pill } from '@tollerud/ui'`
 
 
 ```html
@@ -134,7 +134,7 @@ Sizes: `--sm`, `--md`, `--lg`
 
 ## Divider
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Divider` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Divider` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Divider } from '@tollerud/ui'`
 
 
 ```html
@@ -417,7 +417,7 @@ Features: per-job status dots, size/target display, failed job warning footer. P
 
 ### Panel
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Panel` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Panel` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Panel } from '@tollerud/ui'`
 
 
 A card with a header bar (title + optional actions) and optional footer — the structural workhorse behind the log viewer, data table, alert inbox and most dashboard surfaces.
@@ -434,7 +434,7 @@ Props: `title`, `icon` (icon-set name), `actions`, `footer`, `noPadding`, `class
 
 ### Meter
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Meter` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Meter` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Meter } from '@tollerud/ui'`
 
 
 A labeled progress row that turns red past a hot threshold.
@@ -455,7 +455,7 @@ A labeled progress row that turns red past a hot threshold.
 
 ### Stepper
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Stepper` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Stepper` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Stepper } from '@tollerud/ui'`
 
 
 Horizontal step indicator for wizards. Completed steps fill yellow; the current one carries a ring.
@@ -468,7 +468,7 @@ Props: `steps: string[]`, `current` (0-indexed). CSS: `.ds-wizard__*`.
 
 ### PasswordInput
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `PasswordInput` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `PasswordInput` ships in `@tollerud/ui >= 1.0.9`. Import: `import { PasswordInput } from '@tollerud/ui'`
 
 
 A password field with a show/hide toggle and an optional label action (e.g. a "Forgot?" link).
@@ -496,7 +496,7 @@ Props: `size` (px, default 16), `style`. CSS: `.ds-spin`.
 
 ### FormRow
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `FormRow` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `FormRow` ships in `@tollerud/ui >= 1.0.9`. Import: `import { FormRow } from '@tollerud/ui'`
 
 
 Label + hint on the left, control on the right. The canonical settings-form layout; stacks vertically under 560px.
@@ -511,7 +511,7 @@ Props: `label`, `hint`, `children`. CSS: `.ds-formrow`.
 
 ### PricingCard
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `PricingCard` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `PricingCard` ships in `@tollerud/ui >= 1.0.9`. Import: `import { PricingCard } from '@tollerud/ui'`
 
 
 A single plan tier with optional ribbon, feature list and CTA. Powers the Billing page and the marketing pricing block.
@@ -642,7 +642,7 @@ Props: `open`, `onClose`, `side` (`right` | `left`, default right), `title`, `de
 
 ### Combobox
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `Combobox` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Combobox` ships in `@tollerud/ui >= 1.0.9`. Import: `import { Combobox } from '@tollerud/ui'`
 
 
 Searchable single-select with keyboard navigation (↑/↓/Enter/Esc), controlled or uncontrolled.
@@ -657,7 +657,7 @@ Props: `options: { value, label }[]`, `value`, `onChange`, `label`, `placeholder
 
 ### AvatarGroup
 
-> ⚠️ **Not yet in the `@tollerud/ui` npm package** — this is a docs-site / roadmap component (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md)). Do not import `AvatarGroup` from `@tollerud/ui` — it will not resolve. Check [SKILL.md](SKILL.md) for what's actually shipped.
+> ✅ `Avatar` and `AvatarGroup` ship in `@tollerud/ui >= 1.0.9`. Import: `import { Avatar, AvatarGroup } from '@tollerud/ui'`
 
 
 Stacked avatars with an overflow count and optional presence dots.

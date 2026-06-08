@@ -143,3 +143,58 @@ export type { GlowCardProps } from './GlowCard'
 
 export { BentoDashboard } from './BentoDashboard'
 export type { BentoDashboardProps } from './BentoDashboard'
+
+// ── New primitives ──
+export { Divider } from './Divider'
+export type { DividerProps } from './Divider'
+
+export { Pill } from './Pill'
+export type { PillProps } from './Pill'
+
+export { Avatar, AvatarGroup } from './Avatar'
+export type { AvatarProps, AvatarGroupProps } from './Avatar'
+
+export { Breadcrumb } from './Breadcrumb'
+export type { BreadcrumbProps, BreadcrumbItem } from './Breadcrumb'
+
+export { Pagination } from './Pagination'
+export type { PaginationProps } from './Pagination'
+
+export { Segmented } from './Segmented'
+export type { SegmentedProps, SegmentedOption } from './Segmented'
+
+export { Stepper } from './Stepper'
+export type { StepperProps, StepperStep } from './Stepper'
+
+export { Panel } from './Panel'
+export type { PanelProps } from './Panel'
+
+export { Meter } from './Meter'
+export type { MeterProps } from './Meter'
+
+export { FormRow } from './FormRow'
+export type { FormRowProps } from './FormRow'
+
+export { PricingCard } from './PricingCard'
+export type { PricingCardProps } from './PricingCard'
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion'
+export type { AccordionProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from './Accordion'
+
+export { Slider } from './Slider'
+export type { SliderProps } from './Slider'
+
+export { PasswordInput } from './PasswordInput'
+export type { PasswordInputProps } from './PasswordInput'
+
+export { Combobox } from './Combobox'
+export type { ComboboxProps, ComboboxOption } from './Combobox'
+
+export { DatePicker } from './DatePicker'
+export type { DatePickerProps } from './DatePicker'
+
+export { FileUpload } from './FileUpload'
+export type { FileUploadProps } from './FileUpload'
+
+export { TagInput } from './TagInput'
+export type { TagInputProps } from './TagInput'

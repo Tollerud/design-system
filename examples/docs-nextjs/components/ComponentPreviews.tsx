@@ -86,6 +86,24 @@ import { DataTable as TiaDataTable } from '../../../components/DataTable'
 import type { Column } from '../../../components/DataTable'
 import { GlowCard as TiaGlowCard } from '../../../components/GlowCard'
 import { BentoDashboard as TiaBentoDashboard } from '../../../components/BentoDashboard'
+import { Divider } from '../../../components/Divider'
+import { Pill } from '../../../components/Pill'
+import { Avatar, AvatarGroup } from '../../../components/Avatar'
+import { Breadcrumb } from '../../../components/Breadcrumb'
+import { Pagination } from '../../../components/Pagination'
+import { Segmented } from '../../../components/Segmented'
+import { Stepper } from '../../../components/Stepper'
+import { Panel } from '../../../components/Panel'
+import { Meter } from '../../../components/Meter'
+import { FormRow } from '../../../components/FormRow'
+import { PricingCard } from '../../../components/PricingCard'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../../components/Accordion'
+import { Slider } from '../../../components/Slider'
+import { PasswordInput } from '../../../components/PasswordInput'
+import { Combobox } from '../../../components/Combobox'
+import { DatePicker } from '../../../components/DatePicker'
+import { FileUpload } from '../../../components/FileUpload'
+import { TagInput } from '../../../components/TagInput'
 
 /* ────────── Preview wrapper ────────── */
 
@@ -1120,6 +1138,492 @@ export function EmptyPreviews() {
             <EmptyDescription>No incidents reported. Your infrastructure is healthy.</EmptyDescription>
           </EmptyHeader>
         </Empty>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── DIVIDER PREVIEWS ────────── */
+
+export function DividerPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Horizontal">
+        <div className="w-full space-y-3">
+          <p className="text-sm text-tollerud-text-secondary">Content above</p>
+          <Divider />
+          <p className="text-sm text-tollerud-text-secondary">Content below</p>
+        </div>
+      </PreviewCard>
+      <PreviewCard title="With label">
+        <div className="w-full">
+          <Divider label="or" />
+        </div>
+      </PreviewCard>
+      <PreviewCard title="Vertical">
+        <div className="flex items-center gap-3 h-8">
+          <span className="text-sm text-tollerud-text-secondary">Left</span>
+          <Divider orientation="vertical" />
+          <span className="text-sm text-tollerud-text-secondary">Right</span>
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── PILL PREVIEWS ────────── */
+
+export function PillPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Variants">
+        <Pill variant="outline">Outline</Pill>
+        <Pill variant="solid">Solid</Pill>
+        <Pill variant="accent">Accent</Pill>
+      </PreviewCard>
+      <PreviewCard title="Infrastructure tags">
+        <Pill>docker</Pill>
+        <Pill variant="accent">production</Pill>
+        <Pill variant="solid">v2.1.4</Pill>
+        <Pill>nginx</Pill>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── AVATAR PREVIEWS ────────── */
+
+export function AvatarPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Sizes">
+        <Avatar name="Mathias Tollerud" size="sm" />
+        <Avatar name="Mathias Tollerud" size="md" />
+        <Avatar name="Mathias Tollerud" size="lg" />
+      </PreviewCard>
+      <PreviewCard title="Image with fallback">
+        <Avatar src="https://broken.url/pic.jpg" name="Emma Server" size="md" />
+        <Avatar name="Embla Node" size="md" />
+        <Avatar fallback="?" size="md" />
+      </PreviewCard>
+      <PreviewCard title="AvatarGroup">
+        <AvatarGroup max={3}>
+          <Avatar name="Mathias" size="md" />
+          <Avatar name="Emma" size="md" />
+          <Avatar name="Embla" size="md" />
+          <Avatar name="Iris" size="md" />
+          <Avatar name="Vera" size="md" />
+        </AvatarGroup>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── BREADCRUMB PREVIEWS ────────── */
+
+export function BreadcrumbPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Navigation trail">
+        <Breadcrumb
+          items={[
+            { label: 'Dashboard', href: '#' },
+            { label: 'Servers', href: '#' },
+            { label: 'Embla' },
+          ]}
+        />
+      </PreviewCard>
+      <PreviewCard title="Custom separator">
+        <Breadcrumb
+          separator={<span className="text-tollerud-text-muted">/</span>}
+          items={[
+            { label: 'Home', href: '#' },
+            { label: 'Config', href: '#' },
+            { label: 'nginx.conf' },
+          ]}
+        />
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── PAGINATION PREVIEWS ────────── */
+
+export function PaginationPreviews() {
+  const [page, setPage] = useState(3)
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Default">
+        <Pagination page={page} pageCount={10} onChange={setPage} />
+        <p className="text-xs text-tollerud-text-muted">Page {page} of 10</p>
+      </PreviewCard>
+      <PreviewCard title="Near start / end">
+        <Pagination page={1} pageCount={8} onChange={() => {}} />
+        <Pagination page={8} pageCount={8} onChange={() => {}} />
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── SEGMENTED PREVIEWS ────────── */
+
+export function SegmentedPreviews() {
+  const [view, setView] = useState('grid')
+  const [period, setPeriod] = useState('7d')
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="View switcher">
+        <Segmented
+          value={view}
+          onChange={setView}
+          options={[
+            { value: 'grid', label: 'Grid' },
+            { value: 'list', label: 'List' },
+            { value: 'table', label: 'Table' },
+          ]}
+        />
+      </PreviewCard>
+      <PreviewCard title="Time range (sm)">
+        <Segmented
+          size="sm"
+          value={period}
+          onChange={setPeriod}
+          options={[
+            { value: '24h', label: '24h' },
+            { value: '7d', label: '7d' },
+            { value: '30d', label: '30d' },
+            { value: '90d', label: '90d' },
+          ]}
+        />
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── STEPPER PREVIEWS ────────── */
+
+export function StepperPreviews() {
+  const steps = [
+    { label: 'Connect server', description: 'Add SSH credentials' },
+    { label: 'Install agent', description: 'Run install script' },
+    { label: 'Verify health', description: 'Check system status' },
+    { label: 'Go live', description: 'Enable monitoring' },
+  ]
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Horizontal (step 2 active)">
+        <Stepper steps={steps} current={1} className="w-full" />
+      </PreviewCard>
+      <PreviewCard title="Vertical (step 3 active)">
+        <Stepper steps={steps} current={2} orientation="vertical" />
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── PANEL PREVIEWS ────────── */
+
+export function PanelPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="With header and actions">
+        <Panel
+          title="Server Overview"
+          description="Live metrics for Embla"
+          actions={<Button variant="ghost" size="sm">Refresh</Button>}
+          className="w-full"
+        >
+          <p className="text-sm text-tollerud-text-secondary">CPU: 34% · RAM: 6.2 GB · Disk: 340 GB</p>
+        </Panel>
+      </PreviewCard>
+      <PreviewCard title="No header">
+        <Panel className="w-full">
+          <p className="text-sm text-tollerud-text-secondary">A simple content panel with no header.</p>
+        </Panel>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── METER PREVIEWS ────────── */
+
+export function MeterPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Tones">
+        <div className="w-full space-y-3">
+          <Meter value={34} label="CPU" showValue />
+          <Meter value={72} label="RAM" showValue tone="warning" />
+          <Meter value={91} label="Disk" showValue tone="error" />
+          <Meter value={100} label="Uptime" showValue tone="success" />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── FORM ROW PREVIEWS ────────── */
+
+export function FormRowPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Label + description + error">
+        <div className="w-full space-y-4">
+          <FormRow
+            label="Hostname"
+            htmlFor="hostname-preview"
+            description="Must be unique within your network."
+            required
+          >
+            <Input id="hostname-preview" placeholder="e.g. embla" />
+          </FormRow>
+          <FormRow
+            label="Port"
+            htmlFor="port-preview"
+            error="Port must be between 1 and 65535."
+          >
+            <Input id="port-preview" placeholder="8080" />
+          </FormRow>
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── PRICING CARD PREVIEWS ────────── */
+
+export function PricingCardPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Plans">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+          <PricingCard
+            name="Homelab"
+            price="Free"
+            description="For personal use and self-hosting."
+            features={['Up to 3 servers', 'Community support', 'Basic monitoring']}
+            ctaLabel="Get started"
+          />
+          <PricingCard
+            name="Pro"
+            price="$9"
+            period="/month"
+            description="For power users and small teams."
+            features={['Unlimited servers', 'Priority support', 'Advanced alerts', 'Custom dashboards']}
+            ctaLabel="Start free trial"
+            featured
+            badge="Most popular"
+          />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── ACCORDION PREVIEWS ────────── */
+
+export function AccordionPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Single open">
+        <Accordion defaultOpen="item-1" className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>What is Tollerud UI?</AccordionTrigger>
+            <AccordionContent>
+              A dark-mode React component library built for homelab and infrastructure dashboards.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Does it support SSR?</AccordionTrigger>
+            <AccordionContent>
+              Yes — all components are marked <code className="text-tollerud-yellow">&apos;use client&apos;</code> for safe Next.js RSC integration.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is TypeScript supported?</AccordionTrigger>
+            <AccordionContent>
+              Fully typed — every component ships with exported prop interfaces and declaration files.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </PreviewCard>
+      <PreviewCard title="Multiple open">
+        <Accordion multiple defaultOpen={['q1', 'q2']} className="w-full">
+          <AccordionItem value="q1">
+            <AccordionTrigger>Server health</AccordionTrigger>
+            <AccordionContent>CPU: 34% · RAM: 6.2 GB</AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="q2">
+            <AccordionTrigger>Active containers</AccordionTrigger>
+            <AccordionContent>12 running · 0 stopped</AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── SLIDER PREVIEWS ────────── */
+
+export function SliderPreviews() {
+  const [volume, setVolume] = useState(40)
+  const [threshold, setThreshold] = useState(80)
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Basic">
+        <div className="w-full space-y-4">
+          <Slider label="Volume" showValue value={volume} onChange={setVolume} />
+          <Slider label="Alert threshold" showValue value={threshold} onChange={setThreshold} min={0} max={100} />
+        </div>
+      </PreviewCard>
+      <PreviewCard title="Disabled">
+        <div className="w-full">
+          <Slider label="Read-only" value={60} disabled />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── PASSWORD INPUT PREVIEWS ────────── */
+
+export function PasswordInputPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Default">
+        <div className="w-full space-y-3">
+          <PasswordInput label="Password" placeholder="Enter password" />
+          <PasswordInput label="Confirm password" placeholder="Repeat password" error="Passwords do not match." />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── COMBOBOX PREVIEWS ────────── */
+
+export function ComboboxPreviews() {
+  const [server, setServer] = useState('')
+  const [env, setEnv] = useState('')
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Server selector">
+        <div className="w-full space-y-3">
+          <Combobox
+            label="Connect to host"
+            value={server}
+            onChange={setServer}
+            placeholder="Search servers…"
+            options={[
+              { value: 'embla', label: 'Embla — 10.0.10.11' },
+              { value: 'iris', label: 'Iris — 10.0.10.12' },
+              { value: 'emma', label: 'Emma — 10.0.10.10' },
+              { value: 'vera', label: 'Vera — 10.0.10.13' },
+            ]}
+          />
+          <Combobox
+            label="Environment"
+            value={env}
+            onChange={setEnv}
+            placeholder="Select environment…"
+            options={[
+              { value: 'prod', label: 'Production' },
+              { value: 'staging', label: 'Staging' },
+              { value: 'dev', label: 'Development' },
+            ]}
+          />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── DATE PICKER PREVIEWS ────────── */
+
+export function DatePickerPreviews() {
+  const [date, setDate] = useState<Date | null>(null)
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Date selector">
+        <div className="w-full space-y-3">
+          <DatePicker
+            label="Schedule deployment"
+            value={date}
+            onChange={setDate}
+            placeholder="Pick a date"
+          />
+          {date && (
+            <p className="text-xs text-tollerud-text-muted">
+              Selected: {date.toLocaleDateString(undefined, { dateStyle: 'long' })}
+            </p>
+          )}
+        </div>
+      </PreviewCard>
+      <PreviewCard title="With error">
+        <div className="w-full">
+          <DatePicker
+            label="Maintenance window"
+            placeholder="Pick a date"
+            error="A date is required."
+          />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── FILE UPLOAD PREVIEWS ────────── */
+
+export function FileUploadPreviews() {
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Single file">
+        <div className="w-full">
+          <FileUpload
+            label="Upload config"
+            description="YAML or JSON — max 1 MB"
+            accept=".yaml,.yml,.json"
+          />
+        </div>
+      </PreviewCard>
+      <PreviewCard title="Multiple files">
+        <div className="w-full">
+          <FileUpload
+            label="Upload SSH keys"
+            description="Accepts .pub files"
+            accept=".pub"
+            multiple
+          />
+        </div>
+      </PreviewCard>
+    </div>
+  )
+}
+
+/* ────────── TAG INPUT PREVIEWS ────────── */
+
+export function TagInputPreviews() {
+  const [tags, setTags] = useState(['docker', 'nginx'])
+  return (
+    <div className="space-y-3 w-full">
+      <PreviewCard title="Server tags">
+        <div className="w-full space-y-3">
+          <TagInput
+            label="Tags"
+            value={tags}
+            onChange={setTags}
+            placeholder="Add tag…"
+          />
+          <p className="text-xs text-tollerud-text-muted">Press Enter or comma to add · Backspace to remove</p>
+        </div>
+      </PreviewCard>
+      <PreviewCard title="With max limit">
+        <TagInput
+          label="Labels (max 3)"
+          defaultValue={['prod']}
+          max={3}
+          placeholder="Add label…"
+        />
       </PreviewCard>
     </div>
   )

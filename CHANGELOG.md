@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.1.0 — 2026-06-09 — Fix: Combobox + DatePicker close on window resize
+
+`Combobox` and `DatePicker` rendered their popover as `position: absolute` with no awareness of window resize — if the viewport changed while a popover was open it would stay in place, misaligned from its trigger. Both now close on `window resize`, consistent with the existing close-on-scroll behaviour.
+
+`DropdownMenu` was unaffected (Radix handles this internally).
+
+**Migration:** no API changes — behaviour only.
+
+## 1.0.9 — 2026-06-08 — Ship the 19 components that only existed in the docs site
+
+Closes the long-standing gap between the marketing/docs site and the installable
+`@tollerud/ui` package — every component previously listed under "still missing"
+in `COMPLETENESS_ROADMAP.md` now ships from `components/index.ts`:
+
+- **New primitives:** `Divider`, `Pill`, `Avatar` / `AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`
+- **New layout/display:** `Panel`, `Meter`, `FormRow`, `PricingCard`
+- **New form controls:** `Accordion` (+ `AccordionItem`/`AccordionTrigger`/`AccordionContent`), `Slider`, `PasswordInput`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`
+
+All built from scratch as accessible, theme-aware components following existing
+conventions (`forwardRef`, `cn`, `tollerud-*` design tokens) — no new runtime
+dependencies were added.
+
 ## 1.0.8 — 2026-06-08 — Fix: mark package as Client Components for RSC/SSR
 
 **Fixes a breaking issue introduced in earlier versions:** importing *anything* from `@tollerud/ui` — even a plain helper like `buttonVariants` — into a Next.js Server Component crashed at build/runtime. The package is bundled into a single `dist/index.js`/`.cjs` file, and esbuild silently drops module-level `"use client"` directives during bundling, so the bundle was never marked as client code even though it's full of components using hooks (`useState`, `useEffect`, etc.).

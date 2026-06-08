@@ -114,6 +114,7 @@ import {
   Button, buttonVariants, cn,
   Card, Badge, StatusDot, Kbd,
   Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio,
+  PasswordInput, Combobox, TagInput, Slider, FormRow,
   Container, CodeBlock, StatCard, ActionRow, CommandMenu,
 } from '@tollerud/ui'
 ```
@@ -183,6 +184,117 @@ const [open, setOpen] = useState(false)
 ```
 
 **Container** — `as?: 'div' | 'section' | 'article' | 'main' | 'header' | 'footer'`, capped width + padding.
+
+**PasswordInput** — same API as `Input` (label, error, id, …) plus built-in show/hide toggle.
+```tsx
+<PasswordInput label="Password" placeholder="Enter password" error={errors.password} />
+```
+
+**Combobox** — searchable single-select. `options: { value, label, disabled? }[]`, `value?`, `onChange?`, `placeholder?`, `filter?`, `label?`, `error?`.
+```tsx
+<Combobox label="Connect to host" value={host} onChange={setHost} options={hostOptions} />
+```
+
+**TagInput** — chip-style multi-value input. `value?: string[]`, `onChange?`, `max?`, `placeholder?`, `label?`, `error?`. Enter/comma to add, Backspace to remove last.
+```tsx
+<TagInput label="Tags" value={tags} onChange={setTags} placeholder="Add tag…" max={10} />
+```
+
+**Slider** — native range input styled with yellow thumb. `label?`, `showValue?`, `onChange?: (value: number) => void`, plus all native `<input type="range">` props.
+```tsx
+<Slider label="Alert threshold" showValue value={threshold} onChange={setThreshold} min={0} max={100} />
+```
+
+**FormRow** — accessible field wrapper. `label?`, `description?`, `error?`, `required?`, `htmlFor?`. Wires `aria-describedby` automatically.
+```tsx
+<FormRow label="Hostname" htmlFor="hostname" description="Unique within your network." required error={errors.hostname}>
+  <Input id="hostname" placeholder="e.g. embla" />
+</FormRow>
+```
+
+### Navigation & layout primitives
+
+```tsx
+import {
+  Divider, Pill, Avatar, AvatarGroup,
+  Breadcrumb, Pagination, Segmented, Stepper,
+  Panel, Meter, Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  DatePicker, FileUpload, PricingCard,
+} from '@tollerud/ui'
+```
+
+**Divider** — `orientation?: 'horizontal' | 'vertical'`, `label?: ReactNode`.
+```tsx
+<Divider />
+<Divider label="or" />
+<Divider orientation="vertical" className="h-6" />
+```
+
+**Pill** — `variant?: 'outline' | 'solid' | 'accent'`.
+```tsx
+<Pill variant="accent">production</Pill>
+```
+
+**Avatar / AvatarGroup** — `src?`, `name?` (derives initials), `fallback?`, `size?: 'sm' | 'md' | 'lg'`. `AvatarGroup` takes `max?` and shows a +N chip.
+```tsx
+<Avatar name="Mathias Tollerud" size="md" />
+<AvatarGroup max={3}><Avatar name="Emma" /><Avatar name="Iris" /></AvatarGroup>
+```
+
+**Breadcrumb** — `items: { label, href?, onClick? }[]`, `separator?`.
+```tsx
+<Breadcrumb items={[{ label: 'Servers', href: '/servers' }, { label: 'Embla' }]} />
+```
+
+**Pagination** — `page` (1-indexed), `pageCount`, `onChange`, `siblingCount?`.
+```tsx
+<Pagination page={page} pageCount={20} onChange={setPage} />
+```
+
+**Segmented** — `options: { value, label, disabled? }[]`, `value`, `onChange`, `size?: 'sm' | 'md'`.
+```tsx
+<Segmented value={view} onChange={setView} options={[{ value: 'grid', label: 'Grid' }, { value: 'list', label: 'List' }]} />
+```
+
+**Stepper** — `steps: { label, description? }[]`, `current` (0-indexed), `orientation?: 'horizontal' | 'vertical'`.
+```tsx
+<Stepper steps={onboardingSteps} current={1} orientation="vertical" />
+```
+
+**Panel** — `title?`, `description?`, `actions?: ReactNode` (renders in header), `children` (body with padding).
+```tsx
+<Panel title="Overview" description="Live metrics" actions={<Button size="sm">Refresh</Button>}>…</Panel>
+```
+
+**Meter** — `value`, `max?` (default 100), `label?`, `showValue?`, `tone?: 'default' | 'success' | 'warning' | 'error'`.
+```tsx
+<Meter value={72} label="RAM" showValue tone="warning" />
+```
+
+**Accordion** — compound. `multiple?: boolean`, `defaultOpen?: string | string[]`. Items use `value` prop to identify.
+```tsx
+<Accordion defaultOpen="faq-1">
+  <AccordionItem value="faq-1">
+    <AccordionTrigger>What is Tia?</AccordionTrigger>
+    <AccordionContent>An infrastructure assistant for homelabs.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+**DatePicker** — `value?: Date | null`, `onChange?`, `label?`, `error?`, `placeholder?`, `formatDate?`.
+```tsx
+<DatePicker label="Schedule deployment" value={date} onChange={setDate} />
+```
+
+**FileUpload** — `accept?`, `multiple?`, `onFilesChange?`, `label?`, `description?`, `error?`.
+```tsx
+<FileUpload label="Upload config" accept=".yaml,.json" onFilesChange={handleFiles} />
+```
+
+**PricingCard** — `name`, `price`, `period?`, `description?`, `features?: ReactNode[]`, `ctaLabel?`, `onCtaClick?`, `featured?`, `badge?`.
+```tsx
+<PricingCard name="Pro" price="$9" period="/month" features={['Unlimited servers']} featured badge="Most popular" />
+```
 
 ### Overlays (Radix-based, all need `'use client'` boundary in the *consumer* component)
 
@@ -327,7 +439,7 @@ Shadow scale: `--shadow-sm` `--shadow-md` `--shadow-lg` `--shadow-xl` `--shadow-
 | Recolor or add glow to the monogram | Yellow-on-dark branding is non-negotiable; glow is for interactive UI only |
 | Introduce non-system chromatic colors (blue, green, purple) for decoration | Only the yellow accent + monochrome grays (status semantics are the lone exception) |
 | Nest `<a>`/`<Link>` inside `<Button>` (or vice versa) | Invalid HTML — use `asChild` or `buttonVariants()` instead |
-| Import a component name you saw in older docs without checking it exists | Some legacy docs (`COMPONENTS.md`, `AGENTS.md`) list aspirational/roadmap components (`Toast`, `Drawer`, `Combobox`, `EmptyState`, `Panel`, `Meter`, `PricingCard`, charts, marketing blocks, etc.) that are **not yet shipped** — verify against this skill or the package's actual type exports first |
+| Import a component name you saw in older docs without checking it exists | Some legacy docs list aspirational or since-shipped components. As of **1.0.9** all 19 previously "missing" components (`Divider`, `Pill`, `Avatar`, `AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `FormRow`, `Accordion`, `Slider`, `PasswordInput`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`, `PricingCard`) are exported. Components still **not** in the package: charts, marketing blocks (`HeroBlock`, `FeatureCard`, `CTABand`), `Drawer`, `EmptyState` (use `Empty`), `Toast` (use `Toaster` + `sonner`'s `toast()`) |
 
 ---
 
@@ -335,4 +447,6 @@ Shadow scale: `--shadow-sm` `--shadow-md` `--shadow-lg` `--shadow-xl` `--shadow-
 
 - **`asChild` / `buttonVariants` require `@tollerud/ui >= 1.0.7`**
 - **Server Component import safety requires `@tollerud/ui >= 1.0.8`** (earlier versions crash when imported into a Server Component file — the bundle wasn't marked `'use client'`)
+- **19 new components (`Divider`, `Pill`, `Avatar`/`AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `FormRow`, `Accordion`, `Slider`, `PasswordInput`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`, `PricingCard`) require `>= 1.0.9`**
+- **`Combobox` + `DatePicker` close on window resize (≥ 1.1.0)** — earlier versions left the popover open and misaligned after viewport changes
 - Always pin to the latest patch and check `CHANGELOG.md` in the design-system repo for breaking changes (e.g. the 1.0.5 yellow token rename: `tollerud-yellow-bright` → `tollerud-yellow`, old `tollerud-yellow` `#E8D500` → `tollerud-yellow-warm`)

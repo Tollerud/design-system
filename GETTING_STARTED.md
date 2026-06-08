@@ -1,32 +1,35 @@
 # Getting Started
 
-## Quick Install
+## Install
 
 ```bash
-# In your Next.js project:
-npm install clsx tailwind-merge
-
-# Optional — for NoirGlowBackground:
-npm install @paper-design/shaders-react
-
-# Copy the design system into your project:
-cp -r /path/to/tollerud-noir/globals.css src/app/
-cp /path/to/tollerud-noir/tollerud-preset.js .
-cp -r /path/to/tollerud-noir/components src/components/ui
+npm install @tollerud/ui clsx tailwind-merge tailwindcss
 ```
 
+`@paper-design/shaders-react` is an **optional** peer dependency — only needed if you use `NoirGlowBackground`. All other components work without it.
+
+```bash
+npm install @paper-design/shaders-react
+```
+
+---
+
 ## Tailwind Setup
+
+### Tailwind v3
 
 ```ts
 // tailwind.config.ts
 import type { Config } from 'tailwindcss'
-import tollerudPreset from './tollerud-preset'
+import tollerudPreset from '@tollerud/ui/preset'
 
 const config: Config = {
   presets: [tollerudPreset],
   content: [
-    './src/app/**/*.{ts,tsx}',
-    './src/components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    // tell Tailwind to scan the package's dist so no classes get purged
+    './node_modules/@tollerud/ui/dist/**/*.{js,mjs}',
   ],
 }
 
@@ -34,15 +37,94 @@ export default config
 ```
 
 ```css
-/* src/app/globals.css */
+/* app/globals.css */
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
-@import "./tollerud-noir.css";
 ```
+
+### Tailwind v4
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@config "../../node_modules/@tollerud/ui/preset";
+@source "../../node_modules/@tollerud/ui/dist";
+```
+
+---
+
+## Toaster (optional)
+
+Mount the `Toaster` once near your app root to enable `sonner` toast notifications:
+
+```tsx
+// app/layout.tsx
+import { Toaster } from '@tollerud/ui'
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+---
+
+## Import Components
+
+All 61 components are named exports from `@tollerud/ui`:
+
+```tsx
+// Basics
+import { Button, Card, Badge, StatusDot, Kbd, Input, Textarea } from '@tollerud/ui'
+import { Select, Checkbox, Switch, RadioGroup, Radio } from '@tollerud/ui'
+import { CodeBlock, StatCard, Container, ActionRow, CommandMenu } from '@tollerud/ui'
+
+// New in 1.0.9
+import { Divider, Pill, Avatar, AvatarGroup } from '@tollerud/ui'
+import { Breadcrumb, Pagination, Segmented, Stepper } from '@tollerud/ui'
+import { Panel, Meter, FormRow, PricingCard } from '@tollerud/ui'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@tollerud/ui'
+import { Slider, PasswordInput, Combobox, DatePicker, FileUpload, TagInput } from '@tollerud/ui'
+
+// Overlays (Radix-based)
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from '@tollerud/ui'
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@tollerud/ui'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@tollerud/ui'
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@tollerud/ui'
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from '@tollerud/ui'
+
+// Feedback & display
+import { Alert, Skeleton, Progress, Empty, EmptyHeader, EmptyIcon, EmptyTitle, EmptyDescription, EmptyContent } from '@tollerud/ui'
+import { Toaster } from '@tollerud/ui'
+import { DataTable } from '@tollerud/ui'
+import { GlowCard, NoirGlowBackground, BentoDashboard } from '@tollerud/ui'
+
+// Infra / homelab set
+import { HostCard, ServiceHealthCard, DockerStackCard, IncidentCard } from '@tollerud/ui'
+import { ApprovalCard, ActionDiff, AlertInbox, Timeline, RollbackPlan, BackupStatusPanel, LogViewer } from '@tollerud/ui'
+
+// Footer & layout
+import { Footer } from '@tollerud/ui'  // or: import { Footer } from '@tollerud/footer'
+import { Container } from '@tollerud/ui'
+```
+
+---
 
 ## Utils
 
-Create `src/lib/utils.ts`:
+`cn` is re-exported from `@tollerud/ui` for convenience — no need to set it up separately:
+
+```tsx
+import { cn } from '@tollerud/ui'
+```
+
+Or keep your own `src/lib/utils.ts` if you prefer:
 
 ```ts
 import { type ClassValue, clsx } from 'clsx'
@@ -53,14 +135,28 @@ export function cn(...inputs: ClassValue[]) {
 }
 ```
 
-## Import Components
+---
+
+## Server Components (Next.js App Router)
+
+All components are bundled with `'use client'` (≥ 1.0.8) — safe to import into Server Component files. The RSC bundler will correctly treat the whole package as client code.
 
 ```tsx
-import { Button, Card, Badge, Kbd } from '@/components/ui'
-import { CommandMenu } from '@/components/ui'
-import { LogViewer, Timeline } from '@/components/ui'
+// ✅ Fine in a Server Component
+import { Button, Card } from '@tollerud/ui'
 ```
 
-## Using the Registry
+---
 
-`s ...[truncated]
+## Registry (shadcn-style)
+
+Individual components can be added via the registry at `registry.json`. The registry now covers all 60 shipped components.
+
+---
+
+## Full examples
+
+- **`examples/nextjs/`** — minimal starter showing a homelab dashboard page
+- **`examples/docs-nextjs/`** — full interactive docs site with live component previews
+
+See `README.md` for the complete setup guide and Tailwind v3/v4 instructions.

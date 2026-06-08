@@ -85,14 +85,23 @@ And import the design system tokens/base styles from `@tollerud/ui/globals.css` 
 
 ## Components
 
-> **Full, verified catalog with props lives in [SKILL.md](SKILL.md)** — that file is checked against the actual `components/index.ts` exports and is the source of truth. The list below is a quick-reference subset; if you need a component not shown here, check SKILL.md before assuming it exists — some legacy docs in this repo (`COMPONENTS.md`) describe roadmap/docs-site-only components that are **not yet shipped** in the npm package (see [COMPLETENESS_ROADMAP.md](COMPLETENESS_ROADMAP.md) for what's actually planned vs. shipped).
+> **Full, verified catalog with props lives in [SKILL.md](SKILL.md)** — that file is checked against the actual `components/index.ts` exports and is the source of truth. The list below is a quick-reference subset.
 
 All components import from `@tollerud/ui`. Use named imports.
 
 ```tsx
+// Core / forms
 import { Button, buttonVariants, cn, Card, Badge, Input, StatusDot, Kbd } from '@tollerud/ui'
 import { CommandMenu, ActionRow, DataTable, LogViewer, Timeline, CodeBlock, StatCard, Container } from '@tollerud/ui'
 import { Checkbox, Switch, RadioGroup, Radio, Select, Textarea } from '@tollerud/ui'
+import { PasswordInput, Combobox, TagInput, Slider, FormRow } from '@tollerud/ui'
+// Primitives & navigation (added in 1.0.9)
+import { Divider, Pill, Avatar, AvatarGroup } from '@tollerud/ui'
+import { Breadcrumb, Pagination, Segmented, Stepper } from '@tollerud/ui'
+import { Panel, Meter, PricingCard } from '@tollerud/ui'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@tollerud/ui'
+import { DatePicker, FileUpload } from '@tollerud/ui'
+// Overlays & feedback
 import { Empty, EmptyHeader, EmptyIcon, EmptyTitle, EmptyDescription, EmptyContent } from '@tollerud/ui'
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from '@tollerud/ui'
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@tollerud/ui'

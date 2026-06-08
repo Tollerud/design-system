@@ -1,37 +1,56 @@
 # Next.js Example
 
-Quickest way to start:
+A minimal starter showing a homelab dashboard page built with `@tollerud/ui`.
+
+## Quickstart
 
 ```bash
-# In your Next.js project root:
+npm install @tollerud/ui clsx tailwind-merge tailwindcss
+# Only needed if you use NoirGlowBackground:
 npm install @paper-design/shaders-react
-cp design-system/tollerud-preset.js .
-cp design-system/globals.css src/app/
-cp -r design-system/components src/
 ```
 
-Then in `tailwind.config.ts`:
+### Tailwind v3
 
 ```ts
-import tollerudPreset from './tollerud-preset'
+// tailwind.config.ts
+import tollerudPreset from '@tollerud/ui/preset'
+
 export default {
   presets: [tollerudPreset],
-  content: ['./src/**/*.{ts,tsx}'],
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './node_modules/@tollerud/ui/dist/**/*.{js,mjs}',
+  ],
 }
 ```
 
-And in `src/app/globals.css`:
+### Tailwind v4
 
 ```css
-@import './globals.css';
+/* app/globals.css */
+@import "tailwindcss";
+@config "../../node_modules/@tollerud/ui/preset";
+@source "../../node_modules/@tollerud/ui/dist";
 ```
 
-Open `app/page.tsx` for a full example page with:
-- Tollerud.no-inspired `NoirGlowBackground` hero
-- Glass nav bar
-- Server status cards with StatusDot
-- Terminal-style CTAs
+## Import
+
+```tsx
+import { Button, Card, Badge, StatusDot, Input, NoirGlowBackground } from '@tollerud/ui'
+// …or any of the 61 exports — see GETTING_STARTED.md for the full list
+```
+
+## What's in app/page.tsx
+
+- `NoirGlowBackground` hero with WebGL shader
+- Glass nav bar (`tollerud-glass`)
+- Server status cards with `StatusDot`
+- Terminal-style CTAs (`variant="terminal"`)
 - Gradient accent bars
-- CodeBlock component
-- Responsive layout
-- All available components
+- `CodeBlock` component
+- Responsive layout via `Container`
+
+> **Note:** This example uses relative imports via `components/ui.ts` (a monorepo convenience).
+> In a real project you import directly from `@tollerud/ui`.

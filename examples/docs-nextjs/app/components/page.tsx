@@ -42,6 +42,24 @@ import {
   GlowCardPreviews,
   BentoDashboardPreviews,
   EmptyPreviews,
+  DividerPreviews,
+  PillPreviews,
+  AvatarPreviews,
+  BreadcrumbPreviews,
+  PaginationPreviews,
+  SegmentedPreviews,
+  StepperPreviews,
+  PanelPreviews,
+  MeterPreviews,
+  FormRowPreviews,
+  PricingCardPreviews,
+  AccordionPreviews,
+  SliderPreviews,
+  PasswordInputPreviews,
+  ComboboxPreviews,
+  DatePickerPreviews,
+  FileUploadPreviews,
+  TagInputPreviews,
 } from '../../components/ComponentPreviews'
 import { PreviewFrame } from '../../components/PreviewFrame'
 import { ComponentShowcase } from '../../components/ComponentShowcase'
@@ -621,13 +639,240 @@ const data = [
   <EmptyDescription>All systems are running normally.</EmptyDescription>
 </Empty>`,
   },
+  {
+    label: 'Divider',
+    id: 'divider',
+    desc: 'Horizontal or vertical rule with an optional inline text label. Semantic role="separator".',
+    preview: DividerPreviews,
+    code: `<Divider />
+<Divider label="or continue with" />
+<Divider orientation="vertical" className="h-6" />`,
+  },
+  {
+    label: 'Pill',
+    id: 'pill',
+    desc: 'Compact rounded tag — outline, solid, and accent variants. Good for labels, statuses, and taxonomy.',
+    preview: PillPreviews,
+    code: `<Pill>outline</Pill>
+<Pill variant="solid">solid</Pill>
+<Pill variant="accent">production</Pill>`,
+  },
+  {
+    label: 'Avatar / AvatarGroup',
+    id: 'avatar',
+    desc: 'Avatar with image-to-initials fallback, three sizes, and AvatarGroup for stacked overlapping avatars with overflow count.',
+    preview: AvatarPreviews,
+    code: `<Avatar name="Mathias Tollerud" size="md" />
+<Avatar src="/avatar.jpg" name="Emma" size="lg" />
+
+{/* Stack up to 3, show +N overflow */}
+<AvatarGroup max={3}>
+  <Avatar name="Mathias" size="md" />
+  <Avatar name="Emma" size="md" />
+  <Avatar name="Iris" size="md" />
+  <Avatar name="Vera" size="md" />
+</AvatarGroup>`,
+  },
+  {
+    label: 'Breadcrumb',
+    id: 'breadcrumb',
+    desc: 'Accessible nav trail with aria-current on the last item, click handlers, and a swappable separator.',
+    preview: BreadcrumbPreviews,
+    code: `<Breadcrumb
+  items={[
+    { label: 'Dashboard', href: '/' },
+    { label: 'Servers', href: '/servers' },
+    { label: 'Embla' },
+  ]}
+/>`,
+  },
+  {
+    label: 'Pagination',
+    id: 'pagination',
+    desc: 'Page navigation with sibling-count control, ellipsis collapsing, and yellow active-page highlight.',
+    preview: PaginationPreviews,
+    code: `const [page, setPage] = useState(1)
+
+<Pagination page={page} pageCount={12} onChange={setPage} />`,
+  },
+  {
+    label: 'Segmented',
+    id: 'segmented',
+    desc: 'Pill-style toggle group for switching between a small set of views or time ranges. role="radiogroup".',
+    preview: SegmentedPreviews,
+    code: `const [view, setView] = useState('grid')
+
+<Segmented
+  value={view}
+  onChange={setView}
+  options={[
+    { value: 'grid', label: 'Grid' },
+    { value: 'list', label: 'List' },
+    { value: 'table', label: 'Table' },
+  ]}
+/>`,
+  },
+  {
+    label: 'Stepper',
+    id: 'stepper',
+    desc: 'Step progress indicator for multi-step flows — horizontal or vertical, with completed/active/upcoming states.',
+    preview: StepperPreviews,
+    code: `<Stepper
+  current={1}
+  steps={[
+    { label: 'Connect server', description: 'Add SSH credentials' },
+    { label: 'Install agent', description: 'Run install script' },
+    { label: 'Verify health' },
+    { label: 'Go live' },
+  ]}
+/>`,
+  },
+  {
+    label: 'Panel',
+    id: 'panel',
+    desc: 'Bordered content panel with an optional header row (title + description + actions slot) separated by a divider.',
+    preview: PanelPreviews,
+    code: `<Panel
+  title="Server Overview"
+  description="Live metrics for Embla"
+  actions={<Button variant="ghost" size="sm">Refresh</Button>}
+>
+  <p>CPU: 34% · RAM: 6.2 GB</p>
+</Panel>`,
+  },
+  {
+    label: 'Meter',
+    id: 'meter',
+    desc: 'Labeled progress meter with default/success/warning/error tones and optional numeric percentage display.',
+    preview: MeterPreviews,
+    code: `<Meter value={34} label="CPU" showValue />
+<Meter value={72} label="RAM" showValue tone="warning" />
+<Meter value={91} label="Disk" showValue tone="error" />`,
+  },
+  {
+    label: 'FormRow',
+    id: 'form-row',
+    desc: 'Accessible form field wrapper — label with optional required mark, description, error, and aria-describedby wiring.',
+    preview: FormRowPreviews,
+    code: `<FormRow label="Hostname" htmlFor="hostname" description="Unique within your network." required>
+  <Input id="hostname" placeholder="e.g. embla" />
+</FormRow>
+
+<FormRow label="Port" htmlFor="port" error="Must be 1–65535.">
+  <Input id="port" placeholder="8080" />
+</FormRow>`,
+  },
+  {
+    label: 'PricingCard',
+    id: 'pricing-card',
+    desc: 'Pricing plan card with feature checklist, optional badge, featured mode with yellow glow border, and CTA button.',
+    preview: PricingCardPreviews,
+    code: `<PricingCard
+  name="Pro"
+  price="$9"
+  period="/month"
+  features={['Unlimited servers', 'Priority support', 'Advanced alerts']}
+  ctaLabel="Start free trial"
+  featured
+  badge="Most popular"
+/>`,
+  },
+  {
+    label: 'Accordion',
+    id: 'accordion',
+    desc: 'Collapsible sections with animated chevron — single or multiple open mode, fully keyboard accessible.',
+    preview: AccordionPreviews,
+    code: `<Accordion defaultOpen="item-1">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>What is Tollerud UI?</AccordionTrigger>
+    <AccordionContent>A dark-mode component library for homelab dashboards.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Does it support SSR?</AccordionTrigger>
+    <AccordionContent>Yes — all components are marked use client for Next.js RSC.</AccordionContent>
+  </AccordionItem>
+</Accordion>`,
+  },
+  {
+    label: 'Slider',
+    id: 'slider',
+    desc: 'Native range slider styled with yellow thumb, optional label, and live value readout.',
+    preview: SliderPreviews,
+    code: `const [value, setValue] = useState(40)
+
+<Slider label="Alert threshold" showValue value={value} onChange={setValue} />`,
+  },
+  {
+    label: 'PasswordInput',
+    id: 'password-input',
+    desc: 'Password field with a show/hide eye-icon toggle — same styling as Input, with accessible aria-pressed.',
+    preview: PasswordInputPreviews,
+    code: `<PasswordInput label="Password" placeholder="Enter password" />
+<PasswordInput label="Confirm" error="Passwords do not match." />`,
+  },
+  {
+    label: 'Combobox',
+    id: 'combobox',
+    desc: 'Searchable single-select with live filtering, keyboard nav (↑↓ Enter Esc), and a checkmark on the selected option.',
+    preview: ComboboxPreviews,
+    code: `const [server, setServer] = useState('')
+
+<Combobox
+  label="Connect to host"
+  value={server}
+  onChange={setServer}
+  options={[
+    { value: 'embla', label: 'Embla — 10.0.10.11' },
+    { value: 'iris', label: 'Iris — 10.0.10.12' },
+  ]}
+/>`,
+  },
+  {
+    label: 'DatePicker',
+    id: 'date-picker',
+    desc: 'Calendar date picker with month navigation, today ring, and controlled/uncontrolled modes.',
+    preview: DatePickerPreviews,
+    code: `const [date, setDate] = useState(null)
+
+<DatePicker
+  label="Schedule deployment"
+  value={date}
+  onChange={setDate}
+/>`,
+  },
+  {
+    label: 'FileUpload',
+    id: 'file-upload',
+    desc: 'Drag-and-drop file upload zone with click-to-browse, selected file list, size display, and removal.',
+    preview: FileUploadPreviews,
+    code: `<FileUpload
+  label="Upload config"
+  description="YAML or JSON — max 1 MB"
+  accept=".yaml,.yml,.json"
+  onFilesChange={(files) => console.log(files)}
+/>`,
+  },
+  {
+    label: 'TagInput',
+    id: 'tag-input',
+    desc: 'Chip-style tag input — Enter/comma to add, Backspace to remove the last tag, optional max count.',
+    preview: TagInputPreviews,
+    code: `const [tags, setTags] = useState(['docker', 'nginx'])
+
+<TagInput
+  label="Tags"
+  value={tags}
+  onChange={setTags}
+  placeholder="Add tag…"
+/>`,
+  },
 ]
 
 export default function ComponentsPage() {
   return (
     <div className="docs-content">
       <h1>Components</h1>
-      <p>42 React components across the system.</p>
+      <p>61 React components across the system.</p>
       <p className="text-xs text-tollerud-text-muted mt-1">
         All components are <code>forwardRef</code> + <code>displayName</code> with full TypeScript types.
       </p>

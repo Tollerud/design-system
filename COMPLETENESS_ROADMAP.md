@@ -61,7 +61,7 @@ Last updated: 2026-06-08
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v1.0.8
+### npm package (components/*.tsx) — v1.1.0
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -73,6 +73,11 @@ Last updated: 2026-06-08
 - ✅ LogViewer, Timeline, Empty, Toaster
 - ✅ Infrastructure: HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, ApprovalCard, BackupStatusPanel, AlertInbox, RollbackPlan, ActionDiff
 - ✅ CommandMenu, ActionRow, CodeBlock, GlowCard, BentoDashboard, Footer
+- ✅ Container, NoirGlowBackground
+- ✅ Divider, Pill, Avatar, AvatarGroup, Breadcrumb, Pagination, Segmented, Stepper
+- ✅ Panel, Meter, FormRow, PricingCard
+- ✅ Accordion, Slider, PasswordInput
+- ✅ Combobox, DatePicker, FileUpload, TagInput
 
 ### Docs site
 - ✅ Light/dark theme toggle (⌘L)
@@ -92,13 +97,7 @@ Last updated: 2026-06-08
 
 ## Still missing / worth doing next
 
-### npm package — missing components
-These are in the docs site but not yet in the installable package:
-`Divider`, `Pill`, `Avatar`, `AvatarGroup`, `Breadcrumb`, `Pagination`,
-`Accordion`, `Slider`, `Stepper`, `Panel`, `Meter`, `FormRow`,
-`PasswordInput`, `PricingCard`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`, `Segmented`
-
 ### Quality
-- Combobox / DropdownMenu don't reposition on window resize (close on scroll ✅, resize ❌)
+- ~~Combobox / DropdownMenu don't reposition on window resize~~ — fixed in 1.1.0 (Combobox + DatePicker now close on resize, matching scroll behaviour; DropdownMenu was already handled by Radix)
 - No Storybook or visual regression tests for the npm package
 - `CHANGELOG.md` is manual — could be auto-generated from commits
