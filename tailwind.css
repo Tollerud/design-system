@@ -1,0 +1,9 @@
+/**
+ * Convenience entry for Tailwind v4 consumers.
+ * Re-exports globals + documents the @source path for class scanning.
+ */
+@import "./globals.css";
+
+/* In your app globals.css, add after this import:
+@source "../node_modules/@tollerud/ui/dist";
+*/

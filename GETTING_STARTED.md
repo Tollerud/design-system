@@ -3,8 +3,13 @@
 ## Install
 
 ```bash
-npm install @tollerud/ui clsx tailwind-merge tailwindcss@4
+npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
+  @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-progress \
+  @radix-ui/react-slot @radix-ui/react-tabs @radix-ui/react-tooltip \
+  lucide-react framer-motion sonner
 ```
+
+As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peer dependencies**.
 
 `@paper-design/shaders-react` is an **optional** peer dependency — only needed if you use `NoirGlowBackground`. All other components work without it.
 

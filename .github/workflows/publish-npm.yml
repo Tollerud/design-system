@@ -40,6 +40,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm run sync:registry
+
       - name: Check if version already published
         id: version_check
         run: |
@@ -68,6 +70,24 @@ jobs:
         if: steps.version_check.outputs.skip == 'false'
 
       - run: npm run test:subpath
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run test:drift
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run test:package
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run test:size
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run build:docs
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npx playwright install chromium --with-deps
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run test:e2e
         if: steps.version_check.outputs.skip == 'false'
 
       - name: Publish to npm

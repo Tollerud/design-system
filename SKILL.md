@@ -12,10 +12,15 @@ Dark, monochrome + single yellow-accent design system ("noir" aesthetic). This s
 ## Install & setup
 
 ```bash
-npm install @tollerud/ui clsx tailwind-merge tailwindcss@4
+npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
+  @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-progress \
+  @radix-ui/react-slot @radix-ui/react-tabs @radix-ui/react-tooltip \
+  lucide-react framer-motion sonner
 # Optional — only if using NoirGlowBackground
 npm install @paper-design/shaders-react
 ```
+
+As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peers** (not bundled).
 
 Apply the Tailwind preset when you need extra utilities from `tollerud-preset.js` — `globals.css` already includes tokens and component layers for v4:
 

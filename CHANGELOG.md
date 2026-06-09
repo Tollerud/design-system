@@ -7,6 +7,37 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 2.0.0 — 2026-06-09 — Peer dependency model
+
+Radix, Lucide, Framer Motion, and Sonner move to peer dependencies so consumer apps do not bundle duplicate copies.
+
+### Breaking change
+
+Install peers explicitly alongside `@tollerud/ui`:
+
+```bash
+npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
+  @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-progress \
+  @radix-ui/react-slot @radix-ui/react-tabs @radix-ui/react-tooltip \
+  lucide-react framer-motion sonner
+```
+
+### New features
+
+- `@tollerud/ui/tailwind.css` — convenience import with documented `@source` hint
+- `npm run test:package` — publint + `@arethetypeswrong/cli` on the package
+- `npm run test:size` — size-limit budget on `dist/button.js` and `dist/index.js`
+- `npm run sync:registry` — align `registry.json` version with `package.json` before publish
+
+### Docs
+
+- Retired docs-only `grain-gl.jsx`; backgrounds and overview use npm `NoirGlowBackground`
+- Publish workflow runs drift, package quality, size budget, docs build, and Playwright E2E
+
+### Migration
+
+If you already had Radix/Lucide/Motion/Sonner in your app, add them to `package.json` if npm no longer hoists them from `@tollerud/ui`. No component API changes.
+
 ## 1.4.0 — 2026-06-09 — Charts and marketing blocks
 
 Palette-aware charts and landing-page blocks ship in the npm package. Docs site reorganized into `pages/`, `kit/`, `blocks/`, and `backgrounds/`.

@@ -33,4 +33,3 @@ export {
   BgFrame,
   GradientReadabilityDemo,
 } from '../components/pages/page-backgrounds'
-export { GrainGradientGL } from '../components/backgrounds/grain-gl'

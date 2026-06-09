@@ -19,7 +19,10 @@ Re-sync it whenever you bump the `@tollerud/ui` version and notice the local cop
 ## Install
 
 ```bash
-npm install @tollerud/ui clsx tailwind-merge tailwindcss@4
+npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
+  @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-progress \
+  @radix-ui/react-slot @radix-ui/react-tabs @radix-ui/react-tooltip \
+  lucide-react framer-motion sonner
 # Optional — only if using NoirGlowBackground
 npm install @paper-design/shaders-react
 ```

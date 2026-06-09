@@ -61,7 +61,7 @@ Last updated: 2026-06-09
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v1.4.0
+### npm package (components/*.tsx) — v2.0.0
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -98,16 +98,28 @@ Last updated: 2026-06-09
 
 ---
 
-## Still missing / worth doing next
+## Forward-looking (post v2.0.0)
 
-### Quality
-- ~~Combobox / DropdownMenu don't reposition on window resize~~ — fixed in 1.1.0 (Combobox + DatePicker now close on resize, matching scroll behaviour; DropdownMenu was already handled by Radix)
-- ~~No CI on PRs~~ — GitHub Actions runs typecheck, lint, test, build, docs path check, and tarball verify
-- ~~No unit tests~~ — Vitest + Testing Library smoke tests for core components + registry validation
-- ~~No ESLint / jsx-a11y~~ — flat config with react-hooks + jsx-a11y
-- ~~registry.json not published~~ — exported as `@tollerud/ui/registry.json`
-Docs site E2E smoke tests for the Vite-built docs (`npm run test:e2e`)
-- ~~`CHANGELOG.md` is manual~~ — `npm run changelog:draft` drafts an entry from commits since the latest version
-- ~~No subpath exports~~ — `@tollerud/ui/button`, `@tollerud/ui/dialog`, etc. (generated at build time)
-- ~~Docs site duplicates npm components~~ — Next.js `docs-app/` dogfoods `@tollerud/ui` via `docs-adapters.jsx` for legacy demo prop shapes
-- [ ] See [NPM_PACKAGE_PLAN.md](NPM_PACKAGE_PLAN.md) for remaining npm package hardening
+### npm package
+- [ ] Rich `DataTable` — merge docs `rich-datatable.jsx` features (bulk actions, row menus) into npm incrementally
+- [ ] Replace docs `kit/icons.jsx` with Lucide in demos (optional cleanup)
+- [ ] Typedoc or generated prop tables from TS to reduce `COMPONENTS.md` drift
+- [ ] Changesets or release-please for automated version + changelog
+- [ ] ESM-only major when CJS consumers have migrated
+
+### Docs site
+- [ ] Light-mode gallery parity for npm components (package stays dark-only; docs may preview tokens)
+- [ ] More Playwright coverage (forms page, command palette, theme toggle)
+
+### Ecosystem
+- [ ] `@tollerud/footer` version lockstep automation with `@tollerud/ui` Footer export
+- [ ] Registry CLI (`npx shadcn@latest add`) smoke test in CI consumer example
+
+---
+
+## Completed hardening (see [NPM_PACKAGE_PLAN.md](NPM_PACKAGE_PLAN.md))
+
+- ✅ NPM remediation plan phases 1–7 complete (2026-06-09)
+- ✅ Peer dependency model (v2.0.0)
+- ✅ publint + attw + size-limit in CI validate
+- ✅ Publish gate: drift, package quality, E2E, registry version sync

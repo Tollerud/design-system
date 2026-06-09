@@ -15,7 +15,7 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 | [`@tollerud/ui`](https://www.npmjs.com/package/@tollerud/ui) | `npm install @tollerud/ui` | You want the full design system — components, tokens, Tailwind preset |
 | [`@tollerud/footer`](https://www.npmjs.com/package/@tollerud/footer) | `npm install @tollerud/footer` | You only need the branded footer, with no other design system dependency |
 
-`@tollerud/ui` already re-exports `Footer` internally — install `@tollerud/footer` separately only when you want the footer in a project that doesn't use the full design system.
+**Footer maintenance:** `@tollerud/ui` re-exports `Footer` from the same source as `@tollerud/footer`. Use the standalone `@tollerud/footer` package only when you want the footer without pulling in the full design system (and its peer deps). Both packages are maintained in this monorepo; version them together when the footer changes.
 
 ## Philosophy
 
@@ -28,10 +28,15 @@ Tollerud DS is minimal but not cold. It uses a near-black foundation with warm y
 ### npm package (recommended)
 
 ```bash
-npm install @tollerud/ui clsx tailwind-merge tailwindcss@4
+npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
+  @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-progress \
+  @radix-ui/react-slot @radix-ui/react-tabs @radix-ui/react-tooltip \
+  lucide-react framer-motion sonner
 ```
 
-`@paper-design/shaders-react` is an **optional** peer dependency — the package installs and works without it. Install it only if you use `NoirGlowBackground`; all other components fall back to CSS automatically.
+As of **v2.0.0**, Radix primitives, Lucide, Framer Motion, and Sonner are **peer dependencies** — your app must install them (one line above). The design system bundles only `class-variance-authority`.
+
+`@paper-design/shaders-react` is an **optional** peer — install only if you use `NoirGlowBackground`:
 
 ```bash
 npm install @paper-design/shaders-react

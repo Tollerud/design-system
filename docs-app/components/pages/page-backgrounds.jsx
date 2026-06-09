@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext, createContext } from 'react'
 import * as __p from '@/lib/provide-pages'
-const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, Timeline, DatePicker, FileUpload, TagInput, CodeBlock, Container, ActionRow, GlowCard, PackageDataTable, Toaster, toast, Footer, BentoDashboard, NoirGlowBackground, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, GrainGradientGL, CommandMenu } = __p
+const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, Timeline, DatePicker, FileUpload, TagInput, CodeBlock, Container, ActionRow, GlowCard, PackageDataTable, Toaster, toast, Footer, BentoDashboard, NoirGlowBackground, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, CommandMenu } = __p
 
 /* Tollerud DS — Background treatments ported from tollerud.no.
    → window.Squares, window.GrainGradient, window.PageBackgrounds */
@@ -142,11 +142,15 @@ function GradientReadabilityDemo({ treatment }) {
     <BgFrame label={label} h={420}>
       {isEdge ? (
         <>
-          <GrainGradientGL scale={0.58} offsetX={0.34} intensity={0.36}/>
-          <GrainGradientGL scale={0.58} offsetX={-0.34} intensity={0.26} speed={0.7}/>
+          <div style={{ position: 'absolute', inset: 0, transform: 'scale(0.58) translateX(34%)' }}>
+            <NoirGlowBackground intensity="medium" className="absolute inset-0" />
+          </div>
+          <div style={{ position: 'absolute', inset: 0, transform: 'scale(0.58) translateX(-34%)' }}>
+            <NoirGlowBackground intensity="subtle" speed="slow" className="absolute inset-0" />
+          </div>
         </>
       ) : (
-        <GrainGradientGL/>
+        <NoirGlowBackground intensity="medium" className="absolute inset-0" />
       )}
       {isShadow && <div className="ds-hero-readable-shadow"/>}
       {isHeroBlur && <div className="ds-hero-readable-fullblur"/>}
@@ -183,31 +187,21 @@ function PageBackgrounds() {
       <PageHeader icon="layers" eyebrow="Backgrounds · ported from tollerud.no" title="Backgrounds"
         lede="The two atmospheres that power the live site, lifted into the system as drop-in components. Move your cursor over the grid — it lights the cell beneath it."/>
 
-      <Section title="Grain gradient · live shader" desc="A WebGL replica of the tollerud-landing GradientBackground: @paper-design 'corners' GrainGradient, black backplate, three yellow blooms, softness 0.76, intensity 0.45, speed 1 and no shader noise.">
-        <BgFrame label="GrainGradientGL · shape: corners · animated" h={300}>
-          <GrainGradientGL/>
+      <Section title="Noir glow · live shader" desc="NoirGlowBackground from @tollerud/ui — the packaged @paper-design/shaders-react grain atmosphere (corners shape, yellow ramp, animated). Requires @paper-design/shaders-react in the host app.">
+        <BgFrame label="NoirGlowBackground · live WebGL" h={300}>
+          <div style={{ position: 'relative', height: '100%', minHeight: 260 }}>
+            <NoirGlowBackground intensity="medium" speed="medium" className="absolute inset-0" />
+          </div>
         </BgFrame>
         <div style={{ marginTop: 16 }}>
-          <CodeSnippet name="grain-gradient-gl.jsx" code={`<div className="relative">
-  <GrainGradientGL
-    colors={['hsl(54,85%,66%)', 'hsl(56,100%,80%)', 'hsl(56,100%,50%)']}
-    colorBack="hsl(0,0%,0%)"
-    softness={0.76}
-    intensity={0.45}
-    grain={0}
-    shape="corners"
-    offsetX={0}
-    offsetY={0}
-    scale={1}
-    rotation={0}
-    speed={1}
-  />
+          <CodeSnippet name="noir-glow-live.jsx" code={`<div className="relative min-h-[280px]">
+  <NoirGlowBackground intensity="medium" speed="medium" className="absolute inset-0" />
   <div className="relative z-20">{children}</div>
 </div>`}/>
         </div>
       </Section>
 
-      <Section title="Noir glow background (npm)" desc="Shipped as NoirGlowBackground from @tollerud/ui — the packaged grain atmosphere with optional CSS fallback for static export and docs.">
+      <Section title="Noir glow · CSS fallback" desc="Pass forceCssFallback for static export, reduced-motion, or when WebGL is unavailable.">
         <BgFrame label="NoirGlowBackground · forceCssFallback" h={280}>
           <div style={{ position: 'relative', height: '100%', minHeight: 240 }}>
             <NoirGlowBackground forceCssFallback intensity="medium" preserveCenter className="absolute inset-0" />
@@ -228,7 +222,7 @@ function PageBackgrounds() {
         </div>
       </Section>
 
-      <Section title="Grain gradient · CSS fallback" desc="A pure-CSS approximation using the same yellow ramp and corner composition for when WebGL is unavailable or you want a static, zero-cost atmosphere. GrainGradientGL falls back to this automatically.">
+      <Section title="Grain gradient · CSS only" desc="A pure-CSS approximation using the same yellow ramp and corner composition — zero WebGL cost. NoirGlowBackground uses a similar fallback when forceCssFallback is set.">
         <BgFrame label="GrainGradient · CSS only">
           <GrainGradient/>
         </BgFrame>

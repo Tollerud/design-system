@@ -25,5 +25,5 @@ export const DOC_SYMBOLS = [
   'BackupStatusPanel', 'ActionDiff', 'initMotion', 'CountUp', 'Typewriter', 'PageTOC',
   'MOTION_REDUCED', 'slugify', 'jumpToSection', 'goToSection', 'buildSectionCommands',
   'matchesCommandQuery', 'Squares', 'GrainGradient', 'PageBackgrounds', 'BgFrame',
-  'GradientReadabilityDemo', 'GrainGradientGL', 'CommandMenu',
+  'GradientReadabilityDemo', 'CommandMenu',
 ]
