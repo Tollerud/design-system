@@ -11,7 +11,7 @@
   },
   "homepage": "https://design.tollerud.dev/",
   "license": "MIT",
-  "author": "Mathias Tollerud <mathias.tollerud@gmail.com>",
+  "author": "Mathias Tollerud <mathias@tollerud.no>",
   "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",

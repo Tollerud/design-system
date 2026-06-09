@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Email [mathias.tollerud@gmail.com](mailto:mathias.tollerud@gmail.com) or open a [GitHub Security Advisory](https://github.com/Tollerud/ui/security/advisories/new) on this repository.
+Email [mathias@tollerud.no](mailto:mathias@tollerud.no) or open a [GitHub Security Advisory](https://github.com/Tollerud/ui/security/advisories/new) on this repository.
 
 Include steps to reproduce, affected versions, and impact if known. You'll get a response within a few business days.
 

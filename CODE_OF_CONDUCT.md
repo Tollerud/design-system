@@ -24,7 +24,7 @@ Examples of unacceptable behavior:
 
 Project maintainers may remove, edit, or reject comments, commits, code, and other contributions that are not aligned with this Code of Conduct.
 
-Report issues to **mathias.tollerud@gmail.com**.
+Report issues to **mathias@tollerud.no**.
 
 ## Attribution
 
