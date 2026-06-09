@@ -245,7 +245,7 @@ Built-in `⌘K` / `Ctrl+K` listener, arrow navigation, Esc to close, search acro
 ```tsx
 <DataTable
   columns={[
-    { key: 'hostname', label: 'Host', sortable: true },
+    { key: 'hostname', label: 'Host', sortable: true, filterable: true },
     { key: 'status', label: 'Status', render: (_v, row) => <Badge variant={row.status === 'online' ? 'success' : 'error'}>{row.status}</Badge> },
   ]}
   data={hosts}
@@ -253,6 +253,8 @@ Built-in `⌘K` / `Ctrl+K` listener, arrow navigation, Esc to close, search acro
   onRowClick={(row) => {}}
   emptyMessage="No hosts found"
 />
+
+// Optional rich mode: searchable, filter, selectable, pageSize, bulkActions, rowMenu, toolbarRight, emptyState
 ```
 
 ### Empty (empty states)

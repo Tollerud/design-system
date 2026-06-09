@@ -19,7 +19,6 @@ docs-app/components/
   docs-shell.jsx
   pages/page-*.jsx
   kit/          primitives, icons, cmd-registry, motion
-  blocks/       rich-datatable.jsx
 ```
 
 ### 1d — Ship charts & marketing blocks `[x]`
@@ -74,15 +73,19 @@ docs-app/components/
 
 ---
 
-## Deferred (not blocking production npm)
+## Deferred extras `[x]`
 
-| Item | Why deferred |
-|------|----------------|
-| Typedoc / generated props | `SKILL.md` + drift test cover exports; manual `COMPONENTS.md` updated on releases |
-| Changesets / release-please | `sync:registry` + `changelog:draft` + manual version bump workflow |
-| Full `DataTable` parity | Incremental — docs keep `rich-datatable.jsx` |
-| ESM-only drop of CJS | Consumers still use both |
+- [x] **Generated props** — `npm run docs:props` → `PROPS.generated.md`; `npm run test:props` in validate
+- [x] **Changesets** — `@changesets/cli`, `npm run changeset`, `npm run version:release`
+- [x] **DataTable parity** — npm `DataTable` ships search, filter, selection, bulk actions, row menus, pagination; docs adapter maps `rows`/`header`/icon strings
+- [x] **ESM-only** — v3.0.0 drops CJS/`require` exports
+
+## Still out of scope
+
+| Item | Notes |
+|------|-------|
 | Storybook | Playwright E2E + Vitest sufficient |
+| Full Typedoc site | `PROPS.generated.md` + `SKILL.md` cover prop reference |
 
 ---
 

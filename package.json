@@ -1,6 +1,6 @@
 {
   "name": "@tollerud/ui",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Tollerud User Interface — dark, monochrome + yellow accent. Noir aesthetic meets modern utility.",
   "private": false,
   "type": "module",
@@ -20,7 +20,7 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -28,10 +28,6 @@
       "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
       }
     },
     "./globals.css": "./globals.css",
@@ -50,10 +46,6 @@
       "import": {
         "types": "./dist/*.d.ts",
         "default": "./dist/*.js"
-      },
-      "require": {
-        "types": "./dist/*.d.cts",
-        "default": "./dist/*.cjs"
       }
     }
   },
@@ -93,8 +85,12 @@
     "test:size": "node scripts/test-size.mjs",
     "sync:registry": "node scripts/sync-registry-version.mjs",
     "changelog:draft": "node scripts/changelog-draft.mjs",
-    "validate": "npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run build:docs && npm run test:consumer",
-    "prepublishOnly": "npm run sync:registry && npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size",
+    "changeset": "changeset",
+    "version:release": "changeset version && npm run sync:registry",
+    "docs:props": "node scripts/generate-props.mjs",
+    "test:props": "node scripts/verify-props-drift.mjs",
+    "validate": "npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run test:props && npm run build:docs && npm run test:consumer",
+    "prepublishOnly": "npm run sync:registry && npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run test:props",
     "build:docs": "node scripts/build-docs.mjs",
     "preview:docs": "npx --yes serve _site -l 4173",
     "preview": "open preview.html"
@@ -125,6 +121,7 @@
     "class-variance-authority": "^0.7.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@arethetypeswrong/cli": "^0.18.2",
     "@radix-ui/react-dialog": "^1.1.16",
     "@radix-ui/react-dropdown-menu": "^2.1.17",

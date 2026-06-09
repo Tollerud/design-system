@@ -518,7 +518,7 @@ toast({ tone: 'success', title: 'Deployed', message: 'hermes v2.0 is live' });`}
         </Demo>
       </Section>
 
-      <Section title="Data table (npm)" desc="Sortable, filterable table from @tollerud/ui. For bulk actions, row menus and pagination, the docs site also ships a richer DataTable demo (see Data Table build example).">
+      <Section title="Data table (npm)" desc="Sortable table with optional per-column filters from @tollerud/ui. Pass `data`, `columns`, and `label` on each column.">
         <Demo name="package-data-table" variant="col" code={`<PackageDataTable
   columns={[
     { key: 'hostname', label: 'Host', sortable: true },
@@ -562,7 +562,7 @@ toast({ tone: 'success', title: 'Deployed', message: 'hermes v2.0 is live' });`}
         </Demo>
       </Section>
 
-      <Section title="Data table (docs)" desc="The config-driven docs DataTable: pass rows + a column spec and opt into search, a filter, selection with bulk actions, per-row menus, pagination and an empty state. Powers the Data Table build example.">
+      <Section title="Data table (rich)" desc="Same npm DataTable with search, segmented filter, selection, bulk actions, row menus, and pagination. The docs adapter accepts `rows`, `header`, and icon string keys — see the Data Table build example.">
         <Demo name="data-table" variant="col" code={`<DataTable
   rows={services}
   rowKey="name"

@@ -16,8 +16,8 @@ export {
   useToast,
 } from '../components/kit/primitives'
 export { Icons, Ico } from '../components/kit/icons'
-/** Docs-only DataTable with bulk actions, row menus, and pagination — richer than npm DataTable. */
-export { DataTable } from '../components/blocks/rich-datatable'
+/** Docs DataTable — adapter over npm DataTable (`rows`/`header`/icon strings). */
+export { DataTable } from './docs-adapters'
 export { initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED } from '../components/kit/motion'
 export {
   slugify,

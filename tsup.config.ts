@@ -5,7 +5,7 @@ import { join } from 'path'
 function prependUseClient() {
   const dir = join(__dirname, 'dist')
   for (const file of readdirSync(dir)) {
-    if (file.endsWith('.js') || file.endsWith('.cjs')) {
+    if (file.endsWith('.js')) {
       const path = join(dir, file)
       const content = readFileSync(path, 'utf8')
       if (!content.startsWith("'use client'")) {
@@ -29,10 +29,7 @@ const entry = Object.fromEntries(
 
 export default defineConfig({
   entry,
-  format: ['esm', 'cjs'],
-  outExtension({ format }) {
-    return { js: format === 'cjs' ? '.cjs' : '.js' }
-  },
+  format: ['esm'],
   dts: true,
   sourcemap: true,
   clean: true,

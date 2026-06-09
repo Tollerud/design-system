@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { DataTable } from './DataTable'
 
 const rows = [
@@ -43,5 +43,40 @@ describe('DataTable', () => {
     )
 
     expect(screen.getByText('No hosts found')).toBeInTheDocument()
+  })
+
+  it('supports search, selection, and pagination in rich mode', async () => {
+    const user = userEvent.setup()
+    const onRun = vi.fn()
+
+    render(
+      <DataTable
+        columns={[
+          { key: 'hostname', label: 'Host', sortable: true },
+          { key: 'region', label: 'Region' },
+        ]}
+        data={[
+          { id: '1', hostname: 'emma', region: 'eu' },
+          { id: '2', hostname: 'pia', region: 'us' },
+          { id: '3', hostname: 'iris', region: 'eu' },
+        ]}
+        rowKey="id"
+        searchable
+        searchKeys={['hostname']}
+        selectable
+        pageSize={2}
+        bulkActions={[{ label: 'Restart', onRun }]}
+      />
+    )
+
+    await user.type(screen.getByPlaceholderText('Search…'), 'emma')
+    expect(screen.getByText('emma')).toBeInTheDocument()
+    expect(screen.queryByText('pia')).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('checkbox', { name: /select row 1/i }))
+    expect(screen.getByText('selected')).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Restart' }))
+    expect(onRun).toHaveBeenCalledWith(['1'], expect.any(Function))
   })
 })

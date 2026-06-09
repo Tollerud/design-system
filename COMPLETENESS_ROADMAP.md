@@ -61,7 +61,7 @@ Last updated: 2026-06-09
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v2.0.0
+### npm package (components/*.tsx) — v3.0.0
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -98,14 +98,14 @@ Last updated: 2026-06-09
 
 ---
 
-## Forward-looking (post v2.0.0)
+## Forward-looking (post v3.0.0)
 
 ### npm package
-- [ ] Rich `DataTable` — merge docs `rich-datatable.jsx` features (bulk actions, row menus) into npm incrementally
+- [x] Rich `DataTable` — search, selection, bulk actions, row menus, pagination in npm (v3.0.0)
+- [x] Generated prop tables — `PROPS.generated.md` + `test:props` (v3.0.0)
+- [x] Changesets — `npm run changeset` / `version:release` (v3.0.0)
+- [x] ESM-only package (v3.0.0)
 - [ ] Replace docs `kit/icons.jsx` with Lucide in demos (optional cleanup)
-- [ ] Typedoc or generated prop tables from TS to reduce `COMPONENTS.md` drift
-- [ ] Changesets or release-please for automated version + changelog
-- [ ] ESM-only major when CJS consumers have migrated
 
 ### Docs site
 - [ ] Light-mode gallery parity for npm components (package stays dark-only; docs may preview tokens)
@@ -121,5 +121,6 @@ Last updated: 2026-06-09
 
 - ✅ NPM remediation plan phases 1–7 complete (2026-06-09)
 - ✅ Peer dependency model (v2.0.0)
+- ✅ Rich DataTable, ESM-only, Changesets, generated props (v3.0.0)
 - ✅ publint + attw + size-limit in CI validate
 - ✅ Publish gate: drift, package quality, E2E, registry version sync

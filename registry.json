@@ -1,6 +1,6 @@
 {
   "name": "tollerud-noir",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Tollerud Design System \u2014 dark, cinematic, keyboard-first infrastructure UI",
   "components": {
     "button": {
@@ -480,7 +480,7 @@
     },
     "data-table": {
       "name": "DataTable",
-      "description": "Data table with sorting, search, row selection, and pagination",
+      "description": "Data table with sort, column filters, search, segmented filter, selection, bulk actions, row menus, and pagination",
       "files": [
         "components/DataTable.tsx"
       ],

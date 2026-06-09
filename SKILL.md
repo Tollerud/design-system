@@ -20,7 +20,7 @@ npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
 npm install @paper-design/shaders-react
 ```
 
-As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peers** (not bundled).
+As of **v3.0.0**, the package is **ESM-only** (no CJS `require` entry). As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peers** (not bundled).
 
 Apply the Tailwind preset when you need extra utilities from `tollerud-preset.js` — `globals.css` already includes tokens and component layers for v4:
 
@@ -385,9 +385,10 @@ import {
 ```tsx
 import { DataTable } from '@tollerud/ui'
 
+// Simple: sort + per-column text filters
 <DataTable
   columns={[
-    { key: 'hostname', label: 'Host', sortable: true },
+    { key: 'hostname', label: 'Host', sortable: true, filterable: true },
     { key: 'status', label: 'Status', render: (_v, row) => <Badge variant={row.status === 'online' ? 'success' : 'error'}>{row.status}</Badge> },
   ]}
   data={hosts}
@@ -395,8 +396,25 @@ import { DataTable } from '@tollerud/ui'
   onRowClick={(row) => {}}
   emptyMessage="No hosts found"
 />
+
+// Rich: search, segmented filter, selection, bulk actions, row menus, pagination
+<DataTable
+  columns={[...]}
+  data={hosts}
+  rowKey="id"
+  searchable
+  searchKeys={['hostname', 'ip']}
+  filter={{ key: 'region', allLabel: 'All regions' }}
+  selectable
+  pageSize={10}
+  bulkActions={[{ label: 'Restart', variant: 'ghost', onRun: (ids, clear) => { clear() } }]}
+  rowMenu={(row) => [{ label: 'View logs', onSelect: () => {} }]}
+  toolbarRight={<Button size="sm">Add host</Button>}
+  emptyState={<Empty>...</Empty>}
+/>
 ```
-Note the prop is `data`/`columns`/`label` (not `rows`/`header` — older docs may say otherwise).
+
+`data` and `rows` are aliases. Column labels use `label` (docs demos may use `header` via the docs adapter only).
 
 ### Infra / homelab set
 

@@ -7,6 +7,32 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 3.0.0 — 2026-06-09 — ESM-only and rich DataTable
+
+Ships the full table pattern in npm, drops CommonJS builds, and adds release/props tooling.
+
+### Breaking change
+
+- Package is **ESM-only** — `require('@tollerud/ui')` and `.cjs` subpath bundles are removed. Use `import` in apps and bundlers that support ES modules.
+
+### New features
+
+- `DataTable` — search, segmented filter, row selection, bulk actions, per-row menus, pagination, loading skeletons, and custom empty states (optional; simple sort/filter mode unchanged)
+- `npm run docs:props` — generates `PROPS.generated.md` from component `*Props` interfaces
+- `npm run test:props` — drift check in `validate` / `prepublishOnly`
+- Changesets — `npm run changeset` and `npm run version:release` (runs `sync:registry`)
+
+### Docs
+
+- Retired docs-only `rich-datatable.jsx`; docs `DataTable` is an adapter over npm `DataTable`
+- `PackageDataTable` remains the direct npm import alias on the components page
+
+### Migration
+
+Replace `require('@tollerud/ui')` with ESM imports. For rich tables, pass the new optional props on `DataTable` instead of copying docs-only table code.
+
+---
+
 ## 2.0.0 — 2026-06-09 — Peer dependency model
 
 Radix, Lucide, Framer Motion, and Sonner move to peer dependencies so consumer apps do not bundle duplicate copies.

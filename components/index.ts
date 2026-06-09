@@ -136,7 +136,13 @@ export {
 } from './Sheet'
 
 export { DataTable } from './DataTable'
-export type { DataTableProps, Column } from './DataTable'
+export type {
+  DataTableProps,
+  Column,
+  DataTableFilter,
+  DataTableBulkAction,
+  DataTableRowMenuItem,
+} from './DataTable'
 
 export { GlowCard } from './GlowCard'
 export type { GlowCardProps } from './GlowCard'

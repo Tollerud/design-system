@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import {
+  DataTable as NpmDataTable,
   Tabs as NpmTabs,
   TabsList,
   TabsTrigger,
@@ -385,6 +386,44 @@ function FeatureCard({ icon, ...props }) {
   return <NpmFeatureCard icon={Icon ? <Icon size={20} /> : undefined} {...props} />
 }
 
+/** Maps docs DataTable prop shapes (`rows`, `header`, icon strings) to npm DataTable. */
+function DataTable({ rows, columns = [], bulkActions = [], rowMenu, ...props }) {
+  const npmColumns = columns.map(({ header, label, render, ...col }) => ({
+    ...col,
+    label: label ?? header ?? col.key,
+    render: render ? (_value, row) => render(row) : undefined,
+  }))
+
+  const npmBulkActions = bulkActions.map((action) => ({
+    ...action,
+    icon:
+      action.icon && typeof action.icon === 'string'
+        ? React.createElement(Icons[action.icon], { size: 13 })
+        : action.icon,
+  }))
+
+  const npmRowMenu = rowMenu
+    ? (row) =>
+        rowMenu(row).map((item) => ({
+          ...item,
+          icon:
+            item.icon && typeof item.icon === 'string'
+              ? React.createElement(Icons[item.icon], { size: 14 })
+              : item.icon,
+        }))
+    : undefined
+
+  return (
+    <NpmDataTable
+      rows={rows}
+      columns={npmColumns}
+      bulkActions={npmBulkActions}
+      rowMenu={npmRowMenu}
+      {...props}
+    />
+  )
+}
+
 export {
   Tabs,
   Segmented,
@@ -406,4 +445,5 @@ export {
   Divider,
   Timeline,
   FeatureCard,
+  DataTable,
 }
