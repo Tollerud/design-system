@@ -9,4 +9,4 @@
 @source "../components";
 @source "../lib";
 
-@import "../../docs/docs.css";
+@import "../styles/docs.css";

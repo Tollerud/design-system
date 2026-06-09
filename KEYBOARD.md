@@ -4,7 +4,7 @@ Command-first interaction is a core Tollerud Design System principle. This docum
 
 ## Global shortcuts
 
-These work **everywhere** in a Tollerud DS-powered app.
+These work **everywhere** in an app built with `@tollerud/ui`.
 
 | Shortcut | Action | Component |
 |----------|--------|-----------|

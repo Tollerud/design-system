@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
- * Installs the packed tarball in examples/consumer and runs a production build.
- * Syncs examples/consumer/package.json to the current package version before pack.
+ * Installs the packed tarball in fixtures/consumer and runs a production build.
+ * Syncs fixtures/consumer/package.json to the current package version before pack.
  */
 import { execSync } from 'node:child_process'
 import { readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = join(import.meta.dirname, '..')
-const consumer = join(root, 'examples/consumer')
+const consumer = join(root, 'fixtures/consumer')
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
 const tgzName = `tollerud-ui-${pkg.version}.tgz`
 
@@ -35,4 +35,4 @@ execSync('rm -rf node_modules .next out', { cwd: consumer, stdio: 'inherit' })
 execSync(`npm install ../../${tgz}`, { cwd: consumer, stdio: 'inherit' })
 execSync('npm run build', { cwd: consumer, stdio: 'inherit' })
 
-console.log('Consumer smoke test passed.')
+console.log('@tollerud/ui fixture consumer smoke test passed.')

@@ -1,3 +1,4 @@
+/* @tollerud/ui fixture — static export smoke test */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',

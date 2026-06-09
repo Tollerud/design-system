@@ -1,7 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════
-   Tollerud DS — Docs site chrome + authored LIGHT theme + extended
-   component styles. Loaded AFTER globals.css (unlayered → wins over
-   @layer base/components tokens so theming takes effect).
+   @tollerud/ui docs — Site chrome, light theme, and component styles.
+   Loaded AFTER globals.css (unlayered → wins over @layer tokens).
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────

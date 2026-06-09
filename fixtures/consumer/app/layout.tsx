@@ -1,8 +1,9 @@
+/* @tollerud/ui fixture — minimal Next.js shell for tarball smoke test */
 import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Tollerud UI consumer smoke test',
+  title: '@tollerud/ui — install smoke test',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

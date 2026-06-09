@@ -18,9 +18,9 @@ docs-app/public/CHANGELOG.md
 docs-app/public/tollerud-logo.svg
 docs-app/public/tollerud-avatar.svg
 docs-app/public/tollerud-avatar.png
-examples/consumer/.next/
-examples/consumer/out/
+fixtures/consumer/.next/
+fixtures/consumer/out/
 tollerud-ui-*.tgz
-examples/consumer/node_modules
-examples/consumer/dist
+fixtures/consumer/node_modules
+fixtures/consumer/dist
 packages/footer/dist

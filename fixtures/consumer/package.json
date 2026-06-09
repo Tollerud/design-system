@@ -1,6 +1,7 @@
 {
-  "name": "tollerud-ui-consumer-smoke",
+  "name": "@tollerud/ui-fixture-consumer",
   "private": true,
+  "description": "CI fixture: npm pack → install tarball → next build",
   "scripts": {
     "build": "next build"
   },

@@ -2,8 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { jumpToSection } from './cmd-registry'
 
-/* Tollerud DS — Motion & interaction layer. Decoupled, global, and fully
-   reduced-motion aware. → window.{initMotion, CountUp, Typewriter, PageTOC, useReveal} */
+/* @tollerud/ui docs — Motion and interaction (reduced-motion aware) */
 
 const REDUCED = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

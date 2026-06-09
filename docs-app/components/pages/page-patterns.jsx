@@ -5,7 +5,7 @@ const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Chec
 
 import { adaptCommandGroups, docsCommandFilter } from '@/lib/adapt-command-groups'
 
-/* Tollerud DS — Patterns: Mission Control dashboard built from infra components. */
+/* @tollerud/ui docs — Patterns (Mission Control dashboard) */
 
 function PagePatterns() {
   const toast = useToast();

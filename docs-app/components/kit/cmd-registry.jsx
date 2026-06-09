@@ -1,5 +1,5 @@
 'use client'
-/* Tollerud DS — Command palette section registry. → window.{slugify, jumpToSection, goToSection, buildSectionCommands} */
+/* @tollerud/ui docs — Command palette section registry */
 
 function slugify(title) {
   return title

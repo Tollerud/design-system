@@ -24,7 +24,7 @@ Source reference:
 />
 ```
 
-Tollerud DS version:
+`@tollerud/ui` version:
 
 ```tsx
 import { NoirGlowBackground } from '@/components/ui'

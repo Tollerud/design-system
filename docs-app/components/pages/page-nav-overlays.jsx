@@ -5,7 +5,7 @@ const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Chec
 
 import { adaptCommandGroups, docsCommandFilter } from '@/lib/adapt-command-groups'
 
-/* Tollerud DS — Navigation & Overlays. → window.PageNavOverlays */
+/* @tollerud/ui docs — Navigation and overlays */
 
 function PageNavOverlays() {
   const toast = useToast();

@@ -21,7 +21,7 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 
 > Clean lines. Sharp contrast. Yellow where it counts.
 
-Tollerud DS is minimal but not cold. It uses a near-black foundation with warm yellow accents for interaction points. Every element has purpose — nothing decorative for its own sake. The cross-hatching spirit lives in the sharp borders, the thin lines, the deliberate whitespace.
+Tollerud UI is minimal but not cold. It uses a near-black foundation with warm yellow accents for interaction points. Every element has purpose — nothing decorative for its own sake. The cross-hatching spirit lives in the sharp borders, the thin lines, the deliberate whitespace.
 
 ## Quick Start
 
@@ -237,12 +237,12 @@ design-system/
 ├── tokens.css                # Design tokens
 ├── tollerud-preset.js        # Tailwind preset
 ├── scripts/                  # Build, validate, docs, and release helpers
-├── docs-app/                 # Next.js docs (static export → _site/)
-│   ├── app/                  # App Router
+├── docs-app/                 # Next.js docs site (static export → _site/)
+│   ├── app/                  # App Router + globals.css
 │   ├── components/           # Page demos + docs shell
+│   ├── styles/docs.css       # Docs chrome + light theme
 │   └── public/CNAME          # design.tollerud.dev
-├── examples/consumer/        # npm tarball smoke test
-└── docs/docs.css             # Docs chrome (imported by docs-app)
+└── fixtures/consumer/        # npm tarball install smoke test (CI)
 ```
 
 ## Graphify-inspired Components

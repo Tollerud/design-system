@@ -20,7 +20,6 @@ on:
       - 'eslint.config.js'
       - 'test/**'
       - 'registry.json'
-      - 'components.json'
   workflow_dispatch:
 
 jobs:

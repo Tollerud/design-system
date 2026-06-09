@@ -15,6 +15,6 @@ updates:
     schedule:
       interval: weekly
   - package-ecosystem: npm
-    directory: /examples/consumer
+    directory: /fixtures/consumer
     schedule:
       interval: weekly

@@ -5,7 +5,7 @@ const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Chec
 
 import { PACKAGE_VERSION } from '@/lib/package-version'
 
-/* Tollerud DS — Resources / guides. → window.PageResources */
+/* @tollerud/ui docs — Resources and guides */
 
 function PageResources({ go }) {
   return (
