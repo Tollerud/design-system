@@ -46,7 +46,33 @@ Import base styles/tokens from `@tollerud/ui/globals.css` (or `@tollerud/ui/toke
 `@tollerud/ui` ships as a single bundled file marked `'use client'`. As of **v1.0.8**, importing anything from it — components, hooks, or plain helpers like `buttonVariants` and `cn` — works fine from a Server Component file; the import itself doesn't force your file to become a Client Component, since you're just pulling in already-client-bundled code or plain functions.
 - **If you're on `< 1.0.8`, upgrade first** — older versions crash on any import from a Server Component (the bundle wasn't marked `'use client'`, despite containing hook-based components).
 
-### 2. `<Button>` only renders a native `<button>` — use `asChild` for links (≥ 1.0.7)
+### 2. Tailwind v4 — Alert tone colors missing (`@source` path issue)
+
+`Alert` uses raw Tailwind color classes (`bg-red-500/5`, `border-red-500/30`, `text-red-400`, etc.) for its `error`, `info`, and `success` tones. In Tailwind v4, if your `@source` path doesn't correctly resolve to `node_modules/@tollerud/ui/dist`, these classes are never scanned and the colors silently don't apply.
+
+**Fix (≥ 1.1.4):** `globals.css` now ships these classes in `@layer utilities` so they're always present regardless of your `@source` config. Just make sure you're importing `globals.css`:
+
+```css
+@import "@tollerud/ui/globals.css";
+```
+
+If you're on `< 1.1.4`, add this to your own CSS as a workaround:
+
+```css
+@layer utilities {
+  .bg-red-500\/5   { background-color: rgb(239 68 68 / 0.05); }
+  .bg-blue-500\/5  { background-color: rgb(59 130 246 / 0.05); }
+  .bg-green-500\/5 { background-color: rgb(34 197 94 / 0.05); }
+  .border-red-500\/30   { border-color: rgb(239 68 68 / 0.3); }
+  .border-blue-500\/30  { border-color: rgb(59 130 246 / 0.3); }
+  .border-green-500\/30 { border-color: rgb(34 197 94 / 0.3); }
+  .text-red-400   { color: rgb(248 113 113); }
+  .text-blue-400  { color: rgb(96 165 250); }
+  .text-green-400 { color: rgb(74 222 128); }
+}
+```
+
+### 3. `<Button>` only renders a native `<button>` — use `asChild` for links (≥ 1.0.7)
 `Button` extends `ButtonHTMLAttributes<HTMLButtonElement>` and has no `href`. **Never nest `<a>` inside `<button>` or vice versa** — it's invalid HTML and breaks accessibility. Two ways to style a `<Link>`/`<a>` like a Button:
 
 ```tsx
@@ -71,7 +97,7 @@ import Link from 'next/link'
 
 For a real `<button>` (form submit, logout, toggle, dialog/menu trigger), just use `<Button>` directly — no `asChild` needed.
 
-### 3. `cn` is exported — use it, don't reimplement
+### 4. `cn` is exported — use it, don't reimplement
 `@tollerud/ui` exports `cn` (clsx + tailwind-merge). Use it for conditional/merged class names instead of template strings or writing your own helper.
 
 ---

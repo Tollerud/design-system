@@ -7,6 +7,20 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 1.1.4 — 2026-06-09 — Fix: Alert tone colors missing in Tailwind v4
+
+### Bug fix
+
+Alert `tone` prop colors (`danger`, `info`, `success`) were invisible in Tailwind v4 consumer projects when the `@source` path in `globals.css` pointed to the wrong `node_modules` location.
+
+**Root cause:** Tailwind v4 resolves `@source` relative to the CSS file. When `globals.css` lives in `app/`, the path `../../node_modules/@tollerud/ui/dist/**` resolves to `app/node_modules/...` (which doesn't exist) instead of the root `node_modules`. The 9 tone utility classes were never scanned and therefore never generated.
+
+**Fix:** Added an explicit `@layer utilities` block to `globals.css` that defines all 9 Alert tone classes unconditionally, bypassing scanning entirely. Classes are always emitted regardless of `@source` path configuration.
+
+Classes added to safelist: `bg-red-500/5`, `bg-blue-500/5`, `bg-green-500/5`, `border-red-500/30`, `border-blue-500/30`, `border-green-500/30`, `text-red-400`, `text-blue-400`, `text-green-400`
+
+No API changes.
+
 ## 1.1.3 — 2026-06-09 — Fix: registry deps, source 'use client', React 19 devdep, docs drift
 
 No component API changes. Six quality fixes from a review audit:
