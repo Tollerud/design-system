@@ -29,7 +29,7 @@ npm install @paper-design/shaders-react
 
 `globals.css` bundles Tailwind v4, design tokens, and all component layer styles. Point `@source` at the package `dist` folder relative to your CSS file so component utility classes are not purged.
 
-**Optional preset shim** — for extra theme tokens from `tollerud-preset.js`:
+**Optional preset shim** — for extra theme tokens from `@tollerud/ui/preset` (`tollerud-preset.cjs`):
 
 ```ts
 // tailwind.config.ts

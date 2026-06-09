@@ -2,15 +2,17 @@ import { defineConfig } from 'tsup'
 import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 
+/** Server-safe subpaths — no React hooks; safe to import from RSC without a client boundary. */
+const NO_USE_CLIENT = new Set(['utils.js'])
+
 function prependUseClient() {
   const dir = join(__dirname, 'dist')
   for (const file of readdirSync(dir)) {
-    if (file.endsWith('.js')) {
-      const path = join(dir, file)
-      const content = readFileSync(path, 'utf8')
-      if (!content.startsWith("'use client'")) {
-        writeFileSync(path, `'use client';\n${content}`)
-      }
+    if (!file.endsWith('.js') || NO_USE_CLIENT.has(file)) continue
+    const path = join(dir, file)
+    const content = readFileSync(path, 'utf8')
+    if (!content.startsWith("'use client'")) {
+      writeFileSync(path, `'use client';\n${content}`)
     }
   }
 }

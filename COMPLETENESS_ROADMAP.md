@@ -1,6 +1,6 @@
 # Tollerud User Interface — Roadmap
 
-Last updated: 2026-06-10
+Last updated: 2026-06-11
 
 ## Current state — what's done
 
@@ -61,7 +61,7 @@ Last updated: 2026-06-10
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v4.0.2
+### npm package (components/*.tsx) — v4.0.3
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -114,6 +114,33 @@ Last updated: 2026-06-10
 ### Ecosystem
 - [x] `@tollerud/footer` version lockstep automation with `@tollerud/ui` Footer export
 - [x] npm-only install path — removed copy-via-shadcn registry CLI (v4.0.1); `registry.json` kept for drift checks
+
+### npm package hardening (planned — 2026-06-11)
+
+> **Audit prompt:** Can you review the whole code and project and tell me whats missing to make this a fully usable UI based on best practises?
+
+Full task breakdown: **[NPM_PACKAGE_PLAN.md](./NPM_PACKAGE_PLAN.md)**
+
+**Priority 1 — trust / ship parity** ✅ (2026-06-09)
+- [x] Add `test:consumer` + `verify:footer-sync` to `prepublishOnly` and `publish-npm.yml`
+- [x] Auto-publish `@tollerud/footer` in CI
+- [x] Rename `tollerud-preset.js` → `tollerud-preset.cjs` (fix publint ESM/CJS warning)
+- [x] Selective `'use client'` on dist entries (`utils.js` excluded; interactive subpaths unchanged)
+- [x] Remove `engines.node` from consumer-facing `package.json`
+- [x] npm provenance via Trusted Publishers (OIDC) — `@tollerud/ui` + `@tollerud/footer`
+
+**Priority 2 — export reliability**
+- [ ] Expand `test:subpath` to cover all `entries/manifest.json` keys
+- [ ] Document Tailwind `@source` for pnpm / workspaces / Bun
+
+**Priority 3 — DX**
+- [ ] Footer: peers vs bundled `clsx` / `tailwind-merge` decision
+- [ ] Align `packages/footer` TypeScript to 6.x
+- [ ] Human-facing starter template (beyond `fixtures/consumer`)
+- [ ] “Migrating from copied components” section in `GETTING_STARTED.md`
+
+**Priority 4 — quality (longer term)**
+- [ ] Broader unit + a11y test coverage on interactive components
 
 ---
 

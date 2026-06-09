@@ -1,6 +1,6 @@
 {
   "name": "@tollerud/ui",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Tollerud User Interface — dark, monochrome + yellow accent. Noir aesthetic meets modern utility.",
   "private": false,
   "type": "module",
@@ -15,9 +15,6 @@
   "license": "MIT",
   "author": "Mathias Tollerud <mathias@tollerud.no>",
   "packageManager": "npm@11.16.0",
-  "engines": {
-    "node": ">=20"
-  },
   "sideEffects": [
     "*.css"
   ],
@@ -36,7 +33,7 @@
     "./globals-layers.css": "./globals-layers.css",
     "./tailwind.css": "./tailwind.css",
     "./tokens.css": "./tokens.css",
-    "./preset": "./tollerud-preset.js",
+    "./preset": "./tollerud-preset.cjs",
     "./brand/tollerud-logo.svg": "./brand/tollerud-logo.svg",
     "./brand/tollerud-avatar.svg": "./brand/tollerud-avatar.svg",
     "./brand/tollerud-avatar.png": "./brand/tollerud-avatar.png",
@@ -56,7 +53,7 @@
     "globals-layers.css",
     "tailwind.css",
     "tokens.css",
-    "tollerud-preset.js",
+    "tollerud-preset.cjs",
     "GETTING_STARTED.md",
     "COMPONENTS.md",
     "CHANGELOG.md",
@@ -86,7 +83,7 @@
     "docs:props": "node scripts/generate-props.mjs",
     "test:props": "node scripts/verify-props-drift.mjs",
     "validate": "npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run test:props && npm run verify:footer-sync && npm run build:docs && npm run test:consumer",
-    "prepublishOnly": "npm run sync:registry && npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run test:props",
+    "prepublishOnly": "npm run sync:registry && npm run typecheck && npm run lint && npm run test && npm run build && npm run test:subpath && npm run test:drift && npm run test:package && npm run test:size && npm run test:props && npm run verify:footer-sync && npm run test:consumer",
     "build:docs": "node scripts/build-docs.mjs",
     "preview:docs": "npx --yes serve _site -l 4173"
   },

@@ -1,4 +1,4 @@
-const tollerudPreset = require('../tollerud-preset.js')
+const tollerudPreset = require('../tollerud-preset.cjs')
 
 /**
  * Docs-only preset: map tollerud Tailwind colors to CSS variables so

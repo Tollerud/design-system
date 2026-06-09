@@ -4,7 +4,7 @@
   * Drop this into any Tailwind project:
   *
   *   // tailwind.config.ts
-  *   import tollerudPreset from './path/to/tollerud-preset'
+  *   import tollerudPreset from '@tollerud/ui/preset'
  *   export default {
  *     presets: [tollerudPreset],
  *     content: ['your-source-files'],

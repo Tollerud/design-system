@@ -44,7 +44,7 @@ npm install @tollerud/footer
 
 Adjust `@source` relative to your CSS file. Without it, classes used only inside `@tollerud/ui` dist may be purged.
 
-**Optional preset shim** — extra utilities from `tollerud-preset.js`:
+**Optional preset shim** — extra utilities from `@tollerud/ui/preset`:
 
 ```ts
 // tailwind.config.ts

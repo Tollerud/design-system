@@ -1,6 +1,6 @@
 {
   "name": "@tollerud/footer",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Tollerud branded footer — synced from @tollerud/ui Footer export",
   "private": false,
   "type": "module",
@@ -38,6 +38,9 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
     "react": "^19.0.0",

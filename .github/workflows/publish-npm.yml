@@ -13,13 +13,18 @@ on:
       - 'globals-v3.css'
       - 'globals-layers.css'
       - 'tokens.css'
-      - 'tollerud-preset.js'
+      - 'tollerud-preset.cjs'
       - 'tsup.config.ts'
       - 'tsconfig.build.json'
       - 'vitest.config.ts'
       - 'eslint.config.js'
       - 'test/**'
       - 'registry.json'
+      - 'packages/footer/**'
+      - 'fixtures/consumer/**'
+      - 'scripts/test-consumer.mjs'
+      - 'scripts/verify-footer-sync.mjs'
+      - 'scripts/sync-footer-package.mjs'
   workflow_dispatch:
 
 jobs:
@@ -27,6 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v5
 
@@ -44,8 +50,10 @@ jobs:
         run: |
           LOCAL=$(node -p "require('./package.json').version")
           PUBLISHED=$(npm view @tollerud/ui version 2>/dev/null || echo "0.0.0")
+          FOOTER_PUBLISHED=$(npm view @tollerud/footer version 2>/dev/null || echo "0.0.0")
           echo "local=$LOCAL" >> $GITHUB_OUTPUT
           echo "published=$PUBLISHED" >> $GITHUB_OUTPUT
+          echo "footer_published=$FOOTER_PUBLISHED" >> $GITHUB_OUTPUT
           if [ "$LOCAL" = "$PUBLISHED" ]; then
             echo "skip=true" >> $GITHUB_OUTPUT
             echo "Version $LOCAL already on npm — skipping publish."
@@ -78,6 +86,25 @@ jobs:
       - run: npm run test:size
         if: steps.version_check.outputs.skip == 'false'
 
+      - run: npm run test:props
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run verify:footer-sync
+        if: steps.version_check.outputs.skip == 'false'
+
+      - run: npm run sync:footer
+        if: steps.version_check.outputs.skip == 'false'
+
+      - name: Build @tollerud/footer
+        if: steps.version_check.outputs.skip == 'false'
+        working-directory: packages/footer
+        run: |
+          npm install
+          npm run build
+
+      - run: npm run test:consumer
+        if: steps.version_check.outputs.skip == 'false'
+
       - run: npm run build:docs
         if: steps.version_check.outputs.skip == 'false'
 
@@ -87,13 +114,16 @@ jobs:
       - run: npm run test:e2e
         if: steps.version_check.outputs.skip == 'false'
 
-      # Do not use --provenance with a classic NPM_TOKEN — npm returns E404 on
-      # scoped packages. Re-enable after configuring Trusted Publishers (OIDC) on npmjs.com.
-      - name: Publish to npm
+      # Requires Trusted Publishers (OIDC) on npmjs.com for Tollerud/ui + @tollerud/* packages.
+      # See: https://docs.npmjs.com/trusted-publishers
+      - name: Publish @tollerud/ui to npm
         if: steps.version_check.outputs.skip == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public
+        run: npm publish --provenance --access public
+
+      - name: Publish @tollerud/footer to npm
+        if: steps.version_check.outputs.skip == 'false'
+        working-directory: packages/footer
+        run: npm publish --provenance --access public
 
       - name: Create GitHub Release
         if: steps.version_check.outputs.skip == 'false'

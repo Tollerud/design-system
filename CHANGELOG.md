@@ -7,6 +7,30 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 4.0.3 — 2026-06-09 — Publish pipeline hardening
+
+Patch release: aligns npm publish with `validate`, fixes preset export shape, and enables provenance via OIDC.
+
+### Changed
+
+- `prepublishOnly` and `publish-npm.yml` now run `verify:footer-sync` and `test:consumer` before publish
+- `publish-npm.yml` auto-builds and publishes `@tollerud/footer` alongside `@tollerud/ui`
+- `tollerud-preset.js` renamed to `tollerud-preset.cjs` — fixes publint CJS-in-ESM warning; import via `@tollerud/ui/preset`
+- `@tollerud/ui/utils` subpath no longer ships `'use client'` — `cn` is safe to import from Server Components
+- Removed `engines.node` from `package.json` (contributor Node/npm guidance stays in `CONTRIBUTING.md`)
+- Publish uses npm Trusted Publishers (OIDC) with `--provenance` instead of `NPM_TOKEN`
+
+### Docs
+
+- `README.md`, `GETTING_STARTED.md`, `SKILL.md`, `AGENTS.md` — preset import path updated
+- Added `NPM_PACKAGE_PLAN.md` — npm hardening audit and task list
+
+### Migration
+
+Nothing breaking. If you copied `tollerud-preset.js` locally, rename to `tollerud-preset.cjs` or switch to `import preset from '@tollerud/ui/preset'`.
+
+---
+
 ## 4.0.2 — 2026-06-10 — Repo layout and publish surface cleanup
 
 Patch release: consolidates docs and CI fixtures, stops shipping internal manifests, and clarifies docs copy after the npm-only pivot.

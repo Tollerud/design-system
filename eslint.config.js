@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   {
-    ignores: ['dist/**', 'docs-app/public/**', 'docs-app/.next/**', 'docs-app/next-env.d.ts', 'docs-app/tailwind.config.cjs', 'docs-app/tollerud-docs-preset.cjs', 'docs-app/node_modules/**', 'node_modules/**', 'coverage/**', 'tollerud-preset.js', 'entries/**', '_site/**', 'fixtures/consumer/dist/**', 'fixtures/consumer/.next/**', 'fixtures/consumer/out/**', 'fixtures/consumer/next-env.d.ts', 'packages/footer/dist/**'],
+    ignores: ['dist/**', 'docs-app/public/**', 'docs-app/.next/**', 'docs-app/next-env.d.ts', 'docs-app/tailwind.config.cjs', 'docs-app/tollerud-docs-preset.cjs', 'docs-app/node_modules/**', 'node_modules/**', 'coverage/**', 'tollerud-preset.cjs', 'entries/**', '_site/**', 'fixtures/consumer/dist/**', 'fixtures/consumer/.next/**', 'fixtures/consumer/out/**', 'fixtures/consumer/next-env.d.ts', 'packages/footer/dist/**'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

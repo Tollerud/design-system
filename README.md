@@ -51,7 +51,7 @@ npm install @paper-design/shaders-react
 
 Adjust the `@source` path relative to your CSS file so it resolves to `node_modules/@tollerud/ui/dist`.
 
-**Optional preset shim** — if you need utilities from `tollerud-preset.js` beyond what `tokens.css` provides:
+**Optional preset shim** — if you need utilities from `@tollerud/ui/preset` beyond what `tokens.css` provides:
 
 ```ts
 // tailwind.config.ts
@@ -97,13 +97,13 @@ import { Button, Card, Badge, StatusDot, CodeBlock, Kbd, CommandMenu, NoirGlowBa
 
 TypeScript types are included — no `@types/*` package needed. See **[COMPONENTS.md](COMPONENTS.md)** for the full prop reference for every component.
 
-Publish a new version by bumping `version` in `package.json` and pushing to `main` — the `publish-npm` GitHub Action detects the version change, runs `npm publish` (using the `NPM_TOKEN` secret), and then creates a matching GitHub Release automatically.
+Publish a new version by bumping `version` in `package.json` and pushing to `main` — the `publish-npm` GitHub Action detects the version change, runs `npm publish --provenance` via npm Trusted Publishers (OIDC), and then creates a matching GitHub Release automatically.
 
 ### Copy from repo (alternative)
 
 ```bash
 npm install clsx tailwind-merge
-cp tollerud-preset.js globals.css components/ -r <your-next-project>/
+cp tollerud-preset.cjs globals.css components/ -r <your-next-project>/
 ```
 
 Then use local paths instead of `@tollerud/ui` in the snippets above.
@@ -235,7 +235,7 @@ design-system/
 ├── globals-v3.css            # Tailwind v3 legacy
 ├── globals-layers.css        # Shared component CSS layers
 ├── tokens.css                # Design tokens
-├── tollerud-preset.js        # Tailwind preset
+├── tollerud-preset.cjs       # Tailwind preset (CJS)
 ├── scripts/                  # Build, validate, docs, and release helpers
 ├── docs-app/                 # Next.js docs site (static export → _site/)
 │   ├── app/                  # App Router + globals.css
