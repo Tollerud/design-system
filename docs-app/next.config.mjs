@@ -11,14 +11,12 @@ const nextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   transpilePackages: ['@tollerud/ui'],
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@tollerud/ui': path.join(root, '../dist/index.js'),
-      '@/lib/utils': path.join(root, '../lib/utils.ts'),
-      '@paper-design/shaders-react': path.join(root, 'node_modules/@paper-design/shaders-react'),
-    }
-    return config
+  turbopack: {
+    resolveAlias: {
+      '@tollerud/ui': '../dist/index.js',
+      '@/lib/utils': '../lib/utils.ts',
+      '@paper-design/shaders-react': './node_modules/@paper-design/shaders-react',
+    },
   },
 }
 

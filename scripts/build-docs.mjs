@@ -3,6 +3,15 @@ import { execSync } from 'node:child_process'
 import { copyFileSync, existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+function collectCssFiles(dir) {
+  if (!existsSync(dir)) return []
+  return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) return collectCssFiles(full)
+    return entry.name.endsWith('.css') ? [full] : []
+  })
+}
+
 const root = join(import.meta.dirname, '..')
 const docsApp = join(root, 'docs-app')
 
@@ -21,10 +30,8 @@ if (!existsSync(join(docsApp, 'node_modules/next'))) {
 
 execSync('npm run build', { cwd: docsApp, stdio: 'inherit' })
 
-const cssDir = join(root, '_site/_next/static/css')
-const cssBundle = readdirSync(cssDir)
-  .filter((file) => file.endsWith('.css'))
-  .map((file) => readFileSync(join(cssDir, file), 'utf8'))
+const cssBundle = collectCssFiles(join(root, '_site/_next/static'))
+  .map((file) => readFileSync(file, 'utf8'))
   .join('\n')
 
 const requiredUtilities = ['bg-tollerud-yellow', 'text-tollerud-text-primary', 'rounded-full']
