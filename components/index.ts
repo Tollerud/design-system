@@ -94,6 +94,9 @@ export type { RadioGroupProps, RadioProps } from './RadioGroup'
 export { Footer } from './Footer'
 export type { FooterProps, FooterLabels } from './Footer'
 
+export { Monogram } from './Monogram'
+export type { MonogramProps, MonogramColor } from './Monogram'
+
 // ── Overlay / Utility ──
 export { Dialog, DialogPortal, DialogOverlay, DialogClose, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription } from './Dialog'
 export type { } from './Dialog'

@@ -27,10 +27,14 @@ const { ${symbols.join(', ')} } = __p
 `
 }
 
+const BRAND_IMPORT_RE = /^import \{[^}]+\} from '@\/components\/brand'\n/m
+
 for (const file of readdirSync(dir).filter((f) => f.startsWith('page-') && f.endsWith('.jsx'))) {
   let src = readFileSync(join(dir, file), 'utf8')
+  const brandImport = src.match(BRAND_IMPORT_RE)?.[0] ?? ''
   src = src.replace(/^'use client'\n[\s\S]*?const \{[^}]+\} = __p\n\n/, '')
   src = src.replace(/^'use client'\n/, '')
+  src = src.replace(BRAND_IMPORT_RE, '')
   if (file === 'page-patterns.jsx') {
     src = src.replace(/^import \{ Timeline \} from '\.\/page-components'\n\n/, '')
   }
@@ -40,7 +44,9 @@ for (const file of readdirSync(dir).filter((f) => f.startsWith('page-') && f.end
   if (file === 'page-patterns.jsx' && !src.includes('adapt-command-groups')) {
     src = `import { adaptCommandGroups, docsCommandFilter } from '@/lib/adapt-command-groups'\n\n${src}`
   }
-  writeFileSync(join(dir, file), pageHeader(file) + src.trimStart())
+  const header = pageHeader(file)
+  const body = brandImport ? header.replace("from 'react'\n", `from 'react'\n${brandImport}`) + src.trimStart() : header + src.trimStart()
+  writeFileSync(join(dir, file), body)
 }
 
 console.log('inject-page-imports: patched page-*.jsx files')

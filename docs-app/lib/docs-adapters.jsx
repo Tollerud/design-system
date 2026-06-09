@@ -37,12 +37,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  Empty,
-  EmptyHeader,
-  EmptyIcon,
-  EmptyTitle,
-  EmptyDescription,
-  EmptyContent,
   LogViewer,
   Panel as NpmPanel,
   Meter as NpmMeter,
@@ -56,6 +50,7 @@ import {
   FileUpload,
   TagInput,
   Divider as NpmDivider,
+  Button,
   cn,
 } from '@tollerud/ui'
 import {
@@ -253,23 +248,92 @@ function Drawer({ open, onClose, side = 'right', title, description, children, f
 function EmptyState({ icon = 'folder', title, description, action, secondaryAction, compact, accent }) {
   const I = Icons[icon] || Icons.folder
   return (
-    <Empty className={cn(compact && 'py-8', accent && 'rounded-lg border border-tollerud-yellow/30')}>
-      <EmptyHeader>
-        <EmptyIcon className={cn(compact && 'w-10 h-10 mb-1')}>
-          <I size={compact ? 20 : 24} />
-        </EmptyIcon>
-        {title ? <EmptyTitle>{title}</EmptyTitle> : null}
-        {description ? <EmptyDescription>{description}</EmptyDescription> : null}
-      </EmptyHeader>
+    <div
+      className="ds-empty"
+      data-compact={compact ? 'true' : undefined}
+      data-accent={accent ? 'true' : undefined}
+    >
+      <div className="ds-empty__icon">
+        <I size={compact ? 20 : 24} />
+      </div>
+      {title ? <div className="ds-empty__title">{title}</div> : null}
+      {description ? <p className="ds-empty__desc">{description}</p> : null}
       {(action || secondaryAction) && (
-        <EmptyContent>
-          <div className="flex items-center justify-center gap-2.5">
-            {action}
-            {secondaryAction}
-          </div>
-        </EmptyContent>
+        <div className="ds-row" style={{ gap: 10, marginTop: 14 }}>
+          {action}
+          {secondaryAction}
+        </div>
       )}
-    </Empty>
+    </div>
+  )
+}
+
+function PricingCard({
+  name,
+  tagline,
+  description,
+  price,
+  priceNote,
+  period,
+  features = [],
+  recommended,
+  featured,
+  ribbon,
+  badge,
+  cta,
+  ctaLabel,
+  ctaVariant = 'secondary',
+  ctaDisabled,
+  onCtaClick,
+  onCta,
+  className,
+  style,
+  ...props
+}) {
+  const isFeatured = recommended ?? featured
+  const ribbonText = ribbon ?? badge ?? (isFeatured ? 'Popular' : null)
+  const note = priceNote ?? period
+  const buttonLabel = cta ?? ctaLabel ?? 'Get started'
+  const handleClick = onCtaClick ?? onCta
+
+  return (
+    <div
+      className={cn('ds-price', className)}
+      data-recommended={isFeatured ? 'true' : undefined}
+      style={style}
+      {...props}
+    >
+      {isFeatured && ribbonText ? <span className="ds-price__ribbon">{ribbonText}</span> : null}
+      <div className="ds-price__name">{name}</div>
+      {(tagline || description) ? <div className="ds-price__tag">{tagline ?? description}</div> : null}
+      <div className="ds-price__amount">
+        <span className="ds-price__num">{price}</span>
+        {typeof price === 'number' ? (
+          <span className="ds-price__per">/mo</span>
+        ) : period ? (
+          <span className="ds-price__per">{period}</span>
+        ) : null}
+      </div>
+      <div className="ds-price__sub">{note || '\u00A0'}</div>
+      <ul className="ds-price__features" style={{ marginTop: 18, flex: 1 }}>
+        {features.map((feature, i) => (
+          <li key={i}>
+            <span className="ds-price__check">
+              <Icons.check size={15} strokeWidth={2.5} />
+            </span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+      <Button
+        variant={ctaVariant}
+        className="ds-price__cta"
+        disabled={ctaDisabled}
+        onClick={handleClick}
+      >
+        {buttonLabel}
+      </Button>
+    </div>
   )
 }
 
@@ -356,12 +420,12 @@ function avatarSizeFromPixels(size) {
 }
 
 function AvatarGroup({ users = [], max = 4, size = 32, ...props }) {
-  const npmSize = avatarSizeFromPixels(size)
+  const npmSize = typeof size === 'number' ? size : avatarSizeFromPixels(size)
   const shown = users.slice(0, max)
   return (
     <NpmAvatarGroup max={max} size={npmSize} {...props}>
       {shown.map((user, index) => (
-        <span key={index} className="relative inline-flex">
+        <span key={index} className="relative inline-flex shrink-0">
           <Avatar src={user.src} name={user.name} size={npmSize} />
           {user.status ? (
             <span
@@ -446,4 +510,5 @@ export {
   Timeline,
   FeatureCard,
   DataTable,
+  PricingCard,
 }

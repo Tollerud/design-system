@@ -7,7 +7,16 @@ const variants = {
   secondary: 'bg-transparent text-tollerud-text-primary border-tollerud-border hover:border-tollerud-text-secondary hover:bg-tollerud-surface-hover',
   ghost: 'bg-transparent text-tollerud-text-secondary border-transparent hover:text-tollerud-text-primary hover:bg-tollerud-surface-hover',
   destructive: 'bg-tollerud-error text-white border-tollerud-error hover:shadow-[0_0_12px_rgba(239,68,68,0.3)]',
-  terminal: 'font-mono text-tollerud-yellow border-[rgba(255,255,0,0.25)] bg-transparent before:content-["❯_"] before:opacity-70 hover:border-tollerud-yellow hover:shadow-tollerud-glow hover:bg-[rgba(255,255,0,0.05)]',
+  terminal: 'font-mono text-tollerud-yellow border-[rgba(255,255,0,0.25)] bg-transparent hover:border-tollerud-yellow hover:shadow-tollerud-glow hover:bg-[rgba(255,255,0,0.05)]',
+} as const
+
+/** Layer classes from globals-layers.css — ❯ prefix, hover glow, magnetic glow in docs */
+const variantLayers = {
+  primary: 'tollerud-btn--primary',
+  secondary: '',
+  ghost: '',
+  destructive: '',
+  terminal: 'tollerud-btn--terminal',
 } as const
 
 const sizes = {
@@ -23,10 +32,11 @@ export interface ButtonVariantProps {
 
 export function buttonVariants({ variant = 'secondary', size = 'md', className }: ButtonVariantProps & { className?: string } = {}) {
   return cn(
-    'inline-flex items-center justify-center gap-2 font-semibold rounded transition-all duration-[150ms] focus-visible:outline-2 focus-visible:outline-tollerud-yellow focus-visible:outline-offset-2',
+    'tollerud-btn inline-flex items-center justify-center gap-2 font-semibold rounded transition-all duration-[150ms] focus-visible:outline-2 focus-visible:outline-tollerud-yellow focus-visible:outline-offset-2',
     'border cursor-pointer',
     'disabled:opacity-50 disabled:pointer-events-none',
     variants[variant],
+    variantLayers[variant],
     sizes[size],
     className
   )

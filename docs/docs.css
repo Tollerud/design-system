@@ -80,7 +80,7 @@ html[data-theme="dark"] { --accent-text: #E8D500; }
 
 /* Monogram is solid yellow — turn it black on light surfaces (topbar + sidebar) */
 html[data-theme="light"] .ds-topbar__logo,
-html[data-theme="light"] .ds-sidebar__logo { filter: brightness(0); }
+html[data-theme="light"] .ds-sidebar__logo { color: var(--foreground); }
 
 /* Code block + terminal CTA stay dark in BOTH themes (noir signature) */
 html[data-theme="light"] .tollerud-code-block,

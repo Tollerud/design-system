@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { ToastProvider, Kbd, Icons, CommandMenu, buildSectionCommands, initMotion, PageTOC } from '@/lib/provide-pages'
+import { Monogram } from '@/components/brand'
 import { adaptCommandGroups, docsCommandFilter } from '@/lib/adapt-command-groups'
 import { PACKAGE_VERSION } from '@/lib/package-version'
 import PageOverview from './pages/page-overview'
@@ -170,7 +171,7 @@ export function DocsShell({ route: routeProp }) {
         <div className={`ds-nav-scrim ${navOpen ? 'is-open' : ''}`} onClick={() => setNavOpen(false)} />
         <aside className={`ds-sidebar ds-themed ${navOpen ? 'ds-sidebar--open' : ''}`}>
           <div className="ds-sidebar__brand">
-            <img className="ds-sidebar__logo" src="/tollerud-logo.svg" alt="" />
+            <Monogram className="ds-sidebar__logo" alt="" />
             <div>
               <div className="ds-sidebar__title">Tollerud</div>
               <div className="ds-sidebar__ver">user interface · v{PACKAGE_VERSION}</div>
@@ -208,9 +209,8 @@ export function DocsShell({ route: routeProp }) {
             >
               {navOpen ? <Icons.x /> : <Icons.menu />}
             </button>
-            <img
+            <Monogram
               className="ds-topbar__logo"
-              src="/tollerud-logo.svg"
               alt="Tollerud"
               onClick={() => go('overview')}
             />

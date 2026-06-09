@@ -23,13 +23,16 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   name?: string
   /** Explicit fallback content (overrides derived initials) */
   fallback?: React.ReactNode
-  size?: keyof typeof avatarSizes
+  /** Named size token or explicit pixel diameter */
+  size?: keyof typeof avatarSizes | number
 }
 
 const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
-  ({ className, src, name, fallback, size = 'md', ...props }, ref) => {
+  ({ className, src, name, fallback, size = 'md', style, ...props }, ref) => {
     const [errored, setErrored] = useState(false)
     const showImage = !!src && !errored
+    const isNumeric = typeof size === 'number'
+    const pixelSize = isNumeric ? size : undefined
 
     return (
       <span
@@ -38,9 +41,15 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(
           'relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full select-none',
           'bg-tollerud-surface-raised text-tollerud-text-secondary font-medium',
           'ring-1 ring-tollerud-border',
-          avatarSizes[size],
+          !isNumeric && avatarSizes[size],
           className
         )}
+        style={{
+          ...(pixelSize
+            ? { width: pixelSize, height: pixelSize, fontSize: Math.max(10, Math.round(pixelSize * 0.36)) }
+            : null),
+          ...style,
+        }}
         {...props}
       >
         {showImage ? (
@@ -62,7 +71,7 @@ Avatar.displayName = 'Avatar'
 export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement> {
   /** Maximum avatars to render before collapsing into a "+N" overflow indicator */
   max?: number
-  size?: keyof typeof avatarSizes
+  size?: keyof typeof avatarSizes | number
   children: React.ReactNode
 }
 
@@ -89,8 +98,13 @@ const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
               'relative inline-flex shrink-0 items-center justify-center rounded-full select-none',
               'bg-tollerud-surface-raised text-tollerud-text-muted font-medium',
               'ring-2 ring-tollerud-surface',
-              avatarSizes[size]
+              typeof size !== 'number' && avatarSizes[size]
             )}
+            style={
+              typeof size === 'number'
+                ? { width: size, height: size, fontSize: Math.max(10, Math.round(size * 0.36)) }
+                : undefined
+            }
           >
             +{overflow}
           </span>

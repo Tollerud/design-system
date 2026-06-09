@@ -40,6 +40,12 @@ export interface NoirGlowBackgroundProps {
   forceCssFallback?: boolean
   /** Disable pointer events so content above remains clickable. */
   inert?: boolean
+  /** Horizontal shader offset (-1 to 1). Use for edge-biased layouts. */
+  offsetX?: number
+  /** Vertical shader offset (-1 to 1). */
+  offsetY?: number
+  /** Shader scale multiplier. Values > 1 push glow toward edges. */
+  scale?: number
 }
 
 const intensityMap: Record<Intensity, number> = {
@@ -101,6 +107,9 @@ export function NoirGlowBackground({
   noiseOverlay = false,
   forceCssFallback = false,
   inert = true,
+  offsetX = 0,
+  offsetY = 0,
+  scale = 1,
 }: NoirGlowBackgroundProps) {
   const wrapperClassName = cx(
     "tollerud-noir-glow-root absolute inset-0 z-0 overflow-hidden",
@@ -126,9 +135,9 @@ export function NoirGlowBackground({
           intensity={intensityMap[intensity]}
           noise={grainMap[grain]}
           shape={shape}
-          offsetX={0}
-          offsetY={0}
-          scale={1}
+          offsetX={offsetX}
+          offsetY={offsetY}
+          scale={scale}
           rotation={0}
           speed={speedMap[speed]}
           colors={colors}

@@ -14,7 +14,7 @@ const CTABand = forwardRef<HTMLDivElement, CTABandProps>(
       <div
         ref={ref}
         className={cn(
-          'rounded-xl border border-tollerud-border bg-tollerud-surface px-8 py-11 text-center',
+          'tollerud-card rounded-xl border border-tollerud-border bg-tollerud-surface px-8 py-11 text-center',
           className
         )}
         {...props}
@@ -29,7 +29,7 @@ const CTABand = forwardRef<HTMLDivElement, CTABandProps>(
           <div className="mt-[22px] flex flex-wrap items-center justify-center gap-3">{actions}</div>
         )}
         {accentBar && (
-          <hr className="tollerud-accent-bar mx-auto mt-8 max-w-[320px] border-0" />
+          <hr className="tollerud-accent-bar tollerud-accent-bar--inline mx-auto mt-8 max-w-[320px] border-0" />
         )}
       </div>
     )

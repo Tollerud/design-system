@@ -1,6 +1,6 @@
 {
   "name": "@tollerud/ui",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Tollerud User Interface — dark, monochrome + yellow accent. Noir aesthetic meets modern utility.",
   "private": false,
   "type": "module",
@@ -40,7 +40,8 @@
     "./tollerud-logo.svg": "./tollerud-logo.svg",
     "./tollerud-avatar.svg": "./tollerud-avatar.svg",
     "./tollerud-avatar.png": "./tollerud-avatar.png",
-    "./tia-full-figure.svg": "./tia-full-figure.svg",
+    "./tollerud-avatar-full.svg": "./tollerud-avatar-full.svg",
+    "./tollerud-avatar-full.png": "./tollerud-avatar-full.png",
     "./registry.json": "./registry.json",
     "./*": {
       "import": {
@@ -66,7 +67,8 @@
     "tollerud-logo.svg",
     "tollerud-avatar.svg",
     "tollerud-avatar.png",
-    "tia-full-figure.svg",
+    "tollerud-avatar-full.svg",
+    "tollerud-avatar-full.png",
     "AGENTS.md",
     "SKILL.md"
   ],

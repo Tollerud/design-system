@@ -390,6 +390,76 @@
     background: var(--gradient-yellow);
     margin: 3rem 0;
   }
+  .tollerud-accent-bar--inline {
+    margin: 0;
+  }
+
+  /* ═══ Range slider ═══ */
+  .tollerud-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--muted);
+    outline: none;
+  }
+  .tollerud-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--tollerud-yellow);
+    border: 2px solid var(--card);
+    cursor: pointer;
+    box-shadow: 0 0 0 1px var(--border);
+  }
+  .tollerud-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--tollerud-yellow);
+    border: 2px solid var(--card);
+    cursor: pointer;
+  }
+
+  /* ═══ Form row (settings layout) ═══ */
+  .tollerud-formrow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tollerud-formrow:last-child {
+    border-bottom: none;
+  }
+  .tollerud-formrow__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+  .tollerud-formrow__hint {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    line-height: 1.45;
+    max-width: 46ch;
+  }
+  .tollerud-formrow__control {
+    justify-self: end;
+  }
+  @media (max-width: 560px) {
+    .tollerud-formrow {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .tollerud-formrow__control {
+      justify-self: start;
+    }
+  }
 
   /* ═══ Gradient Text ═══ */
   .tollerud-gradient-text {
@@ -622,6 +692,20 @@
   }
   .tollerud-timeline__dot--active {
     animation: tollerud-timeline-pulse 2s infinite;
+  }
+  .tollerud-timeline__dot--online {
+    background: var(--success);
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+  }
+  .tollerud-timeline__dot--warning {
+    background: var(--tollerud-yellow);
+    box-shadow: 0 0 6px rgba(232, 213, 0, 0.5);
+  }
+  .tollerud-timeline__dot--offline {
+    background: var(--destructive);
+  }
+  .tollerud-timeline__dot--idle {
+    background: var(--tollerud-noir-400);
   }
   @keyframes tollerud-timeline-pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,0,0.4); }

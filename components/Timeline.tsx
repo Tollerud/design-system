@@ -52,10 +52,10 @@ const Timeline = forwardRef<HTMLDivElement, TimelineProps>(
                       className={cn(
                         'tollerud-timeline__dot',
                         active && 'tollerud-timeline__dot--active',
-                        item.status === 'online' && 'bg-tollerud-success shadow-[0_0_6px_rgba(34,197,94,0.5)]',
-                        item.status === 'offline' && 'bg-tollerud-error',
-                        item.status === 'warning' && 'bg-tollerud-yellow shadow-[0_0_6px_rgba(232,213,0,0.5)]',
-                        !item.status && 'bg-tollerud-noir-500'
+                        item.status === 'online' && 'tollerud-timeline__dot--online',
+                        item.status === 'offline' && 'tollerud-timeline__dot--offline',
+                        item.status === 'warning' && 'tollerud-timeline__dot--warning',
+                        item.status === 'idle' && 'tollerud-timeline__dot--idle'
                       )}
                     />
                   )}

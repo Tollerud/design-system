@@ -1,6 +1,6 @@
 {
   "name": "tollerud-noir",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Tollerud Design System \u2014 dark, cinematic, keyboard-first infrastructure UI",
   "components": {
     "button": {
@@ -389,6 +389,22 @@
       "description": "Footer bar with Tollerud monogram and branding link",
       "files": [
         "components/Footer.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [
+        "monogram"
+      ],
+      "type": "components:ui"
+    },
+    "monogram": {
+      "name": "Monogram",
+      "description": "Tollerud monogram SVG with yellow, black, or white fill",
+      "files": [
+        "components/Monogram.tsx",
+        "lib/monogram.ts"
       ],
       "dependencies": [
         "clsx",

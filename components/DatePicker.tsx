@@ -118,7 +118,7 @@ function DatePicker({
         <div
           role="dialog"
           aria-label="Choose date"
-          className="absolute top-full z-20 mt-1 w-72 rounded-lg border border-tollerud-border bg-tollerud-surface-overlay p-3 shadow-lg"
+          className="absolute top-full z-50 mt-1 w-72 rounded-lg border border-tollerud-border bg-tollerud-surface-overlay p-3 shadow-lg"
         >
           <div className="mb-2 flex items-center justify-between">
             <button

@@ -251,7 +251,7 @@ function DataTableInner<T extends Record<string, unknown>>({
     <th
       key={col.key}
       className={cn(
-        'px-3 py-2.5 text-xs font-semibold text-tollerud-text-muted uppercase tracking-wider',
+        'px-3 py-2.5 text-left text-xs font-semibold text-tollerud-text-muted uppercase tracking-wider',
         col.sortable && 'cursor-pointer select-none hover:text-tollerud-text-primary transition-colors',
         col.align === 'right' && 'text-right',
         col.align === 'center' && 'text-center',

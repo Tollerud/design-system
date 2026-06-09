@@ -134,8 +134,8 @@ import { BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand 
 // Infra / homelab set
 import { HostCard, ServiceHealthCard, DockerStackCard, IncidentCard } from '@tollerud/ui'
 import { ApprovalCard, ActionDiff, AlertInbox, RollbackPlan, BackupStatusPanel } from '@tollerud/ui'
-// Footer
-import { Footer } from '@tollerud/ui' // or: import { Footer } from '@tollerud/footer'
+// Footer & branding
+import { Footer, Monogram } from '@tollerud/ui' // or: import { Footer } from '@tollerud/footer'
 ```
 
 ### Button

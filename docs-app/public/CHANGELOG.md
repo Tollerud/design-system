@@ -7,6 +7,41 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 3.1.0 — 2026-06-09 — Monogram component and docs fixes
+
+Restores component styling in the docs site, ships the monogram as an npm component, and renames brand avatar assets.
+
+### New components
+
+- `Monogram` — inline SVG with `color`: `yellow` | `black` | `white`, optional `size` and `title`
+
+### Fixes
+
+- `Button` — `terminal` variant uses layer classes again
+- `Pill`, `Avatar`, `Skeleton`, `Timeline`, `Switch`, `Slider`, `FormRow` — layer-class / prop adapter fixes
+- `DatePicker` — calendar popover `z-50`
+- `DataTable` — explicit `text-left` on column headers
+- `CTABand` — inline accent bar margin
+- `BentoDashboard` — real infra cards instead of placeholders
+- `Footer` — uses `<Monogram color="yellow" />`
+- `NoirGlowBackground` — `scale` and `offsetX` for edge-biased shader placement
+
+### Brand assets
+
+- `tia-full-figure.svg` renamed to `tollerud-avatar-full.svg` (plus PNG export)
+- npm exports: `@tollerud/ui/tollerud-avatar-full.svg` and `@tollerud/ui/tollerud-avatar-full.png`
+
+### Docs
+
+- Docs-only brand layer: `Monogram`, `TiaPortrait`, `TollerudAvatarFull`, `NavLockup` under `@/components/brand`
+- Tailwind `@source` fix, light-mode monogram via `currentColor`, onboarding/auth/foundations page updates
+
+### Migration
+
+Drop-in. Replace any copied `tia-full-figure` paths with `tollerud-avatar-full`. Use `<Monogram />` instead of inline SVG or `<img src={logo}>` where you need theme-aware fill.
+
+---
+
 ## 3.0.0 — 2026-06-09 — ESM-only and rich DataTable
 
 Ships the full table pattern in npm, drops CommonJS builds, and adds release/props tooling.

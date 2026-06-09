@@ -411,6 +411,16 @@ code, pre {
   color: rgba(232, 213, 0, 0.55);
   border-color: rgba(232, 213, 0, 0.15);
 }
+.tollerud-pill--success {
+  background: rgba(34, 197, 94, 0.06);
+  color: var(--success);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+.tollerud-pill--error {
+  background: rgba(239, 68, 68, 0.06);
+  color: var(--destructive);
+  border-color: rgba(239, 68, 68, 0.35);
+}
 
 /* ── Gradient Accent Bar ── */
 .tollerud-accent-bar {
@@ -512,6 +522,16 @@ code, pre {
 .tollerud-timeline__dot-group { display: flex; flex-direction: column; align-items: center; }
 .tollerud-timeline__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--tollerud-noir-500); flex-shrink: 0; }
 .tollerud-timeline__dot--active { animation: tollerud-timeline-pulse 2s infinite; }
+.tollerud-timeline__dot--online {
+  background: var(--success);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.5);
+}
+.tollerud-timeline__dot--warning {
+  background: var(--tollerud-yellow);
+  box-shadow: 0 0 6px rgba(232, 213, 0, 0.5);
+}
+.tollerud-timeline__dot--offline { background: var(--destructive); }
+.tollerud-timeline__dot--idle { background: var(--tollerud-noir-400); }
 @keyframes tollerud-timeline-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,0,.4); }
   50%      { box-shadow: 0 0 0 6px rgba(255,255,0,0); }

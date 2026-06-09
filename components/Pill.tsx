@@ -1,9 +1,22 @@
 import { type HTMLAttributes, forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
+/** Layer classes from globals-layers.css — colored mono tags */
+const pillLayers = {
+  outline: 'tollerud-pill--outline',
+  muted: 'tollerud-pill--muted',
+  success: 'tollerud-pill--success',
+  error: 'tollerud-pill--error',
+  solid: '',
+  accent: '',
+} as const
+
 const pillVariants = {
-  outline: 'bg-transparent border border-tollerud-border text-tollerud-text-secondary',
-  solid: 'bg-tollerud-surface-raised text-tollerud-text-primary',
+  outline: '',
+  muted: '',
+  success: '',
+  error: '',
+  solid: 'bg-tollerud-surface-raised text-tollerud-text-primary border-transparent',
   accent: 'bg-tollerud-yellow/15 border border-tollerud-yellow/30 text-tollerud-yellow',
 } as const
 
@@ -17,7 +30,8 @@ const Pill = forwardRef<HTMLSpanElement, PillProps>(
       <span
         ref={ref}
         className={cn(
-          'inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full leading-none',
+          'tollerud-pill inline-flex items-center gap-1 leading-none',
+          pillLayers[variant],
           pillVariants[variant],
           className
         )}

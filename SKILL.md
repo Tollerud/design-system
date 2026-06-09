@@ -20,7 +20,7 @@ npm install @tollerud/ui clsx tailwind-merge tailwindcss@4 \
 npm install @paper-design/shaders-react
 ```
 
-As of **v3.0.0**, the package is **ESM-only** (no CJS `require` entry). As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peers** (not bundled).
+As of **v3.1.0**, `Monogram` ships as an inline SVG component (`color`: `yellow` | `black` | `white`). As of **v3.0.0**, the package is **ESM-only** (no CJS `require` entry). As of **v2.0.0**, Radix, Lucide, Framer Motion, and Sonner are **required peers** (not bundled).
 
 Apply the Tailwind preset when you need extra utilities from `tollerud-preset.js` — `globals.css` already includes tokens and component layers for v4:
 
@@ -445,8 +445,7 @@ import type { IncidentSeverity } from '@tollerud/ui'
 ### Footer & branding
 
 ```tsx
-import { Footer } from '@tollerud/ui'
-import logo from '@tollerud/ui/tollerud-logo.svg'
+import { Footer, Monogram } from '@tollerud/ui'
 
 <Footer layout="responsive" accent labels={{ tollerudProject: 'A Tollerud Project' }} />
 ```
@@ -454,10 +453,12 @@ The monogram must always sit left of the project name with `gap-2`. Never show t
 
 ```tsx
 <div className="flex items-center gap-2 shrink-0">
-  <img src={logo} alt="Tollerud" className="h-5 w-auto" />
+  <Monogram color="yellow" className="h-5 w-auto" />
   <span className="font-semibold text-sm text-white">Project Name</span>
 </div>
 ```
+
+**Monogram** — `color?: 'yellow' | 'black' | 'white'` (default `yellow`), `size?: number`, `title?: string` (default `'Tollerud'`). Brand avatars: `@tollerud/ui/tollerud-avatar.svg`, `tollerud-avatar-full.svg` (+ `.png` variants).
 Monogram sizing: top bar/sidebar expanded → `h-5`, collapsed → `h-6`, footer → `h-4` (handled automatically by `<Footer />`).
 
 ---

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext, createContext } from 'react'
+import { Monogram, NavLockup, TiaPortrait, TollerudAvatarFull } from '@/components/brand'
 import * as __p from '@/lib/provide-pages'
 const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, Timeline, DatePicker, FileUpload, TagInput, CodeBlock, Container, ActionRow, GlowCard, PackageDataTable, Toaster, toast, Footer, BentoDashboard, NoirGlowBackground, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, Squares, GrainGradient, PageBackgrounds, BgFrame, GradientReadabilityDemo, CommandMenu } = __p
 
@@ -141,7 +142,7 @@ function PageFoundations() {
             {[[96, 'App chrome'], [48, 'Nav / favicon'], [26, 'Inline badge'], [20, 'Minimum']].map(([size, label]) => (
               <div key={size} style={{ textAlign: 'center' }}>
                 <div style={{ width: size + 24, height: size + 24, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--tollerud-black)', borderRadius: 8, border: '1px solid var(--border)', margin: '0 auto 8px' }}>
-                  <img src="tollerud-logo.svg" alt="" style={{ width: size, height: 'auto' }}/>
+                  <Monogram size={size} alt="" />
                 </div>
                 <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>{size}px · {label}</span>
               </div>
@@ -151,8 +152,8 @@ function PageFoundations() {
         <SubHead>When to use</SubHead>
         <TokenTable cols={['Context', 'Asset', 'Notes']}
           rows={[
-            ['Sidebar, topbar, favicon', '<code>tollerud-logo.svg</code>', 'Primary brand mark — always on noir/black'],
-            ['Sign-in panel, auth flows', '<code>tollerud-logo.svg</code>', '26–32px beside product name'],
+            ['Sidebar, topbar, favicon', '<code>&lt;Monogram /&gt;</code>', 'Primary brand mark — always on noir/black'],
+            ['Sign-in panel, auth flows', '<code>&lt;Monogram size={26} /&gt;</code>', '26–32px beside product name'],
             ['Hero / marketing', 'Monogram + wordmark in copy', 'No separate wordmark file — set product name in Inter next to the mark'],
           ]}/>
         <SubHead>Clear space & background</SubHead>
@@ -176,11 +177,16 @@ function PageFoundations() {
           </div>
         </div>
         <div style={{ marginTop: 16 }}>
-          <CodeSnippet name="monogram.jsx" code={`// Static asset — same path pattern as sidebar / auth
-<img src="tollerud-logo.svg" alt="Tollerud" style={{ width: 26 }}/>
+          <CodeSnippet name="monogram.jsx" code={`import { Monogram } from '@tollerud/ui'
 
-// Next.js docs site (public/)
-<img src="/tollerud-logo.svg" alt="Tollerud" className="w-6 h-auto" />`}/>
+// Default — acid yellow on dark surfaces
+<Monogram size={26} />
+
+// Light-mode nav / cards
+<Monogram color="black" size={20} />
+
+// On tinted or photo backgrounds
+<Monogram color="white" className="h-5 w-auto" />`}/>
         </div>
         <SubHead>Navigation lockup</SubHead>
         <p style={{ fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.6, margin: '0 0 16px' }}>
@@ -191,10 +197,7 @@ function PageFoundations() {
           <div>
             <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Top bar</span>
             <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, height: 48, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 20, width: 'auto' }}/>
-                <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--foreground)' }}>Dashboard</span>
-              </div>
+              <NavLockup projectName="Dashboard" variant="topbar" />
               <div style={{ display: 'flex', gap: 16, marginLeft: 8 }}>
                 {['Overview', 'Services', 'Logs'].map(l => <span key={l} style={{ fontSize: 13, color: 'var(--text-muted)' }}>{l}</span>)}
               </div>
@@ -204,9 +207,8 @@ function PageFoundations() {
           <div>
             <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Sidebar — expanded</span>
             <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, width: 200, overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
-                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 20, width: 'auto' }}/>
-                <span style={{ fontWeight: 600, fontSize: 13, color: 'var(--foreground)' }}>Project Name</span>
+              <div style={{ padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
+                <NavLockup projectName="Project Name" variant="sidebar" />
               </div>
               {['Dashboard', 'Services', 'Settings'].map(l => (
                 <div key={l} style={{ padding: '8px 14px', fontSize: 13, color: 'var(--text-muted)' }}>{l}</div>
@@ -217,8 +219,8 @@ function PageFoundations() {
           <div>
             <span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 8 }}>Sidebar — collapsed</span>
             <div style={{ background: 'var(--tollerud-noir-900)', border: '1px solid var(--border)', borderRadius: 8, width: 48, overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', borderBottom: '1px solid var(--border)' }}>
-                <img src="tollerud-logo.svg" alt="Tollerud" style={{ height: 24, width: 'auto' }}/>
+              <div style={{ padding: '12px 0', borderBottom: '1px solid var(--border)' }}>
+                <NavLockup variant="sidebarCollapsed" />
               </div>
               {['●', '●', '●'].map((l, i) => (
                 <div key={i} style={{ padding: '10px 0', display: 'flex', justifyContent: 'center', fontSize: 6, color: 'var(--text-muted)' }}>{l}</div>
@@ -227,19 +229,19 @@ function PageFoundations() {
           </div>
         </div>
         <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <CodeSnippet name="nav-lockup.jsx" code={`// Top bar
+          <CodeSnippet name="nav-lockup.jsx" code={`import { NavLockup } from '@/components/brand'
+
+// Top bar
 <nav className="fixed top-0 inset-x-0 h-14 flex items-center px-6 gap-6 bg-tollerud-noir-900 border-b border-tollerud-noir-600">
-  <div className="flex items-center gap-2 shrink-0">
-    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-5 w-auto" />
-    <span className="font-semibold text-sm text-white">Dashboard</span>
-  </div>
+  <NavLockup projectName="Dashboard" variant="topbar" className="shrink-0" />
   {/* nav links, actions … */}
 </nav>`}/>
-          <CodeSnippet name="sidebar.jsx" code={`// Sidebar expanded
+          <CodeSnippet name="sidebar.jsx" code={`import { NavLockup } from '@/components/brand'
+
+// Sidebar expanded
 <aside className="w-56 h-screen bg-tollerud-noir-900 border-r border-tollerud-noir-600 flex flex-col">
-  <div className="flex items-center gap-2 px-4 h-14 border-b border-tollerud-noir-600 shrink-0">
-    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-5 w-auto" />
-    <span className="font-semibold text-sm text-white">Project Name</span>
+  <div className="px-4 h-14 border-b border-tollerud-noir-600 shrink-0 flex items-center">
+    <NavLockup projectName="Project Name" variant="sidebar" />
   </div>
   {/* nav items … */}
 </aside>
@@ -247,7 +249,7 @@ function PageFoundations() {
 // Sidebar collapsed — name hidden, mark slightly larger
 <aside className="w-14 h-screen bg-tollerud-noir-900 border-r border-tollerud-noir-600 flex flex-col items-center">
   <div className="flex items-center justify-center h-14 border-b border-tollerud-noir-600 w-full">
-    <img src="/tollerud-logo.svg" alt="Tollerud" className="h-6 w-auto" />
+    <NavLockup variant="sidebarCollapsed" />
   </div>
 </aside>`}/>
         </div>
@@ -389,19 +391,19 @@ container: (p) => (
           <div className="tollerud-card ds-themed" style={{ padding: 0, overflow: 'hidden' }}>
             <div className="ds-panel__head"><span className="ds-panel__title">Portrait</span><span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>tollerud-avatar.svg</span></div>
             <div style={{ padding: 24, display: 'flex', justifyContent: 'center', background: 'var(--tollerud-black)' }}>
-              <img src="tollerud-avatar.svg" alt="Tia portrait" style={{ width: 160, height: 'auto' }}/>
+              <TiaPortrait width={160} alt="Tia portrait" />
             </div>
             <div style={{ padding: '14px 18px', fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, borderTop: '1px solid var(--border)' }}>
               Waist-up wave — the default avatar for nav badges, chat bubbles, and compact brand moments. PNG variant (<code className="ds-mono" style={{ fontSize: 12 }}>tollerud-avatar.png</code>) ships for hero-scale renders with drop shadow.
             </div>
           </div>
           <div className="tollerud-card ds-themed" style={{ padding: 0, overflow: 'hidden' }}>
-            <div className="ds-panel__head"><span className="ds-panel__title">Full figure</span><span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>tia-full-figure.svg</span></div>
+            <div className="ds-panel__head"><span className="ds-panel__title">Full figure</span><span className="ds-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>tollerud-avatar-full.svg · .png</span></div>
             <div style={{ padding: '16px 24px', display: 'flex', justifyContent: 'center', background: 'var(--tollerud-black)', maxHeight: 420, overflow: 'hidden' }}>
-              <img src="tia-full-figure.svg" alt="Tia full figure" style={{ height: 380, width: 'auto', objectFit: 'contain', objectPosition: 'top' }}/>
+              <TollerudAvatarFull height={380} alt="Tia full figure" />
             </div>
             <div style={{ padding: '14px 18px', fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.55, borderTop: '1px solid var(--border)' }}>
-              Head-to-toe illustration for hero sections, empty states, and onboarding. Keep on dark backgrounds; a subtle yellow drop-shadow reads well over the grain gradient.
+              Head-to-toe illustration for hero sections, empty states, and onboarding. PNG variant (<code className="ds-mono" style={{ fontSize: 12 }}>tollerud-avatar-full.png</code>) ships for hero-scale renders with drop shadow.
             </div>
           </div>
         </div>
@@ -422,13 +424,15 @@ container: (p) => (
           </div>
         </div>
         <div style={{ marginTop: 16 }}>
-          <CodeSnippet name="tia-avatar.jsx" code={`// Portrait — SVG for crisp scaling, PNG for hero glow
-<img src="tollerud-avatar.svg" alt="Tia" style={{ width: 96 }}/>
-<img src="tollerud-avatar.png" alt="Tia" style={{ height: 340,
-  filter: 'drop-shadow(0 0 50px rgba(232,213,0,0.25))' }}/>
+          <CodeSnippet name="tia-avatar.jsx" code={`import { TiaPortrait, TollerudAvatarFull } from '@/components/brand'
 
-// Full figure — always reference the asset file
-<img src="tia-full-figure.svg" alt="Tia" style={{ height: 480, width: 'auto' }}/>`}/>
+// Portrait — SVG for crisp scaling, PNG for hero glow
+<TiaPortrait width={96} alt="Tia" />
+<TiaPortrait variant="png" height={340} glow alt="Tia" />
+
+// Full figure — SVG for docs panels, PNG for hero glow
+<TollerudAvatarFull height={480} alt="Tia" />
+<TollerudAvatarFull variant="png" height={520} glow alt="Tia" />`}/>
         </div>
       </Section>
     </div>

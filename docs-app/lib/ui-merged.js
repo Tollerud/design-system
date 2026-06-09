@@ -62,7 +62,7 @@ export {
 
 export { DataTable as PackageDataTable } from '@tollerud/ui'
 
-export { FeatureCard } from './docs-adapters'
+export { FeatureCard, PricingCard } from './docs-adapters'
 
 export const {
   Button,
@@ -83,5 +83,4 @@ export const {
   Avatar,
   PasswordInput,
   FormRow,
-  PricingCard,
 } = NPM

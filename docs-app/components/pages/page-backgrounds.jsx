@@ -142,12 +142,8 @@ function GradientReadabilityDemo({ treatment }) {
     <BgFrame label={label} h={420}>
       {isEdge ? (
         <>
-          <div style={{ position: 'absolute', inset: 0, transform: 'scale(0.58) translateX(34%)' }}>
-            <NoirGlowBackground intensity="medium" className="absolute inset-0" />
-          </div>
-          <div style={{ position: 'absolute', inset: 0, transform: 'scale(0.58) translateX(-34%)' }}>
-            <NoirGlowBackground intensity="subtle" speed="slow" className="absolute inset-0" />
-          </div>
+          <NoirGlowBackground intensity="medium" scale={1.55} offsetX={0.38} className="absolute inset-0" />
+          <NoirGlowBackground intensity="subtle" speed="slow" scale={1.55} offsetX={-0.38} className="absolute inset-0" />
         </>
       ) : (
         <NoirGlowBackground intensity="medium" className="absolute inset-0" />

@@ -61,7 +61,7 @@ Last updated: 2026-06-09
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v3.0.0
+### npm package (components/*.tsx) — v3.1.0
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -72,7 +72,7 @@ Last updated: 2026-06-09
 - ✅ Dialog, Tooltip, Tabs, DropdownMenu, Sheet, DataTable
 - ✅ LogViewer, Timeline, Empty, Toaster
 - ✅ Infrastructure: HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, ApprovalCard, BackupStatusPanel, AlertInbox, RollbackPlan, ActionDiff
-- ✅ CommandMenu, ActionRow, CodeBlock, GlowCard, BentoDashboard, Footer
+- ✅ CommandMenu, ActionRow, CodeBlock, GlowCard, BentoDashboard, Footer, Monogram
 - ✅ Container, NoirGlowBackground
 - ✅ Divider, Pill, Avatar, AvatarGroup, Breadcrumb, Pagination, Segmented, Stepper
 - ✅ Panel, Meter, FormRow, PricingCard

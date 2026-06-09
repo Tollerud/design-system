@@ -40,7 +40,7 @@ function SetupWizard() {
 
       {/* step body */}
       {step === 0 && (
-        <div className="ds-col" style={{ gap: 16 }}>
+        <div className="ds-col" style={{ gap: 16, marginTop: 20 }}>
           <div>
             <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--foreground)', marginBottom: 4 }}>Connect your first host</h3>
             <p style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.5 }}>Tia connects over SSH and installs the agent. Point it at a machine on your network.</p>
@@ -52,7 +52,7 @@ function SetupWizard() {
       )}
 
       {step === 1 && (
-        <div className="ds-col" style={{ gap: 16 }}>
+        <div className="ds-col" style={{ gap: 16, marginTop: 20 }}>
           <div>
             <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--foreground)', marginBottom: 4 }}>Choose stacks to manage</h3>
             <p style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.5 }}>Pick the compose stacks on <b style={{ color: 'var(--foreground)' }}>{host || 'this host'}</b> you want Tia to watch.</p>
@@ -83,7 +83,7 @@ function SetupWizard() {
       )}
 
       {step === 2 && (
-        <div className="ds-col" style={{ gap: 16 }}>
+        <div className="ds-col" style={{ gap: 16, marginTop: 20 }}>
           <div>
             <h3 style={{ fontSize: 17, fontWeight: 600, color: 'var(--foreground)', marginBottom: 4 }}>Invite your team</h3>
             <p style={{ fontSize: 13.5, color: 'var(--text-muted)', lineHeight: 1.5 }}>Optional — add teammates by email, one per line. You can do this later from Settings.</p>
@@ -94,10 +94,12 @@ function SetupWizard() {
       )}
 
       {step === 3 && (
+        <div style={{ marginTop: 20 }}>
         <EmptyState icon="rocket" accent title="You're all set"
           description={`Tia is watching ${stacks.length} stack${stacks.length !== 1 ? 's' : ''} on ${host || 'your host'}${inviteCount ? ` · ${inviteCount} invite${inviteCount > 1 ? 's' : ''} queued` : ''}. The agent starts in read-only mode.`}
           action={<Button variant="primary" onClick={() => toast({ tone: 'success', title: 'Workspace ready — opening Mission Control' })}>Open Mission Control</Button>}
           secondaryAction={<Button variant="ghost" onClick={reset}>Start over</Button>}/>
+        </div>
       )}
 
       {/* nav */}
