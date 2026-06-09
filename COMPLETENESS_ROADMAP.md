@@ -105,11 +105,11 @@ Last updated: 2026-06-09
 - [x] Generated prop tables — `PROPS.generated.md` + `test:props` (v3.0.0)
 - [x] Changesets — `npm run changeset` / `version:release` (v3.0.0)
 - [x] ESM-only package (v3.0.0)
-- [ ] Replace docs `kit/icons.jsx` with Lucide in demos (optional cleanup)
+- [x] Replace docs `kit/icons.jsx` with Lucide in demos
 
 ### Docs site
 - [ ] Light-mode gallery parity for npm components (package stays dark-only; docs may preview tokens)
-- [ ] More Playwright coverage (forms page, command palette, theme toggle)
+- [x] More Playwright coverage (forms page, command palette, theme toggle)
 
 ### Ecosystem
 - [ ] `@tollerud/footer` version lockstep automation with `@tollerud/ui` Footer export

@@ -53,4 +53,20 @@ test.describe('docs site', () => {
     await page.keyboard.press('Meta+k')
     await expect(page.getByPlaceholder('Search pages, sections, components…')).toBeVisible()
   })
+
+  test('forms page loads input demos', async ({ page }) => {
+    await page.goto('/forms/')
+    await expect(page.getByRole('heading', { name: 'Forms', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Text input' })).toBeVisible()
+    await expect(page.getByPlaceholder('e.g. emma.tollerud.no').first()).toBeVisible()
+  })
+
+  test('theme toggle switches data-theme on html', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+    await page.getByRole('button', { name: 'Switch to light' }).click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+    await page.getByRole('button', { name: 'Switch to dark' }).click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  })
 })

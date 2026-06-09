@@ -361,7 +361,7 @@ function PageFoundations() {
         <div style={{ marginTop: 22 }}><MotionLab/></div>
       </Section>
 
-      <Section title="Iconography" desc="Stroke-based, drawn on a 24px grid at 1.8 stroke weight so they sit evenly with text. Every glyph is a React component taking size + className. Yellow is reserved for interactive icons — most sit in the current text color.">
+      <Section title="Iconography" desc="Docs demos use lucide-react via the Icons registry (24px grid, 1.8 stroke). Yellow is reserved for interactive icons — most sit in the current text color.">
         <div className="ds-icon-grid">
           {Object.keys(Icons).sort().map((name) => {
             const I = Icons[name];
@@ -375,14 +375,10 @@ function PageFoundations() {
           })}
         </div>
         <div style={{ marginTop: 16 }}>
-          <CodeSnippet name="adding-an-icon.jsx" code={`// 1. Add to docs-app/components/kit/icons.jsx — draw on the 24×24 grid, no fills:
-//    <Ico> already sets viewBox, 1.8 stroke, round caps/joins.
-container: (p) => (
-  <Ico {...p}>
-    <path d="M3 8.5 12 4l9 4.5v7L12 20l-9-4.5v-7Z"/>
-    <path d="m3 8.5 9 4.5 9-4.5M12 13v7"/>
-  </Ico>
-),
+          <CodeSnippet name="adding-an-icon.jsx" code={`// 1. Map a lucide icon in docs-app/components/kit/icons.jsx:
+import { Container } from 'lucide-react'
+// ...
+container: icon(Container),
 
 // 2. Use it anywhere — by component or by name string:
 <Icons.container size={18}/>
