@@ -151,7 +151,7 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
               <div className="flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                   <svg width="20" height="22" viewBox="0 0 130 143" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="flex-shrink-0">
-                    <g fill="#FFF200" fillRule="evenodd">
+                    <g fill="#FFFF00" fillRule="evenodd">
                       <g transform="translate(-86.000000, -109.000000)">
                         <g transform="translate(32.000000, 55.000000)">
                           <g transform="translate(54.000000, 54.000000)">
@@ -182,7 +182,7 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
           <div className="md:hidden fixed top-0 left-0 right-0 z-50 h-12 bg-tollerud-noir-950 border-b border-tollerud-border/30 flex items-center justify-between px-4">
             <Link href="/" className="flex items-center gap-2">
               <svg width="16" height="18" viewBox="0 0 130 143" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="flex-shrink-0">
-                <g fill="#FFF200" fillRule="evenodd">
+                <g fill="#FFFF00" fillRule="evenodd">
                   <g transform="translate(-86.000000, -109.000000)">
                     <g transform="translate(32.000000, 55.000000)">
                       <g transform="translate(54.000000, 54.000000)">

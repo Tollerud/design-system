@@ -130,7 +130,7 @@ function PageFoundations() {
         </div>
       </Section>
 
-      <Section title="Monogram" desc="The Tollerud mark is a single continuous path — a stylised T in acid yellow (#FFF200). There is no separate wordmark; use the monogram everywhere the brand needs to appear at small scale.">
+      <Section title="Monogram" desc="The Tollerud mark is a single continuous path — a stylised T in acid yellow (#FFFF00). There is no separate wordmark; use the monogram everywhere the brand needs to appear at small scale.">
         <div className="ds-demo ds-themed" style={{ padding: '28px 24px' }}>
           <div className="ds-row" style={{ gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
             {[[96, 'App chrome'], [48, 'Nav / favicon'], [26, 'Inline badge'], [20, 'Minimum']].map(([size, label]) => (
