@@ -114,7 +114,7 @@ function Section({ id, title, desc, children }) {
     <section className="ds-section" id={sectionId} data-reveal>
       <div className="ds-section__head">
         <h2 className="ds-section__title">
-          {title}
+          <span className="ds-section__title-text">{title}</span>
           {sectionId && (
             <a href={'#' + sectionId} className="ds-section__anchor" onClick={handleAnchorClick} title="Copy link to section" aria-label={'Copy link to ' + title}>
               #
