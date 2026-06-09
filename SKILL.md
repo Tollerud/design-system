@@ -504,7 +504,7 @@ Shadow scale: `--shadow-sm` `--shadow-md` `--shadow-lg` `--shadow-xl` `--shadow-
 | Recolor or add glow to the monogram | Yellow-on-dark branding is non-negotiable; glow is for interactive UI only |
 | Introduce non-system chromatic colors (blue, green, purple) for decoration | Only the yellow accent + monochrome grays (status semantics are the lone exception) |
 | Nest `<a>`/`<Link>` inside `<Button>` (or vice versa) | Invalid HTML — use `asChild` or `buttonVariants()` instead |
-| Import a component name you saw in older docs without checking it exists | Some legacy docs list aspirational or since-shipped components. As of **1.0.9** all 19 previously "missing" components (`Divider`, `Pill`, `Avatar`, `AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `FormRow`, `Accordion`, `Slider`, `PasswordInput`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`, `PricingCard`) are exported. Components still **not** in the package: charts, marketing blocks (`HeroBlock`, `FeatureCard`, `CTABand`), `Drawer`, `EmptyState` (use `Empty`), `Toast` (use `Toaster` + `sonner`'s `toast()`) |
+| Import a component name you saw in older docs without checking it exists | Verify against this catalog or `components/index.ts`. Common renames: `EmptyState` → `Empty`, `Toast` → `Toaster` + `sonner`'s `toast()`, `Drawer` → `Sheet`. Charts (`BarChart`, `AreaChart`, `Donut`, `Sparkline`) and marketing blocks (`HeroBlock`, `FeatureCard`, `CTABand`) ship since **v1.4.0**. Brand assets: `@tollerud/ui/brand/*` (not repo root). |
 
 ---
 

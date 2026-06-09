@@ -2,7 +2,7 @@
 
 A complete, browsable UI library built around **monochrome + yellow accent**. Noir aesthetic meets modern utility.
 
-**[Live docs →](https://tollerud.github.io/design-system/)** — browse every token, component, and pattern live with copy-paste code.
+**[Live docs →](https://design.tollerud.dev/)** — browse every token, component, and pattern live with copy-paste code.
 
 **Requirements:** React ≥ 18 · TypeScript supported (types included) · Tailwind CSS v4 (v3 supported via `globals-v3.css`)
 
@@ -222,55 +222,27 @@ See [GETTING_STARTED.md](GETTING_STARTED.md) for the full setup guide.
 
 ```
 design-system/
-├── package.json              # NPM package metadata
-├── README.md                 # This file
-├── CHANGELOG.md              # Version history
-├── ACCESSIBILITY.md          # Contrast, focus, reduced motion
-├── BACKGROUNDS.md            # NoirGlowBackground usage + fallback docs
-├── COMPONENTS.md             # Full component reference + state matrix
-├── KEYBOARD.md               # Keyboard contract and shortcut reference
-├── VOICE.md                  # Copy guidelines and tone
-├── COMPLETENESS_ROADMAP.md   # Research and future plans
-├── SKILL.md                  # Verified component catalog & gotchas for AI agents
-├── tollerud-preset.js             # 🏆 Drop-in Tailwind preset
-├── tailwind.config.js        # (backward compat standalone config)
-├── globals.css               # 🏆 Tailwind v4 entry (tokens + component layers)
-├── globals-v3.css            # Tailwind v3 legacy (@tailwind + layers)
-├── globals-layers.css        # Shared component CSS layers
-├── globals-v4.css            # Alias → globals.css
-├── tokens.css                # (backward compat CSS vars only)
+├── .nvmrc                    # Node 24 for local dev / CI parity
+├── package.json              # @tollerud/ui — version, exports, scripts
+├── registry.json             # shadcn registry manifest
+├── CHANGELOG.md              # Version history (synced to docs on build)
+├── SKILL.md                  # AI agent catalog — source of truth for exports
+├── COMPONENTS.md             # Human prop reference
+├── AGENTS.md                 # Contributor / release guide
 ├── brand/                    # Logo + Tia avatars (npm: @tollerud/ui/brand/*)
-├── components/
-│   ├── index.ts              # Barrel exports
-│   ├── Button.tsx            # 5 variants, 3 sizes
-│   ├── Card.tsx              # Surface cards with optional accent
-│   ├── Badge.tsx             # 6 variants
-│   ├── StatusDot.tsx         # Online/offline/warning/idle
-│   ├── Input.tsx             # With label + error state
-│   ├── CodeBlock.tsx         # Terminal/code display
-│   ├── StatCard.tsx          # Dashboard stat card
-│   ├── NoirGlowBackground.tsx # Tollerud.no shader background primitive
-│   ├── Kbd.tsx               # Keyboard shortcut chip (⌘K style)
-│   ├── ActionRow.tsx         # Command/action item row
-│   ├── CommandMenu.tsx       # Raycast-style command palette
-│   ├── ServiceHealthCard.tsx  # Service status card
-│   ├── HostCard.tsx           # Server/VM card
-│   ├── DockerStackCard.tsx    # Docker Compose stack card
-│   ├── IncidentCard.tsx       # Severity-graded incident card
-│   ├── ApprovalCard.tsx       # Approve/reject card
-│   ├── ActionDiff.tsx         # Unified diff viewer
-│   ├── RollbackPlan.tsx       # Rollback step list
-│   ├── LogViewer.tsx          # Terminal-style log viewer
-│   ├── AlertInbox.tsx         # Alert feed with acknowledge
-│   ├── Timeline.tsx           # Vertical activity timeline
-│   ├── BackupStatusPanel.tsx  # Backup job overview
-│   └── Container.tsx         # Layout width constraint
-├── docs-app/                 # Next.js docs site (static export → _site/ for GitHub Pages)
-│   ├── app/                  # App Router entry
-│   ├── components/           # Page demos (primitives, charts, marketing)
-│   └── lib/                  # ui-merged.js + docs-adapters.jsx (npm-backed)
-└── docs/
-    └── docs.css              # Shared docs chrome styles (imported by docs-app)
+├── components/               # React components (*.tsx) + index.ts barrel
+├── globals.css               # Tailwind v4 entry (tokens + component layers)
+├── globals-v3.css            # Tailwind v3 legacy
+├── globals-layers.css        # Shared component CSS layers
+├── tokens.css                # Design tokens
+├── tollerud-preset.js        # Tailwind preset
+├── scripts/                  # Build, validate, docs, and release helpers
+├── docs-app/                 # Next.js docs (static export → _site/)
+│   ├── app/                  # App Router
+│   ├── components/           # Page demos + docs shell
+│   └── public/CNAME          # design.tollerud.dev
+├── examples/consumer/        # npm tarball smoke test
+└── docs/docs.css             # Docs chrome (imported by docs-app)
 ```
 
 ## Graphify-inspired Components
