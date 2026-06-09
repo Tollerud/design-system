@@ -20,15 +20,6 @@ jobs:
 
       - run: npm run validate
 
-      - name: Verify docs site asset paths
-        run: |
-          grep -oE 'docs/[^"?'\'' ]+\.(jsx|css|js)' index.html | sort -u | while read -r file; do
-            if [ ! -f "$file" ]; then
-              echo "Missing docs asset referenced in index.html: $file"
-              exit 1
-            fi
-          done
-
       - name: Verify npm tarball includes registry
         run: |
           npm pack --dry-run 2>&1 | tee /tmp/pack.txt
@@ -50,6 +41,8 @@ jobs:
           cache: npm
 
       - run: npm ci --legacy-peer-deps
+
+      - run: npm run build
 
       - run: npx playwright install chromium --with-deps
 

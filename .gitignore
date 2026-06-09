@@ -10,3 +10,11 @@ entries/
 *.tsbuildinfo
 test-results/
 playwright-report/
+_site/
+docs-app/node_modules/
+docs-app/.next/
+examples/consumer/.next/
+examples/consumer/out/
+tollerud-ui-*.tgz
+examples/consumer/node_modules
+examples/consumer/dist

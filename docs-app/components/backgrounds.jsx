@@ -1,3 +1,8 @@
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import { PageHeader, Section, Demo, CodeSnippet } from './primitives'
+import { GrainGradientGL } from './grain-gl'
+
 /* Tollerud DS — Background treatments ported from tollerud.no.
    → window.Squares, window.GrainGradient, window.PageBackgrounds */
 
@@ -255,4 +260,5 @@ function PageBackgrounds() {
   );
 }
 
-Object.assign(window, { Squares, GrainGradient, PageBackgrounds });
+export { Squares, GrainGradient, PageBackgrounds, BgFrame, GradientReadabilityDemo };
+export default PageBackgrounds;

@@ -104,7 +104,8 @@ Last updated: 2026-06-09
 - ~~No unit tests~~ — Vitest + Testing Library smoke tests for core components + registry validation
 - ~~No ESLint / jsx-a11y~~ — flat config with react-hooks + jsx-a11y
 - ~~registry.json not published~~ — exported as `@tollerud/ui/registry.json`
-- ~~No Storybook or visual regression tests for the npm package~~ — Playwright E2E smoke tests for the docs site (`npm run test:e2e`)
+Docs site E2E smoke tests for the Vite-built docs (`npm run test:e2e`)
 - ~~`CHANGELOG.md` is manual~~ — `npm run changelog:draft` drafts an entry from commits since the latest version
 - ~~No subpath exports~~ — `@tollerud/ui/button`, `@tollerud/ui/dialog`, etc. (generated at build time)
-- ~~No Tailwind v4 CSS entry~~ — `@tollerud/ui/globals-v4.css`
+- ~~Docs site duplicates npm components~~ — Vite `docs-app/` dogfoods `@tollerud/ui` (21 components from npm; legacy-ui for demo-only APIs)
+- [ ] See [NPM_PACKAGE_PLAN.md](NPM_PACKAGE_PLAN.md) for remaining npm package hardening

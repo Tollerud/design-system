@@ -21,22 +21,26 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-      - name: Build static site
-        run: |
-          mkdir -p _site
-          cp index.html 404.html preview.html globals.css globals-v3.css globals-v4.css globals-layers.css tokens.css CHANGELOG.md _site/
-          cp CNAME _site/
-          cp tollerud-avatar.png tollerud-avatar.svg tollerud-logo.svg tia-full-figure.svg _site/
-          cp -R docs _site/docs
-          touch _site/.nojekyll
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --legacy-peer-deps
+
+      - name: Build npm package and Next.js docs site
+        run: npm run build && npm run build:docs
+
+      - name: SPA fallback for GitHub Pages
+        run: cp _site/index.html _site/404.html
+
+      - uses: actions/configure-pages@v6
+
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
-      - name: Deploy to GitHub Pages
+
+      - uses: actions/deploy-pages@v5
         id: deployment
-        uses: actions/deploy-pages@v5

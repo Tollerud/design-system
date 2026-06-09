@@ -1,3 +1,8 @@
+'use client'
+import React, { useState, useEffect, useRef, useCallback, useMemo, useContext, createContext } from 'react'
+import * as __p from '@/lib/provide-pages'
+const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, SEVERITY, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, Squares, GrainGradient, PageBackgrounds, BgFrame, GradientReadabilityDemo, GrainGradientGL } = __p
+
 /* Tollerud DS — Overview / landing (the bold moment). → window.PageOverview */
 function PageOverview({ go }) {
   const [bold, setBold] = useState(true);
@@ -131,4 +136,4 @@ import { Button, Card, Badge, StatusDot } from '@tollerud/ui'
     </div>
   );
 }
-window.PageOverview = PageOverview;
+export default PageOverview;
