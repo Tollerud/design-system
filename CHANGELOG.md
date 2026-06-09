@@ -1,5 +1,12 @@
 # Changelog
 
+<!-- FORMAT RULES — the docs site parses this file at runtime.
+     • Entry heading:  ## version — YYYY-MM-DD — Title
+     • Blank line between EVERY block (paragraph, heading, list, code fence)
+     • Section headings: ### Heading  OR  **Bold line** on its own line after a blank line
+     • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
+-->
+
 ## 1.1.3 — 2026-06-09 — Fix: registry deps, source 'use client', React 19 devdep, docs drift
 
 No component API changes. Six quality fixes from a review audit:

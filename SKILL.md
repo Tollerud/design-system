@@ -450,3 +450,33 @@ Shadow scale: `--shadow-sm` `--shadow-md` `--shadow-lg` `--shadow-xl` `--shadow-
 - **19 new components (`Divider`, `Pill`, `Avatar`/`AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `FormRow`, `Accordion`, `Slider`, `PasswordInput`, `Combobox`, `DatePicker`, `FileUpload`, `TagInput`, `PricingCard`) require `>= 1.0.9`**
 - **`Combobox` + `DatePicker` close on window resize (≥ 1.1.0)** — earlier versions left the popover open and misaligned after viewport changes
 - Always pin to the latest patch and check `CHANGELOG.md` in the design-system repo for breaking changes (e.g. the 1.0.5 yellow token rename: `tollerud-yellow-bright` → `tollerud-yellow`, old `tollerud-yellow` `#E8D500` → `tollerud-yellow-warm`)
+
+---
+
+## CHANGELOG.md format rules
+
+The docs site at `design.tollerud.dev` parses `CHANGELOG.md` at runtime. Wrong formatting causes entries to render as a wall of text. Follow these rules whenever you write a changelog entry:
+
+**Entry heading:** `## version — YYYY-MM-DD — Title`
+```
+## 1.2.0 — 2026-07-01 — Add DataGrid component
+```
+
+**Blank lines are required** between every distinct block. The parser splits sections at blank lines — missing blank lines cause everything to merge into one paragraph.
+
+**Section headings inside an entry:** `###` heading or a `**Bold line**` on its own line, preceded by a blank line:
+```
+## 1.2.0 — 2026-07-01 — Add DataGrid component
+
+Short summary.
+
+### New components
+
+- `DataGrid` — sortable, filterable grid ...
+
+### Migration
+
+Nothing breaking.
+```
+
+**Never** write bold inline mid-paragraph as a heading substitute with no blank line before it — it will merge with surrounding text into one unreadable block.

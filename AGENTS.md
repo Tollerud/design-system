@@ -397,12 +397,48 @@ Edit `package.json` version, then update these to match:
 
 ### 4. Always update these files in the same commit
 
-- `CHANGELOG.md` — add an entry at the top following the existing style (date · version · summary + bullet points)
+- `CHANGELOG.md` — add an entry at the top following the **exact format rules below**
 - `COMPLETENESS_ROADMAP.md` — move completed items to the done list, strike through fixed quality items
 - `SKILL.md` — add new components to the catalog, update version notes
 - `AGENTS.md` (this file) — update the component import blocks if new exports were added
 
-### 5. Commit and push
+### 5. CHANGELOG.md format rules
+
+The docs site parses `CHANGELOG.md` at runtime. Wrong formatting causes entries to render as a wall of text or missing content. Follow these rules exactly:
+
+**Entry heading** — always `## version — YYYY-MM-DD — Title`:
+```
+## 1.2.0 — 2026-07-01 — Add DataGrid component
+```
+
+**Blank lines are mandatory** between every distinct block (paragraph, heading, list, code fence). The parser breaks sections at blank lines — without them everything merges into one paragraph.
+
+**Section headings inside an entry** — use `###` or a `**Bold line**` on its own line preceded by a blank line:
+```
+## 1.2.0 — 2026-07-01 — Add DataGrid component
+
+Short summary of what changed.
+
+### New components
+
+- `DataGrid` — sortable, filterable data grid with ...
+
+### Migration
+
+Nothing breaking. Drop-in replacement for `DataTable` where needed.
+```
+
+**Never do this** — bold inline mid-paragraph acting as a heading with no blank line before it:
+```
+## 1.2.0 — bad example
+Summary text. **New components** - DataGrid does X. **Migration** nothing breaking.
+```
+
+**Lists** — standard markdown `- item`. One blank line before the first item if preceded by a paragraph.
+
+**Code blocks** — standard triple-backtick fences. Always close the fence, always a blank line before and after.
+
+### 6. Commit and push
 
 ```bash
 git add <changed files>
