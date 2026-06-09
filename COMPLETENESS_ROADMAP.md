@@ -117,7 +117,7 @@ Last updated: 2026-06-09
 
 ---
 
-## Completed hardening (see [NPM_PACKAGE_PLAN.md](NPM_PACKAGE_PLAN.md))
+## Completed hardening
 
 - ✅ NPM remediation plan phases 1–7 complete (2026-06-09)
 - ✅ Peer dependency model (v2.0.0)

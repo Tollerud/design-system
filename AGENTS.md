@@ -431,8 +431,9 @@ Never use `npm install --package-lock-only` alone for version bumps — it can d
 
 Edit `package.json` version, then update these to match:
 - `COMPLETENESS_ROADMAP.md` — header line `### npm package (components/*.tsx) — vX.X.X`
-- `registry.json` — top-level `"version"` field
-- `docs/app.jsx` — sidebar brand line `user interface · vX.X.X`
+- `registry.json` — top-level `"version"` field (or run `npm run sync:registry`)
+
+The docs sidebar version reads live from `package.json` via `PACKAGE_VERSION` in `docs-app/lib/docs-stats.js` — no manual edit.
 
 ### 4. Always update these files in the same commit
 

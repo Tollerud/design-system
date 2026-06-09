@@ -1,5 +1,19 @@
 # Contributing
 
+## Dev environment
+
+- **Node 24** — use `nvm use` (`.nvmrc` at repo root) or install Node 24 locally
+- **npm 11.16.0** — pinned via `packageManager` in `package.json`; CI runs `npm ci` with this version
+
+When you change dependencies or bump the package version, regenerate the lockfile with the pinned npm (see [AGENTS.md §1b](AGENTS.md)):
+
+```bash
+npx npm@11.16.0 install
+rm -rf node_modules && npx npm@11.16.0 ci
+```
+
+Commit `package.json` and `package-lock.json` together.
+
 ## Before you open a PR
 
 ```bash
