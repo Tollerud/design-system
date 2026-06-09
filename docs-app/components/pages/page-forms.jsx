@@ -40,7 +40,7 @@ function PageForms() {
       <PageHeader icon="forms" eyebrow="Forms" title="Forms"
         lede="Every input control, all states, and the higher-order patterns — combobox, date picker, file upload, tag entry and live validation."/>
 
-      <Section title="Text input" component="Input" desc="All states: default, filled, focused, error, disabled, and readonly. Labels and inline errors are built in.">
+      <Section title="Text input" component="Input" permalink="forms/text-input" desc="All states: default, filled, focused, error, disabled, and readonly. Labels and inline errors are built in.">
         <Demo name="inputs" code={`<Input label="Server name" placeholder="e.g. emma.tollerud.no" />
 <Input label="Port" defaultValue="8080" />
 <Input label="Host" error="Could not resolve host" defaultValue="emma" />
@@ -118,7 +118,7 @@ function PageForms() {
         </Demo>
       </Section>
 
-      <Section title="Combobox" desc="Searchable single-select with keyboard navigation (↑/↓/Enter/Esc) and an empty state.">
+      <Section title="Combobox" permalink="forms/combobox" desc="Searchable single-select with keyboard navigation (↑/↓/Enter/Esc) and an empty state.">
         <Demo name="combobox" variant="col" code={`<Combobox
   label="Host"
   value={value}
@@ -151,7 +151,7 @@ function PageForms() {
         </Demo>
       </Section>
 
-      <Section title="Form row" desc="Label + hint on the left, control on the right. Canonical settings-form layout; stacks on narrow viewports.">
+      <Section title="Form row" permalink="forms/form-row" desc="Label + hint on the left, control on the right. Canonical settings-form layout; stacks on narrow viewports.">
         <Demo name="form-row" variant="col" code={`<FormRow label="Two-factor auth" hint="Require a TOTP code at sign-in.">
   <Switch defaultChecked />
 </FormRow>`}>

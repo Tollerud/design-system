@@ -1,12 +1,22 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
-import { ToastProvider, Kbd, Icons, CommandMenu, buildSectionCommands, initMotion, PageTOC } from '@/lib/provide-pages'
+import {
+  ToastProvider,
+  Kbd,
+  Icons,
+  CommandMenu,
+  buildSectionCommands,
+  initMotion,
+  PageTOC,
+  jumpToSection,
+} from '@/lib/provide-pages'
 import { Monogram } from '@/components/brand'
 import { adaptCommandGroups, docsCommandFilter } from '@/lib/adapt-command-groups'
 import { PACKAGE_VERSION } from '@/lib/package-version'
-import { NAV, PAGE_TITLES, ROUTE_ALIASES, resolveRoute, flattenNavItems } from '@/lib/docs-routes'
+import { NAV, PAGE_TITLES, ROUTE_ALIASES, resolveRoute, flattenNavItems, isLegacyRoute } from '@/lib/docs-routes'
+import { DEEP_LINKS, deepLinkPath, findDeepLink } from '@/lib/component-catalog'
 import PageOverview from './pages/page-overview'
 import PageGettingStarted from './pages/page-getting-started'
 import PageFoundations from './pages/page-foundations'
@@ -56,6 +66,34 @@ for (const [legacy, canonical] of Object.entries(ROUTE_ALIASES)) {
 
 const PAGES_WITH_GO = new Set(['overview', 'getting-started', 'components', 'resources'])
 
+function slugFromPathname(pathname) {
+  const parts = pathname.replace(/^\//, '').replace(/\/$/, '').split('/').filter(Boolean)
+  return parts.length ? parts : null
+}
+
+function resolveSlug(slugProp, pathname) {
+  const parts = slugProp === undefined ? slugFromPathname(pathname) : slugProp?.length ? slugProp : null
+  if (!parts) return { page: 'overview', section: null, parts: [] }
+  return {
+    page: parts[0],
+    section: parts.length > 1 ? parts[1] : null,
+    parts,
+  }
+}
+
+function buildDeepLinkCommands(go) {
+  return DEEP_LINKS.map((link) => ({
+    id: `deep-${link.page}-${link.section}`,
+    label: link.title,
+    description: `${PAGE_TITLES[link.page] || link.page} → ${link.title}`,
+    icon: link.page === 'components' ? 'grid' : link.page === 'forms' ? 'forms' : 'server',
+    searchText: [link.title, link.component, link.page, link.section, ...(link.keywords || [])]
+      .filter(Boolean)
+      .join(' '),
+    onSelect: () => go(deepLinkPath(link)),
+  }))
+}
+
 function useTheme() {
   const [theme, setTheme] = useState('dark')
   useEffect(() => {
@@ -68,30 +106,52 @@ function useTheme() {
   return [theme, () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))]
 }
 
-export function DocsShell({ route: routeProp }) {
+export function DocsShell({ slug: slugProp }) {
   const pathname = usePathname()
   const router = useRouter()
-  const rawRoute = routeProp || pathname.replace(/^\//, '').replace(/\/$/, '') || 'overview'
-  const route = resolveRoute(rawRoute)
+  const { page: rawPage, section: sectionSlug, parts } = useMemo(
+    () => resolveSlug(slugProp, pathname),
+    [slugProp, pathname],
+  )
+  const page = resolveRoute(rawPage)
+  const deepLink = sectionSlug ? findDeepLink(page, sectionSlug) : null
   const [theme, toggleTheme] = useTheme()
   const toggleThemeRef = useRef(toggleTheme)
   toggleThemeRef.current = toggleTheme
   const [navOpen, setNavOpen] = useState(false)
   const [cmdOpen, setCmdOpen] = useState(false)
 
-  const go = useCallback((id) => {
-    router.push(`/${id}`)
-    window.scrollTo({ top: 0 })
-  }, [router])
+  const go = useCallback(
+    (id) => {
+      const path = id.split('/').filter(Boolean).join('/')
+      router.push(path ? `/${path}/` : '/')
+      if (!id.includes('/')) window.scrollTo({ top: 0 })
+    },
+    [router],
+  )
 
   useEffect(() => {
-    if (rawRoute !== route) {
-      router.replace(`/${route}`)
+    if (parts.length === 1 && isLegacyRoute(rawPage) && rawPage !== page) {
+      router.replace(`/${page}/`)
     }
-  }, [rawRoute, route, router])
+  }, [rawPage, page, parts.length, router])
 
-  useEffect(() => { setNavOpen(false) }, [route])
-  useEffect(() => { initMotion() }, [])
+  useEffect(() => {
+    if (!sectionSlug) return
+    const tryJump = (attempts = 0) => {
+      if (jumpToSection(sectionSlug)) return
+      if (attempts < 30) setTimeout(() => tryJump(attempts + 1), 50)
+    }
+    const t = setTimeout(() => tryJump(), 100)
+    return () => clearTimeout(t)
+  }, [page, sectionSlug])
+
+  useEffect(() => {
+    setNavOpen(false)
+  }, [page, sectionSlug])
+  useEffect(() => {
+    initMotion()
+  }, [])
 
   useEffect(() => {
     const h = (e) => {
@@ -105,7 +165,9 @@ export function DocsShell({ route: routeProp }) {
     return () => document.removeEventListener('keydown', h)
   }, [])
 
-  const Page = PAGES[rawRoute] || CANONICAL_PAGES.overview
+  const Page = CANONICAL_PAGES[page] || PAGES[rawPage] || CANONICAL_PAGES.overview
+  const pageKey = sectionSlug ? `${page}--${sectionSlug}` : page
+
   const cmdGroups = [
     {
       label: 'Navigate',
@@ -118,6 +180,7 @@ export function DocsShell({ route: routeProp }) {
         onSelect: () => go(it.id),
       })),
     },
+    { label: 'Component docs', items: buildDeepLinkCommands(go) },
     { label: 'Sections', items: buildSectionCommands(go) },
     {
       label: 'Actions',
@@ -139,6 +202,10 @@ export function DocsShell({ route: routeProp }) {
       ],
     },
   ]
+
+  const crumbTitle = deepLink
+    ? `${PAGE_TITLES[page] || page} / ${deepLink.title}`
+    : PAGE_TITLES[page] || 'Overview'
 
   return (
     <ToastProvider>
@@ -165,7 +232,7 @@ export function DocsShell({ route: routeProp }) {
                           return (
                             <button
                               key={it.id}
-                              className={`ds-navlink ${route === it.id ? 'ds-navlink--active' : ''}`}
+                              className={`ds-navlink ${page === it.id && !sectionSlug ? 'ds-navlink--active' : ''}`}
                               onClick={() => go(it.id)}
                             >
                               <span className="ds-navlink__icon"><I size={15} /></span>
@@ -180,7 +247,7 @@ export function DocsShell({ route: routeProp }) {
                       return (
                         <button
                           key={it.id}
-                          className={`ds-navlink ${route === it.id ? 'ds-navlink--active' : ''}`}
+                          className={`ds-navlink ${page === it.id && !sectionSlug ? 'ds-navlink--active' : ''}`}
                           onClick={() => go(it.id)}
                         >
                           <span className="ds-navlink__icon"><I size={15} /></span>
@@ -203,16 +270,12 @@ export function DocsShell({ route: routeProp }) {
             >
               {navOpen ? <Icons.x /> : <Icons.menu />}
             </button>
-            <Monogram
-              className="ds-topbar__logo"
-              alt="Tollerud"
-              onClick={() => go('overview')}
-            />
+            <Monogram className="ds-topbar__logo" alt="Tollerud" onClick={() => go('overview')} />
             <span className="ds-topbar__crumb">
               <span className="ds-topbar__crumb-prefix">
                 Tollerud UI <span style={{ opacity: 0.4, margin: '0 6px' }}>/</span>{' '}
               </span>
-              <b>{PAGE_TITLES[route] || 'Overview'}</b>
+              <b>{crumbTitle}</b>
             </span>
             <span className="ds-topbar__spacer" />
             <button className="ds-topbar__cmd" onClick={() => setCmdOpen(true)} title="Command palette">
@@ -240,10 +303,10 @@ export function DocsShell({ route: routeProp }) {
             </button>
           </header>
           <main className="ds-content">
-            <div className="ds-page" key={route}>
-              {PAGES_WITH_GO.has(route) ? <Page go={go} /> : <Page />}
+            <div className="ds-page" key={pageKey}>
+              {PAGES_WITH_GO.has(page) ? <Page go={go} /> : <Page />}
             </div>
-            <PageTOC route={route} />
+            <PageTOC route={page} />
           </main>
         </div>
       </div>

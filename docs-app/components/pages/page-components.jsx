@@ -37,7 +37,7 @@ function PageComponents({ go }) {
         </div>
       </Section>
 
-      <Section title="Button" component="Button" desc="Five variants, three sizes. Supports icons, loading spinners, disabled state, and icon-only. Primary is yellow; terminal carries the ❯ for technical actions.">
+      <Section title="Button" component="Button" permalink="components/button" desc="Five variants, three sizes. Supports icons, loading spinners, disabled state, and icon-only. Primary is yellow; terminal carries the ❯ for technical actions.">
         <Demo name="buttons" variant="center" code={`<Button variant="primary">Deploy</Button>
 <Button variant="secondary">Cancel</Button>
 <Button variant="ghost">More</Button>
@@ -80,7 +80,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Card" component="Card" desc="The default surface. Add an accent for a yellow-bordered, highlighted card.">
+      <Section title="Card" component="Card" permalink="components/card" desc="The default surface. Add an accent for a yellow-bordered, highlighted card.">
         <Demo name="cards" code={`<Card>
   <h3 className="font-semibold mb-1">Standard card</h3>
   <p className="text-sm text-tollerud-noir-200">A raised surface with a hairline border.</p>
@@ -100,7 +100,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Divider" desc="A horizontal rule. Default uses the border token; accent variant draws a short yellow rule for section breaks.">
+      <Section title="Divider" permalink="components/divider" desc="A horizontal rule. Default uses the border token; accent variant draws a short yellow rule for section breaks.">
         <Demo name="dividers" variant="col" code={`<Divider />
 <Divider accent />`}>
           <div style={{ width: '100%', maxWidth: 480 }}>
@@ -113,7 +113,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Badge & Pill" component="Badge" desc="Badges label status inline. Pills are tiny mono-flavored tags.">
+      <Section title="Badge & Pill" component="Badge" permalink="components/badge-and-pill" desc="Badges label status inline. Pills are tiny mono-flavored tags.">
         <Demo name="badges" variant="center" code={`<Badge variant="accent">New</Badge>
 <Badge variant="success">Online</Badge>
 <Badge variant="warning">Degraded</Badge>
@@ -137,7 +137,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Status & Kbd" desc="Status dots show liveness with a soft glow. Kbd renders shortcut chips.">
+      <Section title="Status & Kbd" permalink="components/status-and-kbd" desc="Status dots show liveness with a soft glow. Kbd renders shortcut chips.">
         <Demo name="status" variant="center" code={`<StatusDot status="online" label="emma — ready" />
 <StatusDot status="warning" label="CPU 87%" />
 <StatusDot status="offline" label="pia — unreachable" />
@@ -156,7 +156,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Stat card" component="StatCard" desc="Compact metric tiles for dashboards, with optional trend.">
+      <Section title="Stat card" component="StatCard" permalink="components/stat-card" desc="Compact metric tiles for dashboards, with optional trend.">
         <Demo name="stats" code={`<StatCard label="Active Sessions" value="42" change={{ value: "12%", direction: "up" }} icon="activity" />
 <StatCard label="CPU Load" value="63%" change={{ value: "4%", direction: "down" }} icon="cpu" />
 <StatCard label="Storage" value="1.2 TB" icon="database" />`}>
@@ -168,7 +168,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Progress, Skeleton & Avatar" desc="Loading and identity primitives. Avatar and AvatarGroup stack naturally.">
+      <Section title="Progress, Skeleton & Avatar" permalink="components/progress-skeleton-and-avatar" desc="Loading and identity primitives. Avatar and AvatarGroup stack naturally.">
         <Demo name="progress" variant="col" code={`<Progress value={72} />
 <Skeleton h={14} w="60%" />
 <Avatar name="Tia Tollerud" />`}>
@@ -196,7 +196,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Tooltip" desc="Appears on hover and focus. Supports top (default) and bottom placement.">
+      <Section title="Tooltip" permalink="components/tooltip" desc="Appears on hover and focus. Supports top (default) and bottom placement.">
         <Demo name="tooltip" variant="center" code={`<Tooltip label="⌘K to open">
   <Button variant="secondary">Hover me</Button>
 </Tooltip>`}>
@@ -205,7 +205,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Alert" component="Alert" desc="Four semantic tones. Pass icon to override the default icon per tone.">
+      <Section title="Alert" component="Alert" permalink="components/alert" desc="Four semantic tones. Pass icon to override the default icon per tone.">
         <Demo name="alerts" variant="col" code={`<Alert tone="accent"  title="Heads up">Yellow signals an action worth noticing.</Alert>
 <Alert tone="info"    title="Scheduled">Maintenance window at 03:00 UTC.</Alert>
 <Alert tone="success" title="Deployed">emma — hermes v2.0 is live.</Alert>
@@ -219,7 +219,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Tabs & Accordion" desc="Organize content. Tabs ship pill and underline variants.">
+      <Section title="Tabs & Accordion" permalink="components/tabs-and-accordion" desc="Organize content. Tabs ship pill and underline variants.">
         <Demo name="tabs" variant="col" code={`<Tabs tabs={[
   { id: 'overview', label: 'Overview', content: '...' },
   { id: 'logs', label: 'Logs', content: '...' },
@@ -250,7 +250,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Timeline" desc="Vertical activity feed with status-colored dots and metadata.">
+      <Section title="Timeline" permalink="components/timeline" desc="Vertical activity feed with status-colored dots and metadata.">
         <Demo name="timeline" variant="col" code={`<Timeline items={[
   { time: '14:32', title: 'Deployed hermes v2.0', description: 'Rolled out to emma', status: 'online', meta: ['success','3s'] },
   { time: '14:31', title: 'Restarted nginx', description: 'Config reloaded', status: 'warning', meta: ['warning'] },
@@ -266,7 +266,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Panel" desc="A card with a header bar (title + optional actions) and optional footer. Pass a fragment with multiple buttons to actions for a toolbar.">
+      <Section title="Panel" permalink="components/panel" desc="A card with a header bar (title + optional actions) and optional footer. Pass a fragment with multiple buttons to actions for a toolbar.">
         <Demo name="panel" variant="col" code={`<Panel title="Compose stack" icon="grid"
   actions={<Button variant="ghost" size="sm">Edit</Button>}
   footer={<span className="ds-mono">compose.yml · 4 services</span>}>
@@ -295,7 +295,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Meter" desc="A labeled progress row that turns red past a hot threshold (default 85%). Used for CPU/memory/disk and plan-usage limits.">
+      <Section title="Meter" permalink="components/meter" desc="A labeled progress row that turns red past a hot threshold (default 85%). Used for CPU/memory/disk and plan-usage limits.">
         <Demo name="meter" variant="col" code={`<Meter label="CPU" value={23} valueLabel="23%" />
 <Meter label="Disk" value={88} valueLabel="88%" />
 <Meter label="Containers" value={28} unlimited valueLabel="28 running" />`}>
@@ -307,7 +307,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Stepper" desc="Horizontal step indicator for wizards and multi-stage flows. Pass an array of step labels and the current step index (0-based). Completed steps fill yellow; the active step carries a ring.">
+      <Section title="Stepper" permalink="components/stepper" desc="Horizontal step indicator for wizards and multi-stage flows. Pass an array of step labels and the current step index (0-based). Completed steps fill yellow; the active step carries a ring.">
         <Demo name="stepper" variant="col" code={`const steps = ['Connect host', 'Choose stacks', 'Invite team', 'Finish'];
 
 // Step 0 = first (active), step 1 = second (active), etc.
@@ -322,7 +322,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Density" desc="Two ways to apply compact density: set density='compact' directly on a Card, or wrap a group with data-density='compact' to tighten everything inside.">
+      <Section title="Density" permalink="components/density" desc="Two ways to apply compact density: set density='compact' directly on a Card, or wrap a group with data-density='compact' to tighten everything inside.">
         <Demo name="density" variant="col" code={`{/* Per-card density prop */}
 <Card density="compact">…</Card>
 <Card>…</Card>
@@ -349,7 +349,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Empty state" desc="For surfaces with no data, no results, or an error. Icon, headline, calm explanation, one clear action. A compact variant fits inside cards.">
+      <Section title="Empty state" permalink="components/empty-state" desc="For surfaces with no data, no results, or an error. Icon, headline, calm explanation, one clear action. A compact variant fits inside cards.">
         <Demo name="empty-state" code={`<EmptyState
   icon="server"
   title="No hosts connected"
@@ -367,13 +367,13 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Code block" desc="Terminal-style code display with an optional copy button. Use the code prop for a single string, or children for richer markup.">
+      <Section title="Code block" permalink="components/code-block" desc="Terminal-style code display with an optional copy button. Use the code prop for a single string, or children for richer markup.">
         <Demo name="code-block" variant="col" code={`<CodeBlock showCopy promptPrefix code="systemctl status tollerud-agent" />`}>
           <CodeBlock showCopy promptPrefix code="systemctl status tollerud-agent" />
         </Demo>
       </Section>
 
-      <Section title="Container" desc="Layout width constraint — 1100px max with 24px horizontal padding. Use as a page wrapper or section cap.">
+      <Section title="Container" permalink="components/container" desc="Layout width constraint — 1100px max with 24px horizontal padding. Use as a page wrapper or section cap.">
         <Demo name="container" variant="col" code={`<Container className="py-6 text-center text-sm text-tollerud-text-secondary border border-dashed border-tollerud-border rounded-lg">
   Content capped at 1100px
 </Container>`}>
@@ -383,7 +383,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Action row" desc="A single command-list row — icon, label, description and shortcut. Used inside CommandMenu-style surfaces.">
+      <Section title="Action row" permalink="components/action-row" desc="A single command-list row — icon, label, description and shortcut. Used inside CommandMenu-style surfaces.">
         <Demo name="action-row" variant="col" code={`<ActionRow
   highlighted
   action={{
@@ -418,7 +418,7 @@ function PageComponents({ go }) {
         </Demo>
       </Section>
 
-      <Section title="Glow card" desc="Wraps any surface with a cursor-tracking yellow glow. Intensity and color are configurable.">
+      <Section title="Glow card" permalink="components/glow-card" desc="Wraps any surface with a cursor-tracking yellow glow. Intensity and color are configurable.">
         <Demo name="glow-card" variant="center" code={`<GlowCard className="rounded-lg border border-tollerud-border p-6 max-w-sm">
   <p className="text-sm text-tollerud-text-secondary">Hover to see the glow follow the cursor.</p>
 </GlowCard>`}>

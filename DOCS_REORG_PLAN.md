@@ -76,13 +76,15 @@ Button, Card, Divider, Badge & Pill, Status & Kbd, Stat card, Progress/Skeleton/
 | **Prop tables** | `PropTable` + `props-data.json` (generated at docs build); inline on key sections |
 | **Resources group** | `/resources` — migration, SKILL.md sync, contributing, prop reference |
 
-## Phase 3 — Scale (only if needed)
+## Phase 3 — Scale (done)
 
 | Task | Detail |
 |------|--------|
-| **Per-component routes** | `/components/button` — better SEO and deep links |
-| **MDX / content layer** | If prop tables and versioning outgrow inject-script model |
-| **Playwright** | Cover getting-started links, redirects, command palette after reorg |
+| **Per-component routes** | `/components/button/` (+ forms, navigation, infra deep links) via `component-catalog.js` |
+| **Permalinks** | Section headers link to canonical deep URLs |
+| **Command palette** | "Component docs" group with all deep links |
+| **Playwright** | Getting started, deep links, legacy redirects, resources, ⌘K |
+| **MDX** | Deferred — inject-script model still sufficient |
 
 ## Redirect map (Phase 1)
 

@@ -144,11 +144,18 @@ function PropTable({ component }) {
   )
 }
 
-function Section({ id, title, desc, component, children }) {
+function Section({ id, title, desc, component, permalink, children }) {
   const sectionId = id || (title ? slugifySectionTitle(title) : undefined);
   return (
     <section className="ds-section" id={sectionId} data-reveal>
-      <div className="ds-section__head"><h2 className="ds-section__title">{title}</h2></div>
+      <div className="ds-section__head">
+        <h2 className="ds-section__title">{title}</h2>
+        {permalink && (
+          <a className="ds-section__permalink ds-mono" href={`/${permalink.replace(/\/$/, '')}/`} title="Permalink">
+            /{permalink}/
+          </a>
+        )}
+      </div>
       {desc && <p className="ds-section__desc">{desc}</p>}
       {component && <PropTable component={component} />}
       {children}

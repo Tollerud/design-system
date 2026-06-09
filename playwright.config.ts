@@ -11,8 +11,9 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'npm run build && npm run build:docs && npx --yes serve _site -l 4173',
+    command: 'npm run build && npm run build:docs && npx --yes serve _site -p 4173',
     url: 'http://127.0.0.1:4173',
+    timeout: 180_000,
     reuseExistingServer: !process.env.CI,
   },
 })

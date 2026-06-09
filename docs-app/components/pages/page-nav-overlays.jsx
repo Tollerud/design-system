@@ -78,7 +78,7 @@ function PageNavOverlays() {
         </Demo>
       </Section>
 
-      <Section title="Dialog" desc="A focused modal for confirmation. Escape or backdrop click closes; destructive intent reads in the copy.">
+      <Section title="Dialog" permalink="navigation/dialog" desc="A focused modal for confirmation. Escape or backdrop click closes; destructive intent reads in the copy.">
         <Demo name="dialog" variant="center" code={`<Button variant="destructive" onClick={() => setOpen(true)}>Stop containers</Button>
 
 <Dialog open={open} onClose={close}
@@ -132,7 +132,7 @@ import { Toaster } from '@tollerud/ui'
         </Demo>
       </Section>
 
-      <Section title="Command palette" desc="The signature component. ⌘K opens it anywhere; arrow keys navigate, Enter selects, Esc closes.">
+      <Section title="Command palette" permalink="navigation/command-palette" desc="The signature component. ⌘K opens it anywhere; arrow keys navigate, Enter selects, Esc closes.">
         <Demo name="command" variant="center" code={`useEffect(() => {
   const h = e => { if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); setOpen(true); } };
   document.addEventListener('keydown', h);
