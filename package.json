@@ -40,13 +40,16 @@
     "./tollerud-logo.svg": "./tollerud-logo.svg",
     "./tollerud-avatar.svg": "./tollerud-avatar.svg",
     "./tollerud-avatar.png": "./tollerud-avatar.png",
-    "./tia-full-figure.svg": "./tia-full-figure.svg"
+    "./tia-full-figure.svg": "./tia-full-figure.svg",
+    "./registry.json": "./registry.json"
   },
   "files": [
     "dist",
     "globals.css",
     "tokens.css",
     "tollerud-preset.js",
+    "registry.json",
+    "components.json",
     "tollerud-logo.svg",
     "tollerud-avatar.svg",
     "tollerud-avatar.png",
@@ -60,6 +63,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "validate": "npm run typecheck && npm run lint && npm run test && npm run build",
     "prepublishOnly": "npm run typecheck && npm run lint && npm run test && npm run build",
     "preview": "open preview.html"
   },

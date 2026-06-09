@@ -367,11 +367,10 @@ Use borders as the primary separation method. Only add shadows to lift overlays.
 
 When asked to add components, fix bugs, or cut a release:
 
-### 1. Build and typecheck before committing
+### 1. Build and validate before committing
 
 ```bash
-npx tsc --noEmit -p tsconfig.build.json   # must be clean
-npx tsup                                   # verify the bundle builds
+npm run validate   # typecheck + lint + test + build
 ```
 
 ### 2. Every new component needs all four of these

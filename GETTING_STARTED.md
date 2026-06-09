@@ -150,7 +150,17 @@ import { Button, Card } from '@tollerud/ui'
 
 ## Registry (shadcn-style)
 
-Individual components can be added via the registry at `registry.json`. The registry now covers all 61 shipped components.
+Individual components can be added via the registry shipped with the npm package:
+
+```bash
+# Add a single component (example: button)
+npx shadcn@latest add button --registry https://unpkg.com/@tollerud/ui/registry.json
+
+# Or reference the file from node_modules after install
+npx shadcn@latest add button --registry ./node_modules/@tollerud/ui/registry.json
+```
+
+The registry covers all 61 shipped components. Source of truth: `registry.json` in this repo (also exported as `@tollerud/ui/registry.json`).
 
 ---
 

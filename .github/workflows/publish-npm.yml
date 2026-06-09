@@ -17,6 +17,8 @@ on:
       - 'vitest.config.ts'
       - 'eslint.config.js'
       - 'test/**'
+      - 'registry.json'
+      - 'components.json'
   workflow_dispatch:
 
 jobs:

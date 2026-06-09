@@ -200,10 +200,10 @@ The design system includes `tollerud-avatar.svg` — a full cel-shaded monochrom
 ## shadcn Registry
 
 ```bash
-# Install via shadcn CLI (future):
-npx shadcn@latest add https://tollerud-noir.dev/registry
+# Add via shadcn CLI — registry ships with the npm package
+npx shadcn@latest add button --registry https://unpkg.com/@tollerud/ui/registry.json
 
-# Or copy manually (today):
+# Or copy source manually
 cp -r components/ src/components/ui
 cp globals.css src/app/
 cp tollerud-preset.js .
