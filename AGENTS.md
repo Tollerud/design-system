@@ -75,6 +75,38 @@ export default config
 
 ---
 
+## Design authority
+
+For agents building UI in **consumer apps** that depend on `@tollerud/ui` (not when contributing to this design-system repo):
+
+**When screenshots or mocks exist** for a screen, they win on layout, spacing, and structure for that screen.
+
+**When they don't** (common), use this fallback order:
+
+1. **Existing UI in the same app** — match sibling pages, nav, density, and component usage already in the repo.
+2. **`@tollerud/ui` + [SKILL.md](SKILL.md)** — components, tokens, composition patterns, accessibility.
+3. **[BRAND.md](BRAND.md) + aesthetic rules below** — non-negotiable Tollerud look (dark surfaces, yellow accent, nav lockup).
+4. **[Live docs](https://design.tollerud.dev/)** — reference for how primitives compose on real pages.
+
+| Source | Role |
+|--------|------|
+| **Mocks / screenshots** (if provided) | Page-specific layout truth |
+| **In-repo patterns** | Consistency when no mock exists |
+| **`@tollerud/ui` + SKILL.md** | What to build with |
+| **BRAND.md + aesthetic rules** | How it must look |
+
+Agents must:
+
+- Follow mocks when provided; otherwise extend existing app patterns before inventing new layouts.
+- Prefer `import { … } from '@tollerud/ui'` over bespoke UI primitives.
+- Compose **local feature components** (`src/features/…`, `src/components/…`) when a screen needs app-specific structure — not a parallel `components/ui` design system.
+- Use Tollerud tokens (`text-tollerud-*`, `bg-tollerud-noir-*`) — never hardcode `#FFFF00` / `#0A0A0A` or copy component source from the package into the repo (see [Fixing copy/paste component patterns](#fixing-copypaste-component-patterns-for-agents-working-in-consumer-projects)).
+- **Do not modify** `node_modules/@tollerud/ui` or vendor forked DS files in the consumer app. Bump the package version or open an issue upstream instead.
+
+When contributing **to this repository**, changing `components/*.tsx` is expected when the task explicitly calls for it — follow the release checklist in [Updating the npm package](#updating-the-npm-package-for-agents-working-in-this-repo) below.
+
+---
+
 ## Aesthetic Rules
 
 **Never violate these:**
