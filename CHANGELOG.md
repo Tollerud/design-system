@@ -7,6 +7,27 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 4.0.5 — 2026-06-10 — Starter template and DX docs
+
+Patch release: human-facing Next.js starter, migration guide, and footer package tooling alignment. No breaking API changes.
+
+### Added
+
+- `examples/next-starter/` — copy-paste Next.js 16 + Tailwind v4 reference app (`source.css`, `Toaster`, sample page)
+- `GETTING_STARTED.md` — “Migrating from copied components” section (grep recipe, prop drift checklist, link to `SKILL.md`)
+
+### Changed
+
+- `@tollerud/footer` — TypeScript 6.x in devDependencies; `sync-footer-package.mjs` preserves `tsup.config.ts` build and `publishConfig`
+- `GETTING_STARTED.md` / `README.md` — footer self-contained dependency model documented; starter template linked
+- `packages/footer/tsconfig.json` — `ignoreDeprecations: "6.0"` for DTS emit under TS 6
+
+### Migration
+
+Nothing breaking. New apps can copy `examples/next-starter/` instead of wiring from scratch.
+
+---
+
 ## 4.0.4 — 2026-06-10 — Export verification and source.css
 
 Patch release: verifies all subpath exports in CI, adds package-owned Tailwind scanning, and expands install docs.

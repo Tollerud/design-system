@@ -35,7 +35,17 @@ import { Footer } from '@tollerud/footer'
 <Footer />
 ```
 
-`@tollerud/footer` bundles `clsx` and `tailwind-merge` as dependencies. Use `@tollerud/ui` when you need the full component set.
+`@tollerud/footer` is **self-contained by design** — it bundles `clsx` and `tailwind-merge` so footer-only apps avoid extra peer installs. You still need Tailwind with Tollerud tokens (`@tollerud/ui/globals.css` or equivalent) for `text-tollerud-*` / `bg-tollerud-*` classes to resolve.
+
+Use `@tollerud/ui` (or `@tollerud/ui/footer`) when you need the full component set. Apps using both packages may install duplicate `clsx` / `tailwind-merge` versions — harmless in practice; npm dedupes when ranges align.
+
+### Next.js starter
+
+Copy [`examples/next-starter/`](../examples/next-starter/) from this repo — minimal App Router app with `globals.css`, `source.css`, sample page, and `Toaster` mounted.
+
+```bash
+cp -R examples/next-starter my-app && cd my-app && npm install && npm run dev
+```
 
 ---
 
@@ -132,6 +142,37 @@ See [COMPONENTS.md](COMPONENTS.md) for the full prop reference.
 `@tollerud/ui` ships client bundles with `'use client'`. Importing components (or `cn`, `buttonVariants`) from a Server Component file is safe — the import does not force your file to become a Client Component.
 
 Use subpath imports (`@tollerud/ui/button`) for smaller client boundaries when splitting files manually.
+
+---
+
+## Migrating from copied components
+
+Older projects sometimes copied `Button.tsx`, `lib/utils.ts`, or whole `components/ui/` trees from this design system. Replace them with package imports.
+
+### Detect copied files
+
+```bash
+grep -rl "tollerud-yellow\|tollerud-noir\|tollerud-surface" src --include="*.tsx" --include="*.ts"
+```
+
+Also look for `components/ui/index.ts` re-exporting relative paths instead of `@tollerud/ui`.
+
+### Fix checklist
+
+1. Install the package and peers (see [Install](#install) above).
+2. Replace local imports — `import { Button } from '@/components/ui/Button'` → `import { Button } from '@tollerud/ui'` (or `@tollerud/ui/button`).
+3. Replace hand-rolled `cn()` — `import { cn } from '@tollerud/ui'` or `@tollerud/ui/utils`.
+4. Delete copied files after imports compile.
+5. Check **prop drift** against [SKILL.md](SKILL.md) — copied files may use outdated prop names (`onChange` vs `onValueChange`, etc.).
+6. Replace hardcoded hex (`#FFFF00`, `#0A0A0A`) with tokens (`text-tollerud-yellow`, `bg-tollerud-noir-950`).
+7. Add `<Toaster />` near the app root if you use Sonner toasts.
+8. Run `npx tsc --noEmit` and fix type errors from signature changes.
+
+| Copied pattern | Fix |
+|----------------|-----|
+| `src/components/ui/Button.tsx` | Delete; import from `@tollerud/ui` |
+| Local `lib/utils.ts` with `cn()` | Delete; `import { cn } from '@tollerud/ui/utils'` |
+| `components/ui.ts` re-exporting relatives | Direct `@tollerud/ui` imports |
 
 ---
 

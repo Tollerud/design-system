@@ -61,7 +61,7 @@ Last updated: 2026-06-11
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v4.0.4
+### npm package (components/*.tsx) — v4.0.5
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -134,11 +134,11 @@ Full task breakdown: **[NPM_PACKAGE_PLAN.md](./NPM_PACKAGE_PLAN.md)**
 - [x] Ship `@tollerud/ui/source.css` + monorepo `@source` docs in `GETTING_STARTED.md`
 - [x] Footer-only minimal install documented
 
-**Priority 3 — DX**
-- [ ] Footer: peers vs bundled `clsx` / `tailwind-merge` decision
-- [ ] Align `packages/footer` TypeScript to 6.x
-- [ ] Human-facing starter template (beyond `fixtures/consumer`)
-- [ ] “Migrating from copied components” section in `GETTING_STARTED.md`
+**Priority 3 — DX** ✅ (2026-06-10)
+- [x] Footer: keep `@tollerud/footer` separate; bundled `clsx` / `tailwind-merge` documented as self-contained by design (no deprecation for now)
+- [x] Align `packages/footer` TypeScript to 6.x
+- [x] Human-facing starter template — `examples/next-starter/`
+- [x] “Migrating from copied components” section in `GETTING_STARTED.md`
 
 **Priority 4 — quality (longer term)**
 - [ ] Broader unit + a11y test coverage on interactive components

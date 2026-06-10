@@ -1,7 +1,7 @@
 # npm package hardening — work plan
 
 **Target:** 2026-06-11  
-**Package:** `@tollerud/ui` v4.0.4  
+**Package:** `@tollerud/ui` v4.0.5  
 **Status:** Priority 1 complete (2026-06-09) — OIDC configured for both packages
 
 ---
@@ -125,28 +125,32 @@ Breaks with pnpm, Yarn PnP, Bun, nested CSS paths.
 
 Footer bundles `clsx` + `tailwind-merge` as **dependencies**, not peers — duplicate risk in apps using both packages.
 
-- [ ] Move to `peerDependencies` (breaking for footer-only users — changeset major?)
-- [ ] Or document that footer is self-contained by design
+**Decision (2026-06-10):** Keep `@tollerud/footer` as a separate package. Do **not** deprecate or merge into `@tollerud/ui` for now — `Footer` is already at `@tollerud/ui/footer`; the standalone package stays for footer-only installs (React peers only, no Radix/Tailwind peer stack). Revisit deprecation only if sync/publish cost or zero usage warrants it.
+
+- [x] Document that footer is **self-contained by design** (`clsx` + `tailwind-merge` bundled for footer-only apps)
+- [ ] ~~Move to `peerDependencies`~~ — deferred; would break footer-only DX
+- [ ] ~~Deprecate `@tollerud/footer`~~ — deferred
 
 ### 3.2 Footer TypeScript alignment
 
 `packages/footer` uses TypeScript 5.8; main package uses 6.x.
 
-- [ ] Align `packages/footer` devDependency to TS 6
+- [x] Align `packages/footer` devDependency to TS 6 (via `sync-footer-package.mjs`)
 
 ### 3.3 Starter template
 
 `fixtures/consumer` is CI-only, not human-facing.
 
-- [ ] Add `examples/next-starter/` or external `create-tollerud-app` repo
-- [ ] Link from README and docs Getting Started
+- [x] Add `examples/next-starter/` — Next.js 16 + Tailwind v4 reference app
+- [x] Link from README and `GETTING_STARTED.md`
+- [ ] External `create-tollerud-app` CLI — deferred (starter copy is enough for now)
 
 ### 3.4 Migration guide (copy-paste → package)
 
 `AGENTS.md` covers this for AI; humans need a short section.
 
-- [ ] Add “Migrating from copied components” to `GETTING_STARTED.md`
-- [ ] Grep recipe + prop drift checklist (link to `SKILL.md`)
+- [x] Add “Migrating from copied components” to `GETTING_STARTED.md`
+- [x] Grep recipe + prop drift checklist (link to `SKILL.md`)
 
 ---
 

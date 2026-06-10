@@ -15,7 +15,7 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 | [`@tollerud/ui`](https://www.npmjs.com/package/@tollerud/ui) | `npm install @tollerud/ui` | You want the full design system — components, tokens, Tailwind preset |
 | [`@tollerud/footer`](https://www.npmjs.com/package/@tollerud/footer) | `npm install @tollerud/footer` | You only need the branded footer, with no other design system dependency |
 
-**Footer maintenance:** `@tollerud/ui` re-exports `Footer` from the same source as `@tollerud/footer`. Use the standalone `@tollerud/footer` package only when you want the footer without pulling in the full design system (and its peer deps). Both packages are maintained in this monorepo; version them together when the footer changes.
+**Footer maintenance:** `@tollerud/ui` exports `Footer` from the same source as `@tollerud/footer` (`npm run sync:footer` keeps them lockstep). Use the standalone package when you want the branded footer without Radix, Lucide, Framer Motion, Sonner, or other `@tollerud/ui` peers — `@tollerud/footer` bundles `clsx` and `tailwind-merge` as dependencies **on purpose** for that path. You still need Tailwind + Tollerud tokens for footer styles. Deprecation of `@tollerud/footer` is not planned for now.
 
 ## Philosophy
 
@@ -24,6 +24,8 @@ A complete, browsable UI library built around **monochrome + yellow accent**. No
 Tollerud UI is minimal but not cold. It uses a near-black foundation with warm yellow accents for interaction points. Every element has purpose — nothing decorative for its own sake. The cross-hatching spirit lives in the sharp borders, the thin lines, the deliberate whitespace.
 
 ## Quick Start
+
+**Starter template:** [`examples/next-starter/`](examples/next-starter/) — copy into a new project, `npm install`, `npm run dev`. See [GETTING_STARTED.md](GETTING_STARTED.md) for the full guide and migration from copied components.
 
 ### npm package (recommended)
 

@@ -64,7 +64,7 @@ const footerPkg = {
   },
   files: ['dist'],
   scripts: {
-    build: 'tsup src/index.ts --format esm --dts --clean',
+    build: 'tsup --config tsup.config.ts',
     typecheck: 'tsc --noEmit',
   },
   peerDependencies: {
@@ -75,11 +75,14 @@ const footerPkg = {
     clsx: '^2.1.1',
     'tailwind-merge': '^3.0.0',
   },
+  publishConfig: {
+    access: 'public',
+  },
   devDependencies: {
     react: '^19.0.0',
     'react-dom': '^19.0.0',
     tsup: '^8.5.0',
-    typescript: '^5.8.0',
+    typescript: '^6.0.3',
   },
 }
 
