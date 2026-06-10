@@ -39,10 +39,10 @@ npm install @tollerud/footer
 ```css
 /* app/globals.css */
 @import "@tollerud/ui/globals.css";
-@source "../node_modules/@tollerud/ui/dist";
+@import "@tollerud/ui/source.css";
 ```
 
-Adjust `@source` relative to your CSS file. Without it, classes used only inside `@tollerud/ui` dist may be purged.
+`source.css` resolves `@source` inside the installed package (npm, pnpm, workspaces, Bun). Without it, classes used only inside `@tollerud/ui` dist may be purged.
 
 **Optional preset shim** — extra utilities from `@tollerud/ui/preset`:
 

@@ -30,15 +30,15 @@ npm install @paper-design/shaders-react`}
         />
       </Section>
 
-      <Section title="Tailwind v4" desc="One CSS import bundles tokens and component layers. Point @source at the package dist so utilities are not purged.">
+      <Section title="Tailwind v4" desc="globals.css bundles tokens and layers. source.css handles @source scanning inside node_modules (pnpm, workspaces, Bun).">
         <CodeSnippet
           name="globals.css"
           code={`/* app/globals.css */
 @import "@tollerud/ui/globals.css";
-@source "../node_modules/@tollerud/ui/dist";`}
+@import "@tollerud/ui/source.css";`}
         />
         <p style={{ marginTop: 16, fontSize: 13.5, color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-          Without a correct <code className="ds-mono">@source</code> path, components render unstyled in production. See{' '}
+          Without <code className="ds-mono">source.css</code> (or a correct manual <code className="ds-mono">@source</code> path), components render unstyled in production. See{' '}
           <button type="button" onClick={() => go('foundations')} style={{ color: 'var(--accent-text)', background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}>Foundations</button> for tokens and{' '}
           <button type="button" onClick={() => go('components')} style={{ color: 'var(--accent-text)', background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}>Components</button> for live examples.
         </p>

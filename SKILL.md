@@ -27,7 +27,7 @@ Apply the Tailwind preset when you need extra utilities from `@tollerud/ui/prese
 ```css
 /* app/globals.css — Tailwind v4 (default) */
 @import "@tollerud/ui/globals.css";
-@source "../node_modules/@tollerud/ui/dist";
+@import "@tollerud/ui/source.css";
 ```
 
 As of **v1.4.0**, charts (`BarChart`, `AreaChart`, `Donut`, `Sparkline`) and marketing blocks (`HeroBlock`, `FeatureCard`, `CTABand`) ship in the package. As of **v1.3.0**, `@tollerud/ui/globals.css` is the Tailwind v4 entry. Tailwind colors are under `tollerud.*` only (`text-tollerud-yellow`, `bg-tollerud-surface-raised`, etc.) — not `tia-*`.

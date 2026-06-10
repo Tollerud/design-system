@@ -1,7 +1,7 @@
 # npm package hardening — work plan
 
 **Target:** 2026-06-11  
-**Package:** `@tollerud/ui` v4.0.3  
+**Package:** `@tollerud/ui` v4.0.4  
 **Status:** Priority 1 complete (2026-06-09) — OIDC configured for both packages
 
 ---
@@ -93,8 +93,8 @@ Publish workflow disables provenance (classic `NPM_TOKEN`).
 
 `test:subpath` only checks 4 entries; ~69 subpaths ship.
 
-- [ ] Assert every `entries/manifest.json` key resolves to `dist/{name}.js` + `.d.ts`
-- [ ] Optionally run attw against all public subpaths (or a generated list)
+- [x] Assert every `entries/manifest.json` key resolves to `dist/{name}.js` + `.d.ts`
+- [x] Run attw against all public subpaths (generated from manifest)
 
 **Files:** `scripts/verify-subpath-exports.mjs`
 
@@ -106,16 +106,16 @@ Publish workflow disables provenance (classic `NPM_TOKEN`).
 
 Breaks with pnpm, Yarn PnP, Bun, nested CSS paths.
 
-- [ ] Add pnpm / workspace / Bun examples to `GETTING_STARTED.md`
-- [ ] Consider `@tollerud/ui/source` CSS entry or documented PostCSS helper
+- [x] Add pnpm / workspace / Bun examples to `GETTING_STARTED.md`
+- [x] Ship `@tollerud/ui/source.css` — package-owned `@source` for dist scanning
 
 ### 2.3 Peer install friction
 
 8+ required peers beyond `@tollerud/ui`.
 
-- [ ] Single copy-paste install block in README (already partial — verify complete)
-- [ ] Optional: `@tollerud/ui-peers` meta-package or `npx` setup script
-- [ ] Document minimal install (footer-only path via `@tollerud/footer`)
+- [x] Single copy-paste install block in README and `GETTING_STARTED.md`
+- [x] Optional: `@tollerud/ui-peers` meta-package or `npx` setup script — **won't do**; starter template (P3) is higher ROI
+- [x] Document minimal install (footer-only path via `@tollerud/footer`)
 
 ---
 

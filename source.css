@@ -1,0 +1,12 @@
+/**
+ * Tailwind v4 — scan @tollerud/ui dist for component utility classes.
+ *
+ * Import in app/globals.css after globals.css:
+ *
+ *   @import "@tollerud/ui/globals.css";
+ *   @import "@tollerud/ui/source.css";
+ *
+ * Paths resolve inside the installed package — works with npm, pnpm, Yarn
+ * workspaces, and Bun without fragile ../node_modules relative paths.
+ */
+@source "./dist";

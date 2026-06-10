@@ -42,14 +42,14 @@ As of **v2.0.0**, Radix primitives, Lucide, Framer Motion, and Sonner are **peer
 npm install @paper-design/shaders-react
 ```
 
-**CSS** — one import in `app/globals.css` (Tailwind v4 + tokens + component classes):
+**CSS** — two imports in `app/globals.css` (Tailwind v4 + tokens + component class scanning):
 
 ```css
 @import '@tollerud/ui/globals.css';
-@source '../node_modules/@tollerud/ui/dist';
+@import '@tollerud/ui/source.css';
 ```
 
-Adjust the `@source` path relative to your CSS file so it resolves to `node_modules/@tollerud/ui/dist`.
+`source.css` resolves `@source` inside the installed package — works with npm, pnpm, Yarn workspaces, and Bun. See [GETTING_STARTED.md](GETTING_STARTED.md) for manual `@source` paths in monorepos.
 
 **Optional preset shim** — if you need utilities from `@tollerud/ui/preset` beyond what `tokens.css` provides:
 
@@ -64,7 +64,7 @@ export default { presets: [tollerudPreset] }
 @config './tailwind.config.ts';
 @import '@tollerud/ui/tokens.css';
 @import '@tollerud/ui/globals-layers.css';
-@source '../node_modules/@tollerud/ui/dist';
+@import '@tollerud/ui/source.css';
 ```
 
 **Tailwind v3 (legacy)** — preset in `tailwind.config.ts` plus `@tollerud/ui/globals-v3.css`:

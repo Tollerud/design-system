@@ -61,7 +61,7 @@ Last updated: 2026-06-11
 - ✅ DataTable — stable height on search, sort, select, bulk, pagination
 - ✅ Density — `<Card density="compact">` + `data-density` container wrapper
 
-### npm package (components/*.tsx) — v4.0.3
+### npm package (components/*.tsx) — v4.0.4
 - ✅ Button — defaults to secondary, `asChild` (Radix Slot) + exported `buttonVariants` since 1.0.7
 - ✅ Bundle correctly marked `'use client'` for RSC/SSR safety since 1.0.8
 - ✅ Card — density prop
@@ -129,9 +129,10 @@ Full task breakdown: **[NPM_PACKAGE_PLAN.md](./NPM_PACKAGE_PLAN.md)**
 - [x] Remove `engines.node` from consumer-facing `package.json`
 - [x] npm provenance via Trusted Publishers (OIDC) — `@tollerud/ui` + `@tollerud/footer`
 
-**Priority 2 — export reliability**
-- [ ] Expand `test:subpath` to cover all `entries/manifest.json` keys
-- [ ] Document Tailwind `@source` for pnpm / workspaces / Bun
+**Priority 2 — export reliability** ✅ (2026-06-10)
+- [x] Expand `test:subpath` to cover all `entries/manifest.json` keys + attw on all subpaths
+- [x] Ship `@tollerud/ui/source.css` + monorepo `@source` docs in `GETTING_STARTED.md`
+- [x] Footer-only minimal install documented
 
 **Priority 3 — DX**
 - [ ] Footer: peers vs bundled `clsx` / `tailwind-merge` decision

@@ -7,6 +7,34 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 4.0.4 — 2026-06-10 — Export verification and source.css
+
+Patch release: verifies all subpath exports in CI, adds package-owned Tailwind scanning, and expands install docs.
+
+### Added
+
+- `@tollerud/ui/source.css` — package-owned `@source` for `dist` scanning (npm, pnpm, workspaces, Bun)
+- `test:subpath` now checks all 70 manifest entries (`dist/{name}.js` + `.d.ts`)
+- `test:package` runs attw against every public subpath export
+
+### Changed
+
+- Recommended Tailwind v4 setup: `@import "@tollerud/ui/source.css"` after `globals.css`
+- `GETTING_STARTED.md` — monorepo `@source` path table, footer-only minimal install
+- `tailwind.css` re-exports `source.css` for one-import convenience
+- Docs site getting-started page updated for `source.css`
+
+### Migration
+
+Replace manual `@source "../node_modules/@tollerud/ui/dist"` with:
+
+```css
+@import "@tollerud/ui/globals.css";
+@import "@tollerud/ui/source.css";
+```
+
+---
+
 ## 4.0.3 — 2026-06-09 — Publish pipeline hardening
 
 Patch release: aligns npm publish with `validate`, fixes preset export shape, enables provenance via OIDC, and fixes `@tollerud/footer` CI build.

@@ -1,6 +1,6 @@
 {
   "name": "@tollerud/footer",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Tollerud branded footer — synced from @tollerud/ui Footer export",
   "private": false,
   "type": "module",
@@ -28,7 +28,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsup src/index.ts --format esm --dts --clean",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -38,9 +38,6 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "react": "^19.0.0",

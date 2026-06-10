@@ -13,6 +13,8 @@ on:
       - 'globals-v3.css'
       - 'globals-layers.css'
       - 'tokens.css'
+      - 'source.css'
+      - 'tailwind.css'
       - 'tollerud-preset.cjs'
       - 'tsup.config.ts'
       - 'tsconfig.build.json'
