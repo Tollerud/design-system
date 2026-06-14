@@ -7,6 +7,30 @@
      • Never write bold mid-paragraph as a heading substitute — it merges into surrounding text
 -->
 
+## 4.2.0 — 2026-06-14 — Add layout primitives for component-first consumer apps
+
+Minor release: adds semantic layout primitives so consumer apps and agents can build Tollerud-shaped pages without recreating branded structure with raw Tailwind utilities.
+
+### New components
+
+- `PageShell` — full-page shell with noir, grid, or glow background options
+- `Section` — semantic page section with consistent spacing and width presets
+- `Stack` — vertical layout primitive with finite gap and alignment options
+- `Cluster` — wrapping horizontal layout for actions, badges, and toolbars
+- `Grid` — responsive grid primitive with constrained column presets
+- `CardGrid` — card collection grid with Tollerud spacing defaults
+- `Split` — responsive two-column content/aside layout
+- `MainContent` — main content wrapper with width, spacing, and density presets
+
+### Changed
+
+- Docs app adds a dedicated Layout page and deep links for each new primitive.
+- `SKILL.md`, `AGENTS.md`, `GETTING_STARTED.md`, `README.md`, `COMPONENTS.md`, and `BACKGROUNDS.md` now reinforce component-first consumer styling.
+
+### Migration
+
+Nothing breaking. Existing Tailwind glue still works; prefer these primitives for repeated branded page structure.
+
 ## 4.1.1 — 2026-06-10 — Fix: missing `@theme` registration broke all `tollerud-*` color utilities
 
 Critical fix. `globals.css` imported `tokens.css` (plain `--tollerud-*` CSS custom properties) but never registered them with Tailwind v4 via `@theme`. Tailwind v4 only generates color utilities for colors declared as `--color-*` theme variables, so every `bg-tollerud-*`, `text-tollerud-*`, and `border-tollerud-*` class used across the 52 component dist files resolved to nothing — breaking the entire visual identity (yellow accents, noir surfaces, borders, state colors) in any consumer app.

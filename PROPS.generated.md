@@ -115,9 +115,22 @@
 - `accent?: boolean`
 - `density?: 'comfortable' | 'compact'`
 
+## CardGrid — `CardGridProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'section' | 'ul'`
+- `columns?: CardGridColumns`
+- `gap?: CardGridGap`
+
 ## Checkbox — `CheckboxProps` extends extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>
 
 - `label?: string`
+
+## Cluster — `ClusterProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'nav' | 'header' | 'footer'`
+- `gap?: ClusterGap`
+- `align?: ClusterAlign`
+- `justify?: ClusterJustify`
 
 ## CodeBlock — `CodeBlockProps` extends extends HTMLAttributes<HTMLPreElement>
 
@@ -245,6 +258,12 @@
 - `glowColor?: string`
 - `intensity?: number`
 
+## Grid — `GridProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'section' | 'ul'`
+- `columns?: GridColumns`
+- `gap?: GridGap`
+
 ## HeroBlock — `HeroBlockProps` extends extends Omit<HTMLAttributes<HTMLDivElement>, 'title'>
 
 - `eyebrow?: React.ReactNode`
@@ -301,6 +320,13 @@
 - `height?: string`
 - `loading?: boolean`
 
+## MainContent — `MainContentProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'main' | 'div'`
+- `width?: MainContentWidth`
+- `spacing?: MainContentSpacing`
+- `density?: MainContentDensity`
+
 ## Meter — `MeterProps` extends extends HTMLAttributes<HTMLDivElement>
 
 - `value: number`
@@ -338,6 +364,12 @@
 - `offsetX?: number`
 - `offsetY?: number`
 - `scale?: number`
+
+## PageShell — `PageShellProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'main'`
+- `background?: PageShellBackground`
+- `density?: PageShellDensity`
 
 ## Pagination — `PaginationProps` extends extends Omit<HTMLAttributes<HTMLElement>, 'onChange'>
 
@@ -393,6 +425,12 @@
 - `steps: RollbackStep[]`
 - `executing?: boolean`
 - `loading?: boolean`
+
+## Section — `SectionProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'section' | 'div' | 'article' | 'header' | 'footer'`
+- `size?: SectionSize`
+- `width?: SectionWidth`
 
 ## Segmented — `SegmentedProps` extends extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>
 
@@ -450,6 +488,20 @@
 
 - `size?: number`
 - `style?: CSSProperties`
+
+## Split — `SplitProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'section'`
+- `ratio?: SplitRatio`
+- `gap?: SplitGap`
+- `align?: SplitAlign`
+- `reverse?: boolean`
+
+## Stack — `StackProps` extends extends HTMLAttributes<HTMLDivElement>
+
+- `as?: 'div' | 'section' | 'article' | 'header' | 'footer'`
+- `gap?: StackGap`
+- `align?: StackAlign`
 
 ## StatCard — `StatCardProps` extends extends HTMLAttributes<HTMLDivElement>
 

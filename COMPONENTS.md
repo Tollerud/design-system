@@ -1,6 +1,6 @@
 # Tollerud Design System — Component Library
 
-Human-oriented usage guide for `@tollerud/ui` **v4.1.0**. Components ship as React `.tsx` modules with matching CSS in `globals.css` / `tokens.css`.
+Human-oriented usage guide for `@tollerud/ui` **v4.2.0**. Components ship as React `.tsx` modules with matching CSS in `globals.css` / `tokens.css`.
 
 ## Documentation map
 
@@ -21,7 +21,7 @@ All symbols below resolve from `import { … } from '@tollerud/ui'` unless noted
 
 **Core & forms:** `Button`, `buttonVariants`, `cn`, `Card`, `Badge`, `StatusDot`, `Kbd`, `Input`, `Textarea`, `Select`, `Checkbox`, `Switch`, `RadioGroup`, `Radio`, `PasswordInput`, `Combobox`, `TagInput`, `Slider`, `FormRow`, `Container`, `CodeBlock`, `StatCard`, `ActionRow`, `CommandMenu`
 
-**Navigation & layout:** `Divider`, `Pill`, `Avatar`, `AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`, `DatePicker`, `FileUpload`, `PricingCard`
+**Navigation & layout:** `PageShell`, `Section`, `Stack`, `Cluster`, `Grid`, `CardGrid`, `Split`, `MainContent`, `Divider`, `Pill`, `Avatar`, `AvatarGroup`, `Breadcrumb`, `Pagination`, `Segmented`, `Stepper`, `Panel`, `Meter`, `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`, `DatePicker`, `FileUpload`, `PricingCard`
 
 **Overlays & feedback:** `Alert`, `Dialog` (+ `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription`, `DialogClose`), `Tooltip` (+ `TooltipTrigger`, `TooltipContent`, `TooltipProvider`), `Tabs` (+ `TabsList`, `TabsTrigger`, `TabsContent`), `DropdownMenu` (+ trigger/content/item/label/separator), `Sheet` (+ `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetClose`), `Drawer`, `Toaster` (Sonner), `ToastProvider` / `useToast`, `Empty` (+ compound parts), `EmptyState`, `Skeleton`, `Progress`, `Spinner`
 
@@ -45,6 +45,35 @@ Tollerud.no-inspired animated WebGL background using `@paper-design/shaders-reac
 ```
 
 Use `NoirGlowBackground` directly only for custom background composition that cannot be represented by an exported block yet. See `BACKGROUNDS.md` for install, props, usage rules, and fallback HTML.
+
+## Layout primitives
+
+These primitives give consumer apps a component-first page structure before reaching for raw Tailwind layout classes.
+
+```tsx
+<PageShell background="grid">
+  <Section size="hero">
+    <Stack gap="lg">
+      <h1>Build with components first.</h1>
+      <Cluster>
+        <Button variant="primary">Start</Button>
+        <Button variant="secondary">Read policy</Button>
+      </Cluster>
+    </Stack>
+  </Section>
+</PageShell>
+```
+
+| Component | Key props | Use for |
+|-----------|-----------|---------|
+| `PageShell` | `background`, `density` | Full-page noir/grid/glow background and main landmark |
+| `Section` | `size`, `width` | Consistent page sections |
+| `Stack` | `gap`, `align` | Vertical rhythm |
+| `Cluster` | `gap`, `align`, `justify` | Wrapping actions, badges, and toolbars |
+| `Grid` | `columns`, `gap` | Generic responsive grids |
+| `CardGrid` | `columns`, `gap` | Card collections |
+| `Split` | `ratio`, `gap`, `reverse` | Content/aside two-column layouts |
+| `MainContent` | `width`, `spacing`, `density` | App route content wrapper |
 
 ## Button
 

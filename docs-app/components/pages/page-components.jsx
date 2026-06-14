@@ -8,6 +8,7 @@ function PageComponents({ go }) {
   const toast = useToast();
   const [density, setDensity] = useState('comfortable');
   const morePages = [
+    { id: 'layout', icon: 'layers', t: 'Layout', d: 'Page shells, sections, stacks, grids, splits.' },
     { id: 'forms', icon: 'forms', t: 'Forms', d: 'Inputs, toggles, combobox, form row, validation.' },
     { id: 'navigation', icon: 'compass', t: 'Navigation & Overlays', d: 'Dialogs, drawer, menus, toasts, command palette.' },
     { id: 'infra', icon: 'server', t: 'Infrastructure', d: 'Host, incident, approval, and ops cards.' },
@@ -19,7 +20,7 @@ function PageComponents({ go }) {
   return (
     <div>
       <PageHeader icon="grid" eyebrow="Components" title="Components"
-        lede="Core primitives — button, card, badge, status, layout. Form controls, overlays, data views, and full-screen examples live on their own pages."/>
+        lede="Core primitives — button, card, badge, status. Layout, form controls, overlays, data views, and full-screen examples live on their own pages."/>
 
       <Section title="More components" desc="This page covers primitives only. Everything else has a canonical home.">
         <div className="ds-grid-3">

@@ -103,14 +103,14 @@ The consumer app still imports the required CSS:
 
 Candidate components:
 
-- [ ] `PageShell` — page background, min-height, optional grid/noir background, main landmark.
-- [ ] `Section` — consistent vertical rhythm and width constraints.
-- [ ] `Stack` — vertical spacing with density/size options.
-- [ ] `Cluster` — horizontal wrapping layout for actions, badges, and toolbars.
-- [ ] `Grid` — responsive grid primitive with constrained column presets.
-- [ ] `CardGrid` — common card layout with Tollerud spacing defaults.
-- [ ] `Split` — two-column content/media or content/aside layout.
-- [ ] `MainContent` — page content wrapper for app layouts.
+- [x] `PageShell` — page background, min-height, optional grid/noir background, main landmark.
+- [x] `Section` — consistent vertical rhythm and width constraints.
+- [x] `Stack` — vertical spacing with density/size options.
+- [x] `Cluster` — horizontal wrapping layout for actions, badges, and toolbars.
+- [x] `Grid` — responsive grid primitive with constrained column presets.
+- [x] `CardGrid` — common card layout with Tollerud spacing defaults.
+- [x] `Split` — two-column content/media or content/aside layout.
+- [x] `MainContent` — page content wrapper for app layouts.
 
 **Implementation notes:**
 

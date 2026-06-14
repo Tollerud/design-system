@@ -141,6 +141,7 @@ import { cn } from '@tollerud/ui/utils'`}
         <div className="ds-grid-3">
           {[
             { id: 'foundations', icon: 'palette', t: 'Foundations', d: 'Color, type, spacing, motion, brand.' },
+            { id: 'layout', icon: 'layers', t: 'Layout', d: 'Page shells, sections, stacks, grids.' },
             { id: 'components', icon: 'grid', t: 'Components', d: 'Core primitives — button, card, badge, status.' },
             { id: 'forms', icon: 'forms', t: 'Forms', d: 'Inputs, toggles, combobox, validation.' },
             { id: 'navigation', icon: 'compass', t: 'Navigation & Overlays', d: 'Dialogs, menus, command palette.' },

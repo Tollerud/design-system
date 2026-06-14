@@ -1,6 +1,6 @@
 {
   "name": "Tollerud User Interface",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "Dark, monochrome React components with a single yellow accent — built for dashboards, tools, and homelab UIs.",
   "components": {
     "button": {
@@ -101,6 +101,110 @@
       "description": "Width-constrained content wrapper",
       "files": [
         "components/Container.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "page-shell": {
+      "name": "PageShell",
+      "description": "Full-page shell with noir, grid, or glow background options",
+      "files": [
+        "components/PageShell.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "section": {
+      "name": "Section",
+      "description": "Semantic page section with consistent vertical rhythm and width constraints",
+      "files": [
+        "components/Section.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "stack": {
+      "name": "Stack",
+      "description": "Vertical layout primitive with semantic gap and alignment options",
+      "files": [
+        "components/Stack.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "cluster": {
+      "name": "Cluster",
+      "description": "Wrapping horizontal layout for actions, badges, and toolbars",
+      "files": [
+        "components/Cluster.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "grid": {
+      "name": "Grid",
+      "description": "Responsive grid primitive with finite column and gap presets",
+      "files": [
+        "components/Grid.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "card-grid": {
+      "name": "CardGrid",
+      "description": "Responsive card layout grid with Tollerud spacing defaults",
+      "files": [
+        "components/CardGrid.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "split": {
+      "name": "Split",
+      "description": "Two-column responsive split layout for content and aside regions",
+      "files": [
+        "components/Split.tsx"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": [],
+      "type": "components:ui"
+    },
+    "main-content": {
+      "name": "MainContent",
+      "description": "Main landmark content wrapper with width, spacing, and density presets",
+      "files": [
+        "components/MainContent.tsx"
       ],
       "dependencies": [
         "clsx",

@@ -191,6 +191,43 @@ import {
 } from '@tollerud/ui'
 ```
 
+### Layout primitives
+
+```tsx
+import {
+  PageShell, Section, Stack, Cluster,
+  Grid, CardGrid, Split, MainContent,
+} from '@tollerud/ui'
+```
+
+**PageShell** — `as?: 'div' | 'main'`, `background?: 'plain' | 'grid' | 'glow'`, `density?: 'comfortable' | 'compact'`. Full-page dark shell for app routes and marketing pages.
+
+**Section** — `as?: 'section' | 'div' | 'article' | 'header' | 'footer'`, `size?: 'sm' | 'md' | 'lg' | 'hero'`, `width?: 'narrow' | 'default' | 'wide' | 'full'`. Consistent vertical rhythm and width constraints.
+
+**Stack** — vertical layout. `gap?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'`, `align?: 'start' | 'center' | 'end' | 'stretch'`.
+
+**Cluster** — wrapping horizontal layout for actions, badges, and toolbars. `gap?: 'xs' | 'sm' | 'md' | 'lg'`, `align?`, `justify?: 'start' | 'center' | 'end' | 'between'`.
+
+**Grid / CardGrid** — responsive grid primitives. `columns?: 1 | 2 | 3 | 4 | 'auto'` for `Grid`; `columns?: 2 | 3 | 4 | 'auto'` for `CardGrid`.
+
+**Split** — responsive two-column layout. `ratio?: 'equal' | 'content' | 'sidebar'`, `gap?: 'md' | 'lg' | 'xl'`, `align?: 'start' | 'center' | 'stretch'`, `reverse?: boolean`.
+
+**MainContent** — `as?: 'main' | 'div'`, `width?: 'narrow' | 'default' | 'wide' | 'full'`, `spacing?: 'none' | 'sm' | 'md' | 'lg'`, `density?: 'comfortable' | 'compact'`.
+
+```tsx
+<PageShell background="grid">
+  <Section size="hero">
+    <Stack gap="lg">
+      <h1>Build with components first.</h1>
+      <Cluster>
+        <Button variant="primary">Start</Button>
+        <Button variant="secondary">Read policy</Button>
+      </Cluster>
+    </Stack>
+  </Section>
+</PageShell>
+```
+
 **Button** — `variant`: `primary` · `secondary` · `ghost` · `destructive` · `terminal`. `size`: `sm` · `md` · `lg`. `asChild?: boolean`.
 ```tsx
 <Button variant="primary" size="md">Deploy</Button>

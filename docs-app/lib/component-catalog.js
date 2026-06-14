@@ -37,6 +37,16 @@ export const DEEP_LINKS = [
   { page: 'components', section: 'action-row', title: 'Action row', component: 'ActionRow' },
   { page: 'components', section: 'glow-card', title: 'Glow card', component: 'GlowCard' },
 
+  // Layout primitives
+  { page: 'layout', section: 'page-shell', title: 'PageShell', component: 'PageShell', keywords: ['shell', 'background', 'page'] },
+  { page: 'layout', section: 'page-shell', title: 'Section', component: 'Section', keywords: ['section', 'spacing'] },
+  { page: 'layout', section: 'stack-cluster', title: 'Stack', component: 'Stack', keywords: ['vertical', 'gap'] },
+  { page: 'layout', section: 'stack-cluster', title: 'Cluster', component: 'Cluster', keywords: ['actions', 'toolbar', 'wrap'] },
+  { page: 'layout', section: 'grid-cardgrid', title: 'Grid', component: 'Grid', keywords: ['columns', 'responsive'] },
+  { page: 'layout', section: 'grid-cardgrid', title: 'CardGrid', component: 'CardGrid', keywords: ['cards', 'responsive'] },
+  { page: 'layout', section: 'split-maincontent', title: 'Split', component: 'Split', keywords: ['aside', 'two column'] },
+  { page: 'layout', section: 'split-maincontent', title: 'MainContent', component: 'MainContent', keywords: ['main', 'content', 'width'] },
+
   // Forms
   { page: 'forms', section: 'text-input', title: 'Text input', component: 'Input' },
   { page: 'forms', section: 'combobox', title: 'Combobox', component: 'Combobox' },

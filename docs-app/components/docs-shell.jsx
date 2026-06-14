@@ -20,6 +20,7 @@ import { DEEP_LINKS, deepLinkPath, findDeepLink } from '@/lib/component-catalog'
 import PageOverview from './pages/page-overview'
 import PageGettingStarted from './pages/page-getting-started'
 import PageFoundations from './pages/page-foundations'
+import PageLayout from './pages/page-layout'
 import PageComponents from './pages/page-components'
 import PageInfra from './pages/page-infra'
 import PageForms from './pages/page-forms'
@@ -41,6 +42,7 @@ const CANONICAL_PAGES = {
   overview: PageOverview,
   'getting-started': PageGettingStarted,
   foundations: PageFoundations,
+  layout: PageLayout,
   components: PageComponents,
   infra: PageInfra,
   forms: PageForms,

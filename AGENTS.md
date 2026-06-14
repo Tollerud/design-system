@@ -179,6 +179,8 @@ import { Button, buttonVariants, cn, Card, Badge, Input, StatusDot, Kbd } from '
 import { CommandMenu, ActionRow, DataTable, LogViewer, Timeline, CodeBlock, StatCard, Container } from '@tollerud/ui'
 import { Checkbox, Switch, RadioGroup, Radio, Select, Textarea } from '@tollerud/ui'
 import { PasswordInput, Combobox, TagInput, Slider, FormRow } from '@tollerud/ui'
+// Layout primitives (added in 4.2.0)
+import { PageShell, Section, Stack, Cluster, Grid, CardGrid, Split, MainContent } from '@tollerud/ui'
 // Primitives & navigation (added in 1.0.9)
 import { Divider, Pill, Avatar, AvatarGroup } from '@tollerud/ui'
 import { Breadcrumb, Pagination, Segmented, Stepper } from '@tollerud/ui'
@@ -404,6 +406,22 @@ Monogram sizing: top bar/sidebar expanded → `h-5`, sidebar collapsed → `h-6`
 
 ```tsx
 <Container>Content capped at 1100px with 24px padding</Container>
+```
+
+### Component-first page layout
+
+```tsx
+<PageShell background="grid">
+ <Section size="hero">
+  <Stack gap="lg">
+   <h1>Build with components first.</h1>
+   <Cluster>
+    <Button variant="primary">Start</Button>
+    <Button variant="secondary">Read policy</Button>
+   </Cluster>
+  </Stack>
+ </Section>
+</PageShell>
 ```
 
 ### Density
