@@ -242,8 +242,10 @@ Use these before rebuilding common pages with raw Tailwind:
 
 - **PageHeader** — title block with `eyebrow`, `description`, `actions`, `meta`, `align`, `size`.
 - **TopNav** — branded monogram lockup with `projectName`, `navItems`, `actions`, `sticky`.
-- **DashboardShell** — app frame with `projectName`, `navItems`, `topActions`, `sidebar`, `header`, `contentWidth`, `density`.
-- **SettingsLayout** — settings page with `title`, `description`, `actions`, `navItems`, `activeId`.
+- **SidebarNav** — sidebar brand lockup with `projectName`, `projectSubtitle`, `groups` / `items`, icons, and active states.
+- **DashboardTopBar** — context top bar with `breadcrumb`, `pageTitle`, `actions`, mobile menu toggle.
+- **DashboardShell** — docs-aligned app frame (default `variant="sidebar"`) with `sidebarGroups`, `sidebarItems`, `pageTitle`, `topActions`, `header`, `contentWidth`, `density`. Use `variant="topnav"` for horizontal TopNav layout.
+- **SettingsLayout** — settings page with `title`, `description`, `actions`, `navItems`, `activeId`, `onNavSelect`, and optional `tone="danger"` on nav items.
 - **FormPanel** — titled form surface with `description`, `actions`, `footer`, `children`.
 - **ResourceList** — list/table page wrapper with `title`, `description`, `actions`, `filters`, `count`, `emptyState`.
 - **DetailPage** — detail header + primary content + optional `aside`.
@@ -267,17 +269,17 @@ Use these before rebuilding common pages with raw Tailwind:
 
 ### Agent-safe recipes
 
-Copy-paste screen compositions live on the docs site at **Recipes** (`/recipes/`). Each recipe is component-first and links to a fuller interactive example where one exists:
+Copy-paste screen compositions live on the docs site at **Recipes** (`/recipes/`). Each recipe is a code-only file snippet — live component demos live on **Screen patterns**; fuller product screens link to Examples.
 
-| Recipe | Primary components | Full example |
-|--------|-------------------|--------------|
-| Marketing landing | `PageShell`, `HeroBlock`, `FeatureSection`, `CTABand`, `Footer` | Blocks |
-| Dashboard overview | `DashboardShell`, `StatsSection`, `HostCard` | Mission Control |
-| Settings | `SettingsLayout`, `FormPanel` | Settings |
-| Auth | `PageShell`, `FormPanel` | Sign in (cinematic) |
-| Empty state | `EmptyPage` | Onboarding |
-| Detail | `DetailPage` | Screen patterns |
-| List / table | `ResourceList`, `DataTable` | Data Table |
+| Recipe | Primary components | Live demo / example |
+|--------|-------------------|---------------------|
+| Marketing landing | `PageShell`, `HeroBlock`, `FeatureSection`, `CTABand`, `Footer` | Screen patterns → FeatureSection; Blocks |
+| Dashboard overview | `DashboardShell`, `StatsSection`, `HostCard` | Screen patterns → DashboardShell; Mission Control |
+| Settings | `SettingsLayout`, `FormPanel` | Screen patterns → SettingsLayout; Settings example (polished demo) |
+| Auth | `PageShell`, `FormPanel` | Screen patterns → FormPanel; Sign in |
+| Empty state | `EmptyPage` | Components → EmptyState; Screen patterns → EmptyPage |
+| Detail | `DetailPage` | Screen patterns → DetailPage |
+| List / table | `ResourceList`, `DataTable` | Screen patterns → ResourceList; Data Table |
 
 Reserve Tailwind for small local glue (`mt-6`, `flex justify-end`) — not for rebuilding page structure. See the escape-hatch recipe and Getting started → Consumer styling policy.
 

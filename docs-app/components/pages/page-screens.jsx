@@ -6,6 +6,7 @@ const { Button, Card, Badge, StatusDot, Switch, Input, FormRow, PackagePageHeade
 /* @tollerud/ui docs — Screen patterns */
 
 function PageScreens({ go }) {
+  const [settingsTab, setSettingsTab] = useState('profile')
   const featureItems = [
     { icon: <Icons.zap size={18} />, title: 'Fast deploys', description: 'Roll out compose changes with health checks.' },
     { icon: <Icons.shield size={18} />, title: 'Guarded actions', description: 'Review risky operations before they run.' },
@@ -18,15 +19,15 @@ function PageScreens({ go }) {
         icon="app"
         eyebrow="Patterns"
         title="Screen patterns"
-        lede="Full-page and section-level compositions for consumer apps. Use these before rebuilding branded page structure with raw Tailwind utilities. For copy-paste screen starting points, see Recipes."
+        lede="Component-level API reference with live demos for each screen pattern export. For copy-paste full-page files, see Recipes — snippets only, no duplicate demos here."
       />
 
       {go && (
         <div className="ds-row" style={{ gap: 12, marginBottom: 24 }}>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('recipes')}>
+          <Button variant="secondary" size="sm" onClick={() => go('recipes')}>
             Recipes — agent-safe screen compositions
             <Icons.arrowRight size={14} />
-          </button>
+          </Button>
         </div>
       )}
 
@@ -71,15 +72,20 @@ function PageScreens({ go }) {
         </Demo>
       </Section>
 
-      <Section title="DashboardShell" component="DashboardShell" permalink="screens/dashboard-shell" desc="App shell with TopNav, optional sidebar, page header, and main content width/density presets.">
+      <Section title="DashboardShell" component="DashboardShell" permalink="screens/dashboard-shell" desc="Docs-aligned app shell: sidebar brand lockup, structured nav, context top bar, and main content. Use variant=&quot;topnav&quot; for the legacy horizontal TopNav layout.">
         <Demo
           name="dashboard-shell"
           variant="col"
           code={`<DashboardShell
   projectName="Mission Control"
-  navItems={[{ label: 'Overview', href: '/', active: true }]}
+  projectSubtitle="fleet control"
+  pageTitle="Overview"
+  sidebarItems={[
+    { id: 'overview', label: 'Overview', href: '/', active: true, icon: <Icons.app size={15} /> },
+    { id: 'hosts', label: 'Hosts', href: '/hosts', icon: <Icons.server size={15} /> },
+    { id: 'logs', label: 'Logs', href: '/logs', icon: <Icons.terminal size={15} /> },
+  ]}
   topActions={<Button size="sm" variant="primary">Deploy</Button>}
-  sidebar={<Stack gap="sm"><Button variant="ghost">Hosts</Button><Button variant="ghost">Logs</Button></Stack>}
   header={<PageHeader title="Overview" description="Fleet health at a glance." />}
 >
   <StatsSection stats={[
@@ -90,11 +96,16 @@ function PageScreens({ go }) {
         >
           <DashboardShell
             projectName="Mission Control"
-            navItems={[{ label: 'Overview', href: '#', active: true }, { label: 'Hosts', href: '#' }]}
+            projectSubtitle="fleet control"
+            pageTitle="Overview"
+            sidebarItems={[
+              { id: 'overview', label: 'Overview', href: '#', active: true, icon: <Icons.app size={15} /> },
+              { id: 'hosts', label: 'Hosts', href: '#', icon: <Icons.server size={15} /> },
+              { id: 'logs', label: 'Logs', href: '#', icon: <Icons.terminal size={15} /> },
+            ]}
             topActions={<Button size="sm" variant="primary">Deploy</Button>}
-            sidebar={<Stack gap="sm"><Button variant="ghost">Hosts</Button><Button variant="ghost">Logs</Button></Stack>}
             header={<PackagePageHeader title="Overview" description="Fleet health at a glance." />}
-            className="min-h-[320px] rounded-lg border border-tollerud-border"
+            className="min-h-[420px] overflow-hidden rounded-lg border border-tollerud-border"
           >
             <StatsSection
               stats={[
@@ -106,36 +117,47 @@ function PageScreens({ go }) {
         </Demo>
       </Section>
 
-      <Section title="SettingsLayout + FormPanel" component="SettingsLayout" permalink="screens/settings-form" desc="Settings pages get section navigation, page header, form surfaces, and footer actions without rebuilding layout.">
+      <Section title="SettingsLayout + FormPanel" component="SettingsLayout" permalink="screens/settings-form" desc="Settings pages get section navigation, page header, form surfaces, and footer actions. Pass onNavSelect for client-side section switching.">
         <Demo name="settings-form" variant="col" code={`<SettingsLayout
-  title="Settings"
-  description="Manage workspace defaults."
+  title="Account settings"
+  description="Manage profile and security preferences."
   navItems={[{ id: 'profile', label: 'Profile' }, { id: 'security', label: 'Security' }]}
-  activeId="profile"
+  activeId={activeId}
+  onNavSelect={setActiveId}
 >
-  <FormPanel title="Profile" description="Shown in audit trails."
-    footer={<Cluster justify="end"><Button variant="primary">Save</Button></Cluster>}>
-    <Input label="Workspace name" defaultValue="Mission Control" />
+  <FormPanel title="Profile" description="Shown in activity logs."
+    footer={<Cluster justify="end"><Button variant="primary">Save changes</Button></Cluster>}>
+    <Input label="Display name" defaultValue="Tia Tollerud" />
     <FormRow label="Require approvals" hint="Ask before risky actions.">
       <Switch defaultChecked />
     </FormRow>
   </FormPanel>
 </SettingsLayout>`}>
           <SettingsLayout
-            title="Settings"
-            description="Manage workspace defaults."
+            title="Account settings"
+            description="Manage profile and security preferences."
             navItems={[{ id: 'profile', label: 'Profile' }, { id: 'security', label: 'Security' }]}
-            activeId="profile"
+            activeId={settingsTab}
+            onNavSelect={setSettingsTab}
           >
-            <FormPanel title="Profile" description="Shown in audit trails."
-              footer={<Cluster justify="end"><Button variant="primary">Save</Button></Cluster>}>
-              <Stack gap="md">
-                <Input label="Workspace name" defaultValue="Mission Control" />
-                <FormRow label="Require approvals" hint="Ask before risky actions.">
-                  <Switch defaultChecked />
+            {settingsTab === 'profile' ? (
+              <FormPanel title="Profile" description="Shown in activity logs."
+                footer={<Cluster justify="end"><Button variant="primary">Save changes</Button></Cluster>}>
+                <Stack gap="md">
+                  <Input label="Display name" defaultValue="Tia Tollerud" />
+                  <FormRow label="Require approvals" hint="Ask before risky actions.">
+                    <Switch defaultChecked />
+                  </FormRow>
+                </Stack>
+              </FormPanel>
+            ) : (
+              <FormPanel title="Security" description="Authentication and session controls."
+                footer={<Cluster justify="end"><Button variant="primary">Save changes</Button></Cluster>}>
+                <FormRow label="Two-factor auth" hint="Require a TOTP code at sign-in.">
+                  <Switch label="Enabled" defaultChecked />
                 </FormRow>
-              </Stack>
-            </FormPanel>
+              </FormPanel>
+            )}
           </SettingsLayout>
         </Demo>
       </Section>
