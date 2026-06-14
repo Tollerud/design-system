@@ -1,13 +1,7 @@
 'use client'
 import React from 'react'
 import * as __p from '@/lib/provide-pages'
-const {
-  Button, Card, Badge, StatusDot, Input, Switch, FormRow,
-  DashboardShell, SettingsLayout, FormPanel,
-  ResourceList, DetailPage,
-  Stack, Cluster, CardGrid,
-  Demo, CodeSnippet, PageHeader, Section, Alert, Icons,
-} = __p
+const { CodeSnippet, PageHeader, Section, Alert, Icons } = __p
 
 /* @tollerud/ui docs — Agent-safe recipes (component-first screen compositions) */
 
@@ -20,28 +14,34 @@ function ExampleLink({ go, id, children }) {
   )
 }
 
-function PageRecipes({ go }) {
-  const featureItems = [
-    { icon: <Icons.zap size={18} />, title: 'Fast deploys', description: 'Roll out compose changes with health checks.' },
-    { icon: <Icons.shield size={18} />, title: 'Guarded actions', description: 'Review risky operations before they run.' },
-    { icon: <Icons.activity size={18} />, title: 'Quiet telemetry', description: 'Surface useful state without alert fatigue.' },
-  ]
+function RecipeLinks({ go, links }) {
+  return (
+    <div className="ds-row" style={{ gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
+      {links.map(({ id, label }) => (
+        <ExampleLink key={id} go={go} id={id}>
+          {label}
+        </ExampleLink>
+      ))}
+    </div>
+  )
+}
 
+function PageRecipes({ go }) {
   return (
     <div>
       <PageHeader
         icon="code"
         eyebrow="Start"
         title="Recipes"
-        lede="Copy-paste, component-first screen compositions for consumer apps. Each recipe uses exported layout primitives and screen patterns — not raw Tailwind page structure. Full interactive examples live on linked docs pages."
+        lede="Copy-paste, component-first screen compositions for consumer apps. Each recipe is a minimal file you can drop into a feature route — live component demos and prop reference live on Screen patterns."
       />
 
       <Section
         title="How to use these"
-        desc="Start from a recipe, paste into a feature route, then customize props and children. Reserve Tailwind for small local glue only."
+        desc="Paste a recipe into your app, customize props and children, then follow the Screen patterns link for the live demo and API details."
       >
-        <Alert tone="accent" title="Component-first by default">
-          Use @tollerud/ui components and screen patterns first. If a recipe links to a fuller example page, treat that page as the live reference — the recipe is the minimal copy-paste starting point.
+        <Alert tone="accent" title="Recipes are snippets, not duplicates">
+          Recipes stay code-only. Screen patterns holds the interactive demos for each export. Example pages (Mission Control, Settings, Data Table) show fuller product screens built from the same primitives.
         </Alert>
         <div className="ds-row" style={{ gap: 12, marginTop: 16, flexWrap: 'wrap' }}>
           <ExampleLink go={go} id="layout">Layout primitives</ExampleLink>
@@ -53,7 +53,7 @@ function PageRecipes({ go }) {
       <Section
         title="Marketing landing page"
         permalink="recipes/marketing-landing"
-        desc="PageShell + HeroBlock + FeatureSection + CTABand + Footer. Blocks page has live section demos for each piece."
+        desc="PageShell + HeroBlock + FeatureSection + CTABand + Footer."
       >
         <CodeSnippet
           name="marketing-landing.tsx"
@@ -106,15 +106,21 @@ export function MarketingLandingPage() {
   )
 }`}
         />
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="blocks">See Blocks — hero, features, pricing, CTA</ExampleLink>
-        </div>
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/featuresection-statssection', label: 'Screen patterns — FeatureSection' },
+              { id: 'blocks', label: 'Blocks — hero, features, pricing, CTA' },
+            ]}
+          />
+        )}
       </Section>
 
       <Section
         title="Dashboard overview"
         permalink="recipes/dashboard-overview"
-        desc="DashboardShell frames the app; StatsSection and infra cards fill the main area. Mission Control is the full interactive reference."
+        desc="Full dashboard route: DashboardShell frames the app; StatsSection and infra cards fill the main area."
       >
         <CodeSnippet
           name="dashboard-overview.tsx"
@@ -168,72 +174,69 @@ export function DashboardOverviewPage() {
   )
 }`}
         />
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="mission-control">See Mission Control — live dashboard</ExampleLink>
-        </div>
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/dashboard-shell', label: 'Screen patterns — DashboardShell' },
+              { id: 'mission-control', label: 'Mission Control — live dashboard' },
+            ]}
+          />
+        )}
       </Section>
 
       <Section
         title="Settings page"
         permalink="recipes/settings-page"
-        desc="SettingsLayout + FormPanel. The Settings example page adds avatar upload, danger zone, and a sticky save bar on top of the same structure."
+        desc="SettingsLayout + FormPanel for a workspace settings route."
       >
-        <Demo
-          name="settings-recipe"
-          variant="col"
-          code={`<SettingsLayout
-  title="Settings"
-  description="Manage workspace defaults."
-  navItems={[
-    { id: 'profile', label: 'Profile' },
-    { id: 'security', label: 'Security' },
-  ]}
-  activeId="profile"
->
-  <FormPanel
-    title="Profile"
-    description="Shown in audit trails."
-    footer={<Cluster justify="end"><Button variant="primary">Save</Button></Cluster>}
-  >
-    <Input label="Workspace name" defaultValue="Mission Control" />
-    <FormRow label="Require approvals" hint="Ask before risky actions.">
-      <Switch defaultChecked />
-    </FormRow>
-  </FormPanel>
-</SettingsLayout>`}
-        >
-          <SettingsLayout
-            title="Settings"
-            description="Manage workspace defaults."
-            navItems={[
-              { id: 'profile', label: 'Profile' },
-              { id: 'security', label: 'Security' },
+        <CodeSnippet
+          name="settings-page.tsx"
+          code={`import {
+  Button, Input, Switch, FormRow, Cluster,
+  SettingsLayout, FormPanel,
+} from '@tollerud/ui'
+
+export function SettingsPage() {
+  return (
+    <SettingsLayout
+      title="Settings"
+      description="Manage workspace defaults."
+      navItems={[
+        { id: 'profile', label: 'Profile' },
+        { id: 'security', label: 'Security' },
+      ]}
+      activeId="profile"
+    >
+      <FormPanel
+        title="Profile"
+        description="Shown in audit trails."
+        footer={<Cluster justify="end"><Button variant="primary">Save</Button></Cluster>}
+      >
+        <Input label="Workspace name" defaultValue="Mission Control" />
+        <FormRow label="Require approvals" hint="Ask before risky actions.">
+          <Switch defaultChecked />
+        </FormRow>
+      </FormPanel>
+    </SettingsLayout>
+  )
+}`}
+        />
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/settings-form', label: 'Screen patterns — SettingsLayout + FormPanel' },
+              { id: 'settings', label: 'Settings — full account screen' },
             ]}
-            activeId="profile"
-          >
-            <FormPanel
-              title="Profile"
-              description="Shown in audit trails."
-              footer={<Cluster justify="end"><Button variant="primary">Save</Button></Cluster>}
-            >
-              <Stack gap="md">
-                <Input label="Workspace name" defaultValue="Mission Control" />
-                <FormRow label="Require approvals" hint="Ask before risky actions.">
-                  <Switch defaultChecked />
-                </FormRow>
-              </Stack>
-            </FormPanel>
-          </SettingsLayout>
-        </Demo>
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="settings">See Settings — full account screen</ExampleLink>
-        </div>
+          />
+        )}
       </Section>
 
       <Section
         title="Auth page"
         permalink="recipes/auth-page"
-        desc="FormPanel inside PageShell for a minimal sign-in route. The Sign in example adds grain gradient, OAuth, and terminal typewriter for a cinematic auth surface."
+        desc="FormPanel inside PageShell for a minimal sign-in route."
       >
         <CodeSnippet
           name="auth-page.tsx"
@@ -264,15 +267,21 @@ export function SignInPage() {
   )
 }`}
         />
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="auth">See Sign in — cinematic split layout</ExampleLink>
-        </div>
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/settings-form', label: 'Screen patterns — FormPanel' },
+              { id: 'auth', label: 'Sign in — cinematic split layout' },
+            ]}
+          />
+        )}
       </Section>
 
       <Section
         title="Empty state page"
         permalink="recipes/empty-state-page"
-        desc="EmptyPage wraps EmptyState in a full-page shell. Onboarding has more empty-state variants and a setup wizard."
+        desc="EmptyPage wraps EmptyState in a full-page shell."
       >
         <CodeSnippet
           name="empty-state-page.tsx"
@@ -290,91 +299,101 @@ export function NoHostsPage() {
   )
 }`}
         />
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="onboarding">See Onboarding — wizard + empty-state gallery</ExampleLink>
-        </div>
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/empty-page', label: 'Screen patterns — EmptyPage' },
+              { id: 'onboarding', label: 'Onboarding — wizard + empty-state gallery' },
+            ]}
+          />
+        )}
       </Section>
 
       <Section
         title="Detail page"
         permalink="recipes/detail-page"
-        desc="DetailPage composes PageHeader, primary content, and an optional aside. Use Split ratio presets instead of hand-built two-column grids."
+        desc="DetailPage composes PageHeader, primary content, and an optional aside."
       >
-        <Demo
-          name="detail-recipe"
-          variant="col"
-          code={`<DetailPage
-  eyebrow="host"
-  title="emma.tollerud.no"
-  description="Primary production host."
-  actions={<Button variant="terminal">ssh emma</Button>}
-  aside={<Card><StatusDot status="online" label="SSH connected" /></Card>}
->
-  <Card>Logs, metrics, and configuration.</Card>
-</DetailPage>`}
-        >
-          <DetailPage
-            eyebrow="host"
-            title="emma.tollerud.no"
-            description="Primary production host."
-            actions={<Button variant="terminal">ssh emma</Button>}
-            aside={<Card><StatusDot status="online" label="SSH connected" /></Card>}
-          >
-            <Card>Logs, metrics, and configuration.</Card>
-          </DetailPage>
-        </Demo>
+        <CodeSnippet
+          name="detail-page.tsx"
+          code={`import { Button, Card, StatusDot, DetailPage } from '@tollerud/ui'
+
+export function HostDetailPage() {
+  return (
+    <DetailPage
+      eyebrow="host"
+      title="emma.tollerud.no"
+      description="Primary production host."
+      actions={<Button variant="terminal">ssh emma</Button>}
+      aside={<Card><StatusDot status="online" label="SSH connected" /></Card>}
+    >
+      <Card>Logs, metrics, and configuration.</Card>
+    </DetailPage>
+  )
+}`}
+        />
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[{ id: 'screens/resource-detail', label: 'Screen patterns — DetailPage' }]}
+          />
+        )}
       </Section>
 
       <Section
         title="List / table page"
         permalink="recipes/list-table-page"
-        desc="ResourceList wraps the page header, filters, and table body. Data Table example shows search, bulk actions, and pagination on the same DataTable primitive."
+        desc="ResourceList wraps the page header, filters, and table body."
       >
-        <Demo
-          name="list-recipe"
-          variant="col"
-          code={`<ResourceList
-  title="Hosts"
-  description="Machines connected to Tollerud."
-  count="3 hosts"
-  actions={<Button variant="primary">Connect host</Button>}
-  filters={<Input label="Search" placeholder="emma" />}
->
-  <DataTable
-    columns={[
-      { key: 'hostname', label: 'Host', sortable: true },
-      {
-        key: 'status',
-        label: 'Status',
-        render: (_v, row) => (
-          <Badge variant={row.status === 'online' ? 'success' : 'error'}>{row.status}</Badge>
-        ),
-      },
-    ]}
-    data={hosts}
-    rowKey="id"
-    searchable
-    pageSize={10}
-  />
-</ResourceList>`}
-        >
-          <ResourceList
-            title="Hosts"
-            description="Machines connected to Tollerud."
-            count="3 hosts"
-            actions={<Button variant="primary">Connect host</Button>}
-            filters={<Input label="Search" placeholder="emma" />}
-          >
-            <CardGrid columns={3}>
-              <Card><StatusDot status="online" label="emma" /></Card>
-              <Card><StatusDot status="warning" label="iris" /></Card>
-              <Card><StatusDot status="idle" label="pia" /></Card>
-            </CardGrid>
-          </ResourceList>
-        </Demo>
-        <div style={{ marginTop: 14 }}>
-          <ExampleLink go={go} id="data-table">See Data Table — full table pattern</ExampleLink>
-        </div>
+        <CodeSnippet
+          name="list-table-page.tsx"
+          code={`import { Button, Badge, Input, ResourceList, DataTable } from '@tollerud/ui'
+
+const hosts = [
+  { id: '1', hostname: 'emma', status: 'online' },
+  { id: '2', hostname: 'iris', status: 'warning' },
+  { id: '3', hostname: 'pia', status: 'idle' },
+]
+
+export function HostsListPage() {
+  return (
+    <ResourceList
+      title="Hosts"
+      description="Machines connected to Tollerud."
+      count="3 hosts"
+      actions={<Button variant="primary">Connect host</Button>}
+      filters={<Input label="Search" placeholder="emma" />}
+    >
+      <DataTable
+        columns={[
+          { key: 'hostname', label: 'Host', sortable: true },
+          {
+            key: 'status',
+            label: 'Status',
+            render: (_v, row) => (
+              <Badge variant={row.status === 'online' ? 'success' : 'error'}>{row.status}</Badge>
+            ),
+          },
+        ]}
+        data={hosts}
+        rowKey="id"
+        searchable
+        pageSize={10}
+      />
+    </ResourceList>
+  )
+}`}
+        />
+        {go && (
+          <RecipeLinks
+            go={go}
+            links={[
+              { id: 'screens/resource-detail', label: 'Screen patterns — ResourceList' },
+              { id: 'data-table', label: 'Data Table — full table pattern' },
+            ]}
+          />
+        )}
       </Section>
 
       <Section

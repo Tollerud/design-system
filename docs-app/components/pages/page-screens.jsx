@@ -18,7 +18,7 @@ function PageScreens({ go }) {
         icon="app"
         eyebrow="Patterns"
         title="Screen patterns"
-        lede="Full-page and section-level compositions for consumer apps. Use these before rebuilding branded page structure with raw Tailwind utilities. For copy-paste screen starting points, see Recipes."
+        lede="Component-level API reference with live demos for each screen pattern export. For copy-paste full-page files, see Recipes — snippets only, no duplicate demos here."
       />
 
       {go && (
