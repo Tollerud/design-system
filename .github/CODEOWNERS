@@ -1,0 +1,3 @@
+# Tollerud UI — default owner for all paths.
+# Branch protection requires CODEOWNERS approval on pull requests.
+* @MathiasOki

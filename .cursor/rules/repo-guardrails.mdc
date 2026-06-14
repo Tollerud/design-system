@@ -1,0 +1,34 @@
+---
+description: Repo guardrails — scope limits, protected paths, and release gates
+alwaysApply: true
+---
+
+# Repo guardrails
+
+## Scope and git
+
+- Keep diffs minimal. Do not refactor unrelated code in the same change.
+- Do not commit or push unless the user explicitly asks.
+- Do not push to `main` unless explicitly requested. Prefer feature branches and PRs.
+- Never modify `node_modules/` or copy `@tollerud/ui` source into consumer apps.
+
+## Protected paths
+
+Treat these as high-risk — change only when the task requires it:
+
+- `.github/workflows/` — CI, publish, and deploy pipelines
+- `components/`, `registry.json`, `packages/footer/` — public API surface
+- `AGENTS.md`, `SKILL.md`, `GETTING_STARTED.md` — agent and consumer contracts
+- `package.json`, `package-lock.json`, and nested lockfiles — use `npx npm@11.16.0`
+
+## Before shipping components or releases
+
+1. Run `npm run validate` before proposing a release PR.
+2. New/changed components: source, export, registry, docs demo, `SKILL.md`, `CHANGELOG.md` (see `AGENTS.md` §2–4).
+3. Version bumps: commit `package.json` and lockfiles together.
+
+## Design system (non-negotiable)
+
+- Dark surfaces only (`bg-tollerud-noir-*`). Yellow accent for CTAs/focus only.
+- Use Tollerud tokens — never hardcode `#FFFF00`, `#0A0A0A`, or parallel `components/ui` copies.
+- Nav lockup: monogram left of project name with `gap-2`.
