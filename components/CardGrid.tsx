@@ -5,7 +5,7 @@ export type CardGridColumns = 2 | 3 | 4 | 'auto'
 export type CardGridGap = 'md' | 'lg'
 
 export interface CardGridProps extends HTMLAttributes<HTMLDivElement> {
-  as?: 'div' | 'section' | 'ul'
+  as?: 'div' | 'section'
   columns?: CardGridColumns
   gap?: CardGridGap
 }

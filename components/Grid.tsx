@@ -5,7 +5,7 @@ export type GridColumns = 1 | 2 | 3 | 4 | 'auto'
 export type GridGap = 'sm' | 'md' | 'lg'
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
-  as?: 'div' | 'section' | 'ul'
+  as?: 'div' | 'section'
   columns?: GridColumns
   gap?: GridGap
 }

@@ -205,12 +205,35 @@
       ]
     }
   ],
+  "CardGrid": [
+    {
+      "name": "CardGridProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'section'",
+        "columns?: CardGridColumns",
+        "gap?: CardGridGap"
+      ]
+    }
+  ],
   "Checkbox": [
     {
       "name": "CheckboxProps",
       "extends": "extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>",
       "props": [
         "label?: string"
+      ]
+    }
+  ],
+  "Cluster": [
+    {
+      "name": "ClusterProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'nav' | 'header' | 'footer'",
+        "gap?: ClusterGap",
+        "align?: ClusterAlign",
+        "justify?: ClusterJustify"
       ]
     }
   ],
@@ -315,6 +338,36 @@
       ]
     }
   ],
+  "Drawer": [
+    {
+      "name": "DrawerProps",
+      "props": [
+        "open: boolean",
+        "onClose?: () => void",
+        "side?: DrawerSide",
+        "title?: ReactNode",
+        "description?: ReactNode",
+        "children?: ReactNode",
+        "footer?: ReactNode",
+        "width?: number"
+      ]
+    }
+  ],
+  "EmptyState": [
+    {
+      "name": "EmptyStateProps",
+      "extends": "extends Omit<HTMLAttributes<HTMLDivElement>, 'title'>",
+      "props": [
+        "icon?: EmptyStateIconName | ReactNode",
+        "title?: ReactNode",
+        "description?: ReactNode",
+        "action?: ReactNode",
+        "secondaryAction?: ReactNode",
+        "compact?: boolean",
+        "accent?: boolean"
+      ]
+    }
+  ],
   "FeatureCard": [
     {
       "name": "FeatureCardProps",
@@ -364,6 +417,17 @@
         "className?: string",
         "glowColor?: string",
         "intensity?: number"
+      ]
+    }
+  ],
+  "Grid": [
+    {
+      "name": "GridProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'section'",
+        "columns?: GridColumns",
+        "gap?: GridGap"
       ]
     }
   ],
@@ -453,6 +517,18 @@
       ]
     }
   ],
+  "MainContent": [
+    {
+      "name": "MainContentProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'main' | 'div'",
+        "width?: MainContentWidth",
+        "spacing?: MainContentSpacing",
+        "density?: MainContentDensity"
+      ]
+    }
+  ],
   "Meter": [
     {
       "name": "MeterProps",
@@ -502,6 +578,17 @@
         "offsetX?: number",
         "offsetY?: number",
         "scale?: number"
+      ]
+    }
+  ],
+  "PageShell": [
+    {
+      "name": "PageShellProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'main'",
+        "background?: PageShellBackground",
+        "density?: PageShellDensity"
       ]
     }
   ],
@@ -597,6 +684,17 @@
       ]
     }
   ],
+  "Section": [
+    {
+      "name": "SectionProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'section' | 'div' | 'article' | 'header' | 'footer'",
+        "size?: SectionSize",
+        "width?: SectionWidth"
+      ]
+    }
+  ],
   "Segmented": [
     {
       "name": "SegmentedProps",
@@ -683,6 +781,40 @@
       ]
     }
   ],
+  "Spinner": [
+    {
+      "name": "SpinnerProps",
+      "extends": "extends HTMLAttributes<HTMLSpanElement>",
+      "props": [
+        "size?: number",
+        "style?: CSSProperties"
+      ]
+    }
+  ],
+  "Split": [
+    {
+      "name": "SplitProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'section'",
+        "ratio?: SplitRatio",
+        "gap?: SplitGap",
+        "align?: SplitAlign",
+        "reverse?: boolean"
+      ]
+    }
+  ],
+  "Stack": [
+    {
+      "name": "StackProps",
+      "extends": "extends HTMLAttributes<HTMLDivElement>",
+      "props": [
+        "as?: 'div' | 'section' | 'article' | 'header' | 'footer'",
+        "gap?: StackGap",
+        "align?: StackAlign"
+      ]
+    }
+  ],
   "StatCard": [
     {
       "name": "StatCardProps",
@@ -760,6 +892,14 @@
         "items: TimelineItemData[]",
         "active?: boolean",
         "loading?: boolean"
+      ]
+    }
+  ],
+  "Toast": [
+    {
+      "name": "ToastProviderProps",
+      "props": [
+        "children: ReactNode"
       ]
     }
   ]

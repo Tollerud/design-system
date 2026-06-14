@@ -117,7 +117,7 @@
 
 ## CardGrid — `CardGridProps` extends extends HTMLAttributes<HTMLDivElement>
 
-- `as?: 'div' | 'section' | 'ul'`
+- `as?: 'div' | 'section'`
 - `columns?: CardGridColumns`
 - `gap?: CardGridGap`
 
@@ -260,7 +260,7 @@
 
 ## Grid — `GridProps` extends extends HTMLAttributes<HTMLDivElement>
 
-- `as?: 'div' | 'section' | 'ul'`
+- `as?: 'div' | 'section'`
 - `columns?: GridColumns`
 - `gap?: GridGap`
 
