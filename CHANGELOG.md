@@ -28,10 +28,11 @@ Minor release: adds common page and section compositions so agents can build ful
 
 - Docs app adds a Screen patterns page and search/deep links for the new exports.
 - Component demos and roadmap metadata now reference the actual screen-pattern APIs.
+- Removed obsolete low-level `.tollerud-glass` and `.tollerud-section` utilities now covered by `TopNav` and `Section`.
 
 ### Migration
 
-Nothing breaking. Prefer these screen patterns for repeated page structure in consumer apps.
+Replace `.tollerud-glass` nav usage with `TopNav`, and `.tollerud-section` wrappers with `Section`. No public projects are using these utilities yet.
 
 ## 4.2.0 — 2026-06-14 — Add layout primitives for component-first consumer apps
 

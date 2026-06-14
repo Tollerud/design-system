@@ -24,7 +24,7 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
       <nav
         ref={ref}
         className={cn(
-          'tollerud-glass z-30 flex min-h-14 items-center gap-6 px-6',
+          'z-30 flex min-h-14 items-center gap-6 border-b border-tollerud-border bg-tollerud-noir-950/85 px-6 backdrop-blur-[20px]',
           sticky && 'sticky top-0',
           className
         )}
