@@ -1,16 +1,16 @@
 'use client'
 import React from 'react'
 import * as __p from '@/lib/provide-pages'
-const { CodeSnippet, PageHeader, Section, Alert, Icons } = __p
+const { Button, CodeSnippet, PageHeader, Section, Alert, Icons } = __p
 
 /* @tollerud/ui docs — Agent-safe recipes (component-first screen compositions) */
 
 function ExampleLink({ go, id, children }) {
   return (
-    <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go(id)}>
+    <Button variant="secondary" size="sm" onClick={() => go(id)}>
       {children}
       <Icons.arrowRight size={14} />
-    </button>
+    </Button>
   )
 }
 
@@ -455,7 +455,8 @@ export function DeployCard() {
 </section>`}
         />
         <p style={{ marginTop: 14, fontSize: 13.5, color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-          Full policy and setup notes live on <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('getting-started')}>Getting started</button>.
+          Full policy and setup notes live on{' '}
+          <Button variant="secondary" size="sm" onClick={() => go('getting-started')}>Getting started</Button>.
         </p>
       </Section>
     </div>
