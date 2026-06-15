@@ -407,15 +407,15 @@ function PageComponents({ go }) {
           </div>
         </Demo>
         {go && (
-          <div className="ds-row" style={{ gap: 12, marginTop: 4, flexWrap: 'wrap' }}>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('screens/empty-page')}>
+          <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
+            <Button variant="secondary" size="sm" onClick={() => go('screens/empty-page')}>
               EmptyPage — full-page composition
               <Icons.arrowRight size={14} />
-            </button>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('onboarding')}>
+            </Button>
+            <Button variant="secondary" size="sm" onClick={() => go('onboarding')}>
               Onboarding example — wizard with success EmptyState
               <Icons.arrowRight size={14} />
-            </button>
+            </Button>
           </div>
         )}
       </Section>

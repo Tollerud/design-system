@@ -40,8 +40,8 @@ function PageOverview({ go }) {
               A high-contrast UI library for tools, dashboards and homelab UIs. Every token, component and pattern — live, themeable, and copy-paste ready.
             </p>
             <div className="ds-row" style={{ gap: 12, marginTop: 28 }}>
-              <button className="tollerud-btn tollerud-btn--terminal tollerud-btn--lg" onClick={() => go('getting-started')}>npm_install</button>
-              <button className="tollerud-btn tollerud-btn--secondary tollerud-btn--lg" style={bold ? { color: '#F5F5F5', borderColor: 'rgba(245,245,245,0.2)' } : {}} onClick={() => go('components')}>Components</button>
+              <Button variant="terminal" size="lg" onClick={() => go('getting-started')}>npm_install</Button>
+              <Button variant="secondary" size="lg" onClick={() => go('components')}>Components</Button>
             </div>
             <div style={{ marginTop: 22, display: 'inline-flex', alignItems: 'center', gap: 9, padding: '9px 13px', borderRadius: 8, background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(245,245,245,0.12)', fontFamily: 'var(--font-mono)', fontSize: 13, maxWidth: '100%' }}>
               <span style={{ color: 'var(--tollerud-yellow)' }}>❯</span>
@@ -139,10 +139,16 @@ function PageOverview({ go }) {
           code={`npx tollerud-ui-audit
 # error code reference → Guides → Consumer project checklist`}
         />
-        <div className="ds-row" style={{ gap: 12 }}>
-          <button className="tollerud-btn tollerud-btn--primary tollerud-btn--md" onClick={() => go('getting-started')}>Getting started</button>
-          <button className="tollerud-btn tollerud-btn--ghost tollerud-btn--md" onClick={() => go('resources')}>Guides — audit reference</button>
-          <button className="tollerud-btn tollerud-btn--ghost tollerud-btn--md" onClick={() => go('foundations')}>Foundations</button>
+        <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
+          <Button variant="primary" size="md" onClick={() => go('getting-started')}>Getting started</Button>
+          <Button variant="secondary" size="sm" onClick={() => go('resources')}>
+            Guides — audit reference
+            <Icons.arrowRight size={14} />
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('foundations')}>
+            Foundations
+            <Icons.arrowRight size={14} />
+          </Button>
         </div>
       </Section>
     </div>

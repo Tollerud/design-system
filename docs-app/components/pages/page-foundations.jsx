@@ -44,7 +44,7 @@ function MotionLab() {
             <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>hover me</div>
           </div>
           <div style={{ textAlign: 'center', padding: '14px 12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <button className="tollerud-btn tollerud-btn--terminal tollerud-btn--md">glow_follow</button>
+            <Button variant="terminal" size="md">glow_follow</Button>
             <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>move cursor over button</div>
           </div>
         </div>

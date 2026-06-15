@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext, createContext } from 'react'
 import * as __p from '@/lib/provide-pages'
-const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, Timeline, DatePicker, FileUpload, TagInput, CodeBlock, Container, ActionRow, GlowCard, PackageDataTable, Toaster, toast, Footer, BentoDashboard, NoirGlowBackground, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, Squares, GrainGradient, PageBackgrounds, BgFrame, GradientReadabilityDemo, CommandMenu } = __p
+const { Button, Card, Badge, Pill, StatusDot, Kbd, Input, Textarea, Select, Checkbox, Switch, RadioGroup, Radio, StatCard, Progress, Skeleton, Avatar, Divider, Tabs, Segmented, Tooltip, Alert, Accordion, Breadcrumb, Pagination, Slider, DropdownMenu, Dialog, EmptyState, LogViewer, Spinner, Panel, Meter, Stepper, PasswordInput, FormRow, PricingCard, Drawer, Combobox, AvatarGroup, Timeline, DatePicker, FileUpload, TagInput, CodeBlock, Container, ActionRow, GlowCard, PackageDataTable, Toaster, toast, Footer, BentoDashboard, NoirGlowBackground, CopyButton, Demo, CodeSnippet, PageHeader, Section, SubHead, Swatch, TokenTable, PropTable, ToastProvider, useToast, Icons, Ico, DataTable, BarChart, AreaChart, Donut, Sparkline, HeroBlock, FeatureCard, CTABand, HostCard, ServiceHealthCard, DockerStackCard, IncidentCard, AlertInbox, ApprovalCard, RollbackPlan, BackupStatusPanel, ActionDiff, initMotion, CountUp, Typewriter, PageTOC, MOTION_REDUCED, slugify, jumpToSection, goToSection, buildSectionCommands, matchesCommandQuery, Squares, GrainGradient, PageBackgrounds, BgFrame, GradientReadabilityDemo, CommandMenu } = __p
 
 import { PACKAGE_VERSION } from '@/lib/package-version'
 
@@ -131,8 +131,14 @@ Requirements:
 Tell me what you changed.`}
         />
         <div className="ds-row" style={{ gap: 10, flexWrap: 'wrap' }}>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('getting-started/consumer-checklist')}>Consumer checklist</button>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('recipes')}>Recipes</button>
+          <Button variant="secondary" size="sm" onClick={() => go('getting-started/consumer-checklist')}>
+            Consumer checklist
+            <Icons.arrowRight size={14} />
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('recipes')}>
+            Recipes
+            <Icons.arrowRight size={14} />
+          </Button>
         </div>
       </Section>
 
@@ -246,8 +252,14 @@ npx tollerud-ui-audit --warn-only`}
           Exit 0 when clean, or when only warnings exist with --warn-only. Exit 1 when errors are found — fix before merge.
         </Alert>
         <div className="ds-row" style={{ gap: 10, flexWrap: 'wrap' }}>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('resources')}>Guides — error code reference</button>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('recipes')}>Recipes</button>
+          <Button variant="secondary" size="sm" onClick={() => go('resources')}>
+            Guides — error code reference
+            <Icons.arrowRight size={14} />
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('recipes')}>
+            Recipes
+            <Icons.arrowRight size={14} />
+          </Button>
         </div>
       </Section>
 
@@ -310,7 +322,10 @@ import { Button } from '@tollerud/ui'
 import { cn } from '@tollerud/ui/utils'`}
         />
         <div className="ds-row" style={{ gap: 10, flexWrap: 'wrap' }}>
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('resources')}>Guides — full anti-pattern table</button>
+          <Button variant="secondary" size="sm" onClick={() => go('resources')}>
+            Guides — full anti-pattern table
+            <Icons.arrowRight size={14} />
+          </Button>
         </div>
       </Section>
 

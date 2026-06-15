@@ -24,30 +24,47 @@ function PageResources({ go }) {
             <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: 1.55 }}>
               Replace <code className="ds-mono">require('@tollerud/ui')</code> with ESM imports. CJS subpaths are removed.
             </p>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('changelog')}>Read changelog</button>
+            <Button variant="secondary" size="sm" onClick={() => go('changelog')}>
+              Read changelog
+              <Icons.arrowRight size={14} />
+            </Button>
           </Card>
           <Card>
             <div style={{ fontWeight: 600, color: 'var(--foreground)', marginBottom: 6 }}>v2.0.0 — Peer dependencies</div>
             <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: 1.55 }}>
               Install Radix, Lucide, Framer Motion, and Sonner explicitly in consumer apps.
             </p>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('getting-started')}>Getting started</button>
+            <Button variant="secondary" size="sm" onClick={() => go('getting-started')}>
+              Getting started
+              <Icons.arrowRight size={14} />
+            </Button>
           </Card>
           <Card>
             <div style={{ fontWeight: 600, color: 'var(--foreground)', marginBottom: 6 }}>Copied local components</div>
             <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: 1.55 }}>
               Projects that vendored <code className="ds-mono">src/components/ui/*</code> should delete copies and import from the package. See AGENTS.md in the repo.
             </p>
-            <a className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" href="https://github.com/Tollerud/ui/blob/main/AGENTS.md" target="_blank" rel="noreferrer">AGENTS.md</a>
+            <Button asChild variant="secondary" size="sm">
+              <a href="https://github.com/Tollerud/ui/blob/main/AGENTS.md" target="_blank" rel="noreferrer">
+                AGENTS.md
+                <Icons.arrowRight size={14} />
+              </a>
+            </Button>
           </Card>
           <Card>
             <div style={{ fontWeight: 600, color: 'var(--foreground)', marginBottom: 6 }}>Consumer styling policy</div>
             <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: 1.55 }}>
               Tailwind remains available, but consumer apps should use exported components first and reserve utilities for small layout glue.
             </p>
-            <div className="ds-row" style={{ gap: 10 }}>
-              <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('getting-started')}>Read policy</button>
-              <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('recipes')}>Recipes</button>
+            <div className="ds-row" style={{ gap: 10, flexWrap: 'wrap' }}>
+              <Button variant="secondary" size="sm" onClick={() => go('getting-started')}>
+                Read policy
+                <Icons.arrowRight size={14} />
+              </Button>
+              <Button variant="secondary" size="sm" onClick={() => go('recipes')}>
+                Recipes
+                <Icons.arrowRight size={14} />
+              </Button>
             </div>
           </Card>
         </div>
@@ -133,12 +150,18 @@ export function HostDeployPanel({ onDeploy }: { onDeploy: (host: string) => void
   )
 }`}
         />
-        <p style={{ fontSize: 13.5, color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
-          Full checklist and anti-pattern table:{' '}
-          <a className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" href="https://github.com/Tollerud/ui/blob/main/GETTING_STARTED.md#consumer-project-checklist" target="_blank" rel="noreferrer">GETTING_STARTED.md</a>
-          {' · '}
-          <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('recipes')}>Recipes</button>
-        </p>
+        <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
+          <Button asChild variant="secondary" size="sm">
+            <a href="https://github.com/Tollerud/ui/blob/main/GETTING_STARTED.md#consumer-project-checklist" target="_blank" rel="noreferrer">
+              GETTING_STARTED.md
+              <Icons.arrowRight size={14} />
+            </a>
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('recipes')}>
+            Recipes
+            <Icons.arrowRight size={14} />
+          </Button>
+        </div>
       </Section>
 
       <Section title="AI agents" desc="Sync SKILL.md into your project so coding assistants use verified exports and gotchas.">
@@ -164,9 +187,19 @@ curl -fsSL https://raw.githubusercontent.com/Tollerud/ui/main/SKILL.md \\
 # Component checklist (see AGENTS.md):
 # components/*.tsx → index.ts → registry.json → docs page demo`}
         />
-        <div className="ds-row" style={{ gap: 12 }}>
-          <a className="tollerud-btn tollerud-btn--secondary tollerud-btn--md" href="https://github.com/Tollerud/ui/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">CONTRIBUTING.md</a>
-          <a className="tollerud-btn tollerud-btn--terminal tollerud-btn--md" href="https://github.com/Tollerud/ui" target="_blank" rel="noreferrer">open_repository</a>
+        <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
+          <Button asChild variant="secondary" size="md">
+            <a href="https://github.com/Tollerud/ui/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
+              CONTRIBUTING.md
+              <Icons.arrowRight size={14} />
+            </a>
+          </Button>
+          <Button asChild variant="terminal" size="md">
+            <a href="https://github.com/Tollerud/ui" target="_blank" rel="noreferrer">
+              open_repository
+              <Icons.arrowRight size={14} />
+            </a>
+          </Button>
         </div>
       </Section>
 

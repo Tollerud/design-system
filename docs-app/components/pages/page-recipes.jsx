@@ -5,22 +5,14 @@ const { Button, CodeSnippet, PageHeader, Section, Alert, Icons } = __p
 
 /* @tollerud/ui docs — Agent-safe recipes (component-first screen compositions) */
 
-function ExampleLink({ go, id, children }) {
-  return (
-    <Button variant="secondary" size="sm" onClick={() => go(id)}>
-      {children}
-      <Icons.arrowRight size={14} />
-    </Button>
-  )
-}
-
 function RecipeLinks({ go, links }) {
   return (
     <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
       {links.map(({ id, label }) => (
-        <ExampleLink key={id} go={go} id={id}>
+        <Button key={id} variant="secondary" size="sm" onClick={() => go(id)}>
           {label}
-        </ExampleLink>
+          <Icons.arrowRight size={14} />
+        </Button>
       ))}
     </div>
   )
@@ -44,9 +36,18 @@ function PageRecipes({ go }) {
           Recipes stay code-only. Screen patterns holds the interactive demos for each export. Example pages (Mission Control, Settings, Data Table) show fuller product screens built from the same primitives.
         </Alert>
         <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
-          <ExampleLink go={go} id="layout">Layout primitives</ExampleLink>
-          <ExampleLink go={go} id="screens">Screen patterns</ExampleLink>
-          <ExampleLink go={go} id="getting-started">Consumer styling policy</ExampleLink>
+          <Button variant="secondary" size="sm" onClick={() => go('layout')}>
+            Layout primitives
+            <Icons.arrowRight size={14} />
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('screens')}>
+            Screen patterns
+            <Icons.arrowRight size={14} />
+          </Button>
+          <Button variant="secondary" size="sm" onClick={() => go('getting-started')}>
+            Consumer styling policy
+            <Icons.arrowRight size={14} />
+          </Button>
         </div>
       </Section>
 

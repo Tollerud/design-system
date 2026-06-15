@@ -167,8 +167,8 @@ function GradientReadabilityDemo({ treatment }) {
               : 'The real Paper shader stays visible, while the copy keeps enough contrast to survive bright motion behind it.'}
           </p>
           <div className="ds-row" style={{ gap: 12, marginTop: 22 }}>
-            <button className="tollerud-btn tollerud-btn--terminal tollerud-btn--md">explore_system</button>
-            <button className="tollerud-btn tollerud-btn--secondary tollerud-btn--md" style={{ color: '#F5F5F5', borderColor: 'rgba(245,245,245,0.2)' }}>Components</button>
+            <Button variant="terminal" size="md">explore_system</Button>
+            <Button variant="secondary" size="md">Components</Button>
           </div>
         </div>
       </div>
@@ -254,8 +254,8 @@ function PageBackgrounds() {
             <span className="tollerud-pill tollerud-pill--outline">live atmosphere</span>
             <h3 className="tollerud-display" style={{ fontSize: 30, marginTop: 14, color: '#F5F5F5' }}>Run your stack like production.</h3>
             <div className="ds-row" style={{ gap: 12, marginTop: 20 }}>
-              <button className="tollerud-btn tollerud-btn--terminal tollerud-btn--md">deploy --free</button>
-              <button className="tollerud-btn tollerud-btn--secondary tollerud-btn--md" style={{ color: '#F5F5F5', borderColor: 'rgba(245,245,245,0.2)' }}>Read the docs</button>
+              <Button variant="terminal" size="md">deploy --free</Button>
+              <Button variant="secondary" size="md">Read the docs</Button>
             </div>
           </div>
         </div>

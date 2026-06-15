@@ -126,15 +126,15 @@ function PageOnboarding({ go }) {
         desc="A four-step flow with a live stepper, inline validation, multi-select cards and a success state. Every control is wired — try advancing without a valid hostname.">
         <SetupWizard/>
         {go && (
-          <div className="ds-row" style={{ gap: 12, marginTop: 16, flexWrap: 'wrap' }}>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('components/empty-state')}>
+          <div className="ds-row" style={{ gap: 12, flexWrap: 'wrap' }}>
+            <Button variant="secondary" size="sm" onClick={() => go('components/empty-state')}>
               EmptyState component — gallery and compact variant
               <Icons.arrowRight size={14} />
-            </button>
-            <button type="button" className="tollerud-btn tollerud-btn--ghost tollerud-btn--sm" onClick={() => go('screens/empty-page')}>
+            </Button>
+            <Button variant="secondary" size="sm" onClick={() => go('screens/empty-page')}>
               EmptyPage — full-page empty state
               <Icons.arrowRight size={14} />
-            </button>
+            </Button>
           </div>
         )}
       </Section>
