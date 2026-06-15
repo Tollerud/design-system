@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   ToastProvider,
@@ -72,6 +73,14 @@ for (const [legacy, canonical] of Object.entries(ROUTE_ALIASES)) {
 
 const PAGES_WITH_GO = new Set(['overview', 'getting-started', 'recipes', 'screens', 'components', 'resources'])
 
+function navHref(id) {
+  return id === 'overview' ? '/' : `/${id}/`
+}
+
+function navLinkClass(id, page) {
+  return `ds-navlink${page === id ? ' ds-navlink--active' : ''}`
+}
+
 function slugFromPathname(pathname) {
   const parts = pathname.replace(/^\//, '').replace(/\/$/, '').split('/').filter(Boolean)
   return parts.length ? parts : null
@@ -126,6 +135,7 @@ export function DocsShell({ slug: slugProp }) {
   toggleThemeRef.current = toggleTheme
   const [navOpen, setNavOpen] = useState(false)
   const [cmdOpen, setCmdOpen] = useState(false)
+  const sidebarNavRef = useRef(null)
 
   const go = useCallback(
     (id) => {
@@ -154,6 +164,15 @@ export function DocsShell({ slug: slugProp }) {
 
   useEffect(() => {
     setNavOpen(false)
+  }, [page, sectionSlug])
+
+  useEffect(() => {
+    const nav = sidebarNavRef.current
+    if (!nav) return
+    const id = requestAnimationFrame(() => {
+      nav.querySelector('.ds-navlink--active')?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+    })
+    return () => cancelAnimationFrame(id)
   }, [page, sectionSlug])
   useEffect(() => {
     initMotion()
@@ -225,21 +244,22 @@ export function DocsShell({ slug: slugProp }) {
               <div className="ds-sidebar__ver">user interface · v{PACKAGE_VERSION}</div>
             </div>
           </div>
-          <nav className="ds-sidebar__nav">
+          <nav className="ds-sidebar__nav" ref={sidebarNavRef}>
             {NAV.map((g) => (
               <div className="ds-navgroup" key={g.group || 'meta'}>
                 {g.group && <div className="ds-navgroup__label">{g.group}</div>}
                 {g.items?.map((it) => {
                   const I = Icons[it.icon]
                   return (
-                    <button
+                    <Link
                       key={it.id}
-                      className={`ds-navlink ${page === it.id && !sectionSlug ? 'ds-navlink--active' : ''}`}
-                      onClick={() => go(it.id)}
+                      href={navHref(it.id)}
+                      className={navLinkClass(it.id, page)}
+                      onClick={() => setNavOpen(false)}
                     >
                       <span className="ds-navlink__icon"><I size={15} /></span>
                       {it.label}
-                    </button>
+                    </Link>
                   )
                 })}
                 {g.subgroups?.map((sub, subIndex) => (
@@ -248,14 +268,15 @@ export function DocsShell({ slug: slugProp }) {
                     {sub.items.map((it) => {
                       const I = Icons[it.icon]
                       return (
-                        <button
+                        <Link
                           key={it.id}
-                          className={`ds-navlink ${page === it.id && !sectionSlug ? 'ds-navlink--active' : ''}`}
-                          onClick={() => go(it.id)}
+                          href={navHref(it.id)}
+                          className={navLinkClass(it.id, page)}
+                          onClick={() => setNavOpen(false)}
                         >
                           <span className="ds-navlink__icon"><I size={15} /></span>
                           {it.label}
-                        </button>
+                        </Link>
                       )
                     })}
                   </div>

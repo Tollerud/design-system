@@ -267,6 +267,7 @@ h1,h2,h3,h4,h5,h6,p { margin: 0; }
   font-size: 13.5px; font-weight: 500; color: var(--text-secondary);
   cursor: pointer; transition: all var(--transition-fast); width: 100%;
   border: none; background: transparent; text-align: left;
+  text-decoration: none;
 }
 .ds-navlink:hover { background: var(--surface-hover); color: var(--foreground); }
 .ds-navlink--active { background: rgba(232,213,0,0.10); color: var(--foreground); }
