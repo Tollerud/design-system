@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext, createContext } from 'react'
-import { TiaPortrait } from '@/components/brand'
 import {
   PACKAGE_VERSION,
   REGISTRY_COMPONENT_COUNT,
@@ -27,7 +26,7 @@ function PageOverview({ go }) {
         )}
         {bold && <div className="ds-hero-readable-shadow" aria-hidden="true"/>}
         <div className="tollerud-grid-bg" style={{ position: 'absolute', inset: 0, opacity: bold ? 0.4 : 1, zIndex: 1 }}/>
-        <div className="ds-hero__grid" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 24, padding: '52px 48px', alignItems: 'center' }}>
+        <div className="ds-hero__grid" style={{ position: 'relative', padding: '52px 48px', maxWidth: 720 }}>
           <div className="ds-hero__copy">
             <div className="ds-row" style={{ gap: 10, marginBottom: 22 }}>
               <span className="tollerud-pill tollerud-pill--outline">v{PACKAGE_VERSION} · noir + yellow</span>
@@ -47,9 +46,6 @@ function PageOverview({ go }) {
               <span style={{ color: 'var(--tollerud-yellow)' }}>❯</span>
               <Typewriter lines={['npm i @tollerud/ui', 'deploy --env production', 'systemctl status tia-agent', 'docker compose up -d']} style={{ color: '#E5E5E5', whiteSpace: 'nowrap', overflow: 'hidden' }}/>
             </div>
-          </div>
-          <div className="ds-hero__media" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'flex-end', minHeight: 300 }}>
-            <TiaPortrait variant="png" height={340} glow={bold} alt="Tia — Tollerud mascot" />
           </div>
         </div>
         {/* bold/calm toggle */}
